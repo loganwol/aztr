@@ -1,0 +1,87 @@
+{
+	"id": 100035,
+	"project": {
+		"id": "89ce17af-3021-4fd0-9586-12aff6749535",
+		"name": "Organization",
+		"url": "https://dev.azure.com/OrganizationName/_apis/projects/Organization"
+	},
+	"startedDate": "2020-01-30T21:09:26.043Z",
+	"completedDate": "2020-01-30T21:09:36.497Z",
+	"durationInMs": 10454.0,
+	"outcome": "Failed",
+	"revision": 1,
+	"state": "Completed",
+	"testCase": {
+		"name": "Verify_Battery_Charging_State"
+	},
+	"testRun": {
+		"id": "1391406",
+		"name": "ProductNameBVT",
+		"url": "https://dev.azure.com/OrganizationName/Organization/_apis/test/Runs/1391406"
+	},
+	"lastUpdatedDate": "2020-01-30T21:15:41.993Z",
+	"priority": 255,
+	"computerName": "OrganizationSURCTRL02",
+	"build": {
+		"id": "2367902",
+		"name": "1.107.200129-2258",
+		"url": "https://dev.azure.com/OrganizationName/_apis/build/Builds/2367902"
+	},
+	"errorMessage": "Assert.AreEqual failed. Expected:<75 (System.UInt32)>. Actual:<75 (System.Int32)>. batteryLevels.min should be 75",
+	"createdDate": "2020-01-30T21:15:41.993Z",
+	"associatedBugs": [
+		{
+			"id": "1470539",
+			"name": "Verify_Battery_Charging_State Failed in 1.106.200128-2108",
+			"url": "https://dev.azure.com/OrganizationName/_apis/wit/workItems/1598545"
+		}
+	],
+	"url": "https://dev.azure.com/OrganizationName/Organization/_apis/test/Runs/1391406/Results/100035",
+	"failureType": "None",
+	"automatedTestStorage": "CompanyDomain.test.integration.devicebridge.dll",
+	"automatedTestType": "UnitTest",
+	"testCaseTitle": "Verify_Battery_Charging_State",
+	"stackTrace": "   at CompanyDomain.Test.Integration.DeviceBridge.DeviceBatteryTests.Verify_Battery_Charging_State() in C:\\w\\23\\s\\Test.Integration\\test\\Test.Integration.DeviceBridge\\Battery\\DeviceBatteryTests.cs:line 148\r\n",
+	"customFields": [],
+	"failingSince": {
+		"date": "2020-01-30T07:03:59.593Z",
+		"build": {
+			"id": 0,
+			"definitionId": 0,
+			"branchName": ""
+		},
+		"release": {
+			"id": 989,
+			"name": "Release-81",
+			"environmentId": 2143,
+			"environmentName": null,
+			"definitionId": 0,
+			"environmentDefinitionId": 0,
+			"environmentDefinitionName": null
+		}
+	},
+	"releaseReference": {
+		"id": 1003,
+		"name": "Release-83",
+		"environmentId": 2159,
+		"environmentName": null,
+		"definitionId": 19,
+		"environmentDefinitionId": 49,
+		"environmentDefinitionName": null
+	},
+	"testCaseReferenceId": 8101131,
+	"lastUpdatedBy": {
+		"displayName": "Project Collection Build Service (OrganizationName)",
+		"url": "https://spsprodwus22.vssps.visualstudio.com/Aa5bdd3f1-3666-4a04-8947-26595313778a/_apis/Identities/bdf55808-fd81-47fc-954d-7d9d98566e7d",
+		"_links": {
+			"avatar": {
+				"href": "https://dev.azure.com/OrganizationName/_apis/GraphProfile/MemberAvatars/svc.YTViZGQzZjEtMzY2Ni00YTA0LTg5NDctMjY1OTUzMTM3NzhhOkJ1aWxkOjVmN2ZiYjllLWQxYzktNDFlNS1iYjk1LTk5MjI2Njc0OTk2NQ"
+			}
+		},
+		"id": "bdf55808-fd81-47fc-954d-7d9d98566e7d",
+		"uniqueName": "Build\\5f7fbb9e-d1c9-41e5-bb95-992266749965",
+		"imageUrl": "https://dev.azure.com/OrganizationName/_apis/GraphProfile/MemberAvatars/svc.YTViZGQzZjEtMzY2Ni00YTA0LTg5NDctMjY1OTUzMTM3NzhhOkJ1aWxkOjVmN2ZiYjllLWQxYzktNDFlNS1iYjk1LTk5MjI2Njc0OTk2NQ",
+		"descriptor": "svc.YTViZGQzZjEtMzY2Ni00YTA0LTg5NDctMjY1OTUzMTM3NzhhOkJ1aWxkOjVmN2ZiYjllLWQxYzktNDFlNS1iYjk1LTk5MjI2Njc0OTk2NQ"
+	},
+	"automatedTestName": "CompanyDomain.Test.Integration.DeviceBridge.DeviceBatteryTests.Verify_Battery_Charging_State"
+}

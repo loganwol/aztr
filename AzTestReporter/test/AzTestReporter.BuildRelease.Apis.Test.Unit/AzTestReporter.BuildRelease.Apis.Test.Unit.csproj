@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>AzTestReporter.BuildRelease.Apis.Test.Unit</RootNamespace>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+
+  <Import Project="$(SolutionDir)directory.build.test.props" />
+
+  <ItemGroup>
+    <Compile Remove="EnvironmentTest.cs" />
+    <Compile Remove="ReleaseCollectionTests.cs" />
+    <Compile Remove="ReleasedetectionandFilteringTests.cs" />
+    <Compile Remove="ReleaseTest.cs" />
+    <Compile Remove="TestRunDetectionTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AzTestReporter.BuildRelease.Apis\AzTestReporter.BuildRelease.Apis.csproj" />
+    <ProjectReference Include="..\AzTestReporter.TestContent\AzTestReporter.TestContent.csproj" />
+  </ItemGroup>
+
+</Project>

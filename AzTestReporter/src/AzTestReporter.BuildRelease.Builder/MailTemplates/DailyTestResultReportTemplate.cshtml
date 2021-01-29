@@ -1,0 +1,1202 @@
+﻿<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name=Generator content="Microsoft Word 15 (filtered medium)">
+    <style>
+        <!--
+        /* Font Definitions */
+        font-face {
+            font-family: Century;
+            panose-1: 2 4 6 4 5 5 5 2 3 4;
+        }
+
+        font-face {
+            font-family: "Cambria Math";
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+        }
+        
+        font-face {
+            font-family: Calibri;
+            panose-1: 2 15 5 2 2 2 4 3 2 4;
+        }
+
+        font-face {
+            font-family: "Calibri Light";
+            panose-1: 2 15 3 2 2 2 4 3 2 4;
+        }
+
+        font-face {
+            font-family: "Segoe UI Emoji";
+            panose-1: 2 11 5 2 4 2 4 2 2 3;
+        }
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            margin: 0in;
+            margin-bottom: .0001pt;
+            font-size: 11.0pt;
+            font-family: "Calibri";
+        }
+
+        span.EmailStyle17 {
+            mso-style-type: personal-compose;
+            font-family: "Calibri";
+            color: windowtext;
+        }
+
+        .MsoChpDefault {
+            mso-style-type: export-only;
+            font-family: "Calibri";
+        }
+
+        page WordSection1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in 1.0in 1.0in 1.0in;
+        }
+
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        -->
+    </style>
+    <!--[if gte mso 9]><xml>
+    <o:shapedefaults v:ext="edit" spidmax="1026" />
+    </xml><![endif]-->
+    <!--[if gte mso 9]><xml>
+    <o:shapelayout v:ext="edit">
+    <o:idmap v:ext="edit" data="1" />
+    </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=EN-US link="#0563C1" vlink="#954F72">
+    <div class=WordSection1>
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+            <tr style='height:24.0pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#007ACC;padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
+                    <p class=MsoNormal>
+                        &nbsp;
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#007ACC;padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                        <tr>
+                            <td width=97 rowspan=7 style='width:72.6pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal align=center style='text-align:center'>
+                                    <span style='font-size:72.0pt;font-family:"Calibri";color:black'>&#128203;</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <span style='font-size:12.0pt;font-family:"Calibri";color:white;text-transform:uppercase;letter-spacing:1.5pt'>&nbsp;</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <span id="headertitle" style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:uppercase;letter-spacing:1.5pt'>@Model.HeaderTitle</span>
+                                    <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>&nbsp;-</span>
+                                    <span>&nbsp;</span>
+                                    @{
+                                        if (@Model.ReleaseType.ToLower() == "build")
+                                        {
+                                            <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>Unit</span>
+                                        }
+                                    }
+                                    <span>&nbsp;</span>
+                                    <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>Test Result Report</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="inherit !important" valign=top>
+                                @{
+                                    if (@Model.ReleaseType.ToLower() == "build")
+                                    {
+                                        <p class=MsoNormal>
+                                            <span style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>Build - </span>
+                                            <span id="releasedetail" style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.BuildVersion</span>
+                                            <o:p></o:p>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class=MsoNormal>
+                                            <span id="releasedetail" style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.ReleaseName</span>
+                                            <o:p></o:p>
+                                        </p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr style='height:2.3pt'>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <span style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>BRANCH: </span>
+                                    <span id="branchInfo" style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.BranchName</span>
+                                    <span>&nbsp;</span>
+                                    <span style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>Repo: </span>
+                                    <span id="branchInfo" style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.RepoName</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span style='font-size:9.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>&nbsp;</span>
+                                    </i>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span id="projectname" style='font-size:9.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>@Model.AzureProjectName Automated test execution report</span>
+                                    </i>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="inherit !important" valign=top>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span style='font-size:8.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>
+                                            <o:p>&nbsp;</o:p>
+                                        </span>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td width=48 valign=top style='        width: 35.75pt;
+        background: #007ACC;
+        padding: 0in 5.4pt 0in 5.4pt;
+        height: 24.0pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Blank Row -->
+            <tr style='height:.1in'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <span style='font-size:7.0pt'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Run Summary table section -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:800pt;border-collapse:collapse;border:none'>
+                        <thead>
+                            <tr>
+                                <td width=154 style='border:inset gray 1.0pt;border-bottom:solid #A5A5A5 1.5pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                    <p class=MsoNormal align=center style='mso-margin-top-alt:7.5pt;margin-top:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center'>
+                                        <b>
+                                            <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Pass Rate %</span>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td width=154 style='border-top:inset gray 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:inset gray 1.0pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                    <p class=MsoNormal align=center style='text-align:center'>
+                                        <b>
+                                            <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Passed</span>
+                                        </b>
+                                        <span style='font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>
+                                            <o:p></o:p>
+                                        </span>
+                                    </p>
+                                </td>
+                                <td width=154 style='border-top:inset gray 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:inset gray 1.0pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                    <p class=MsoNormal align=center style='text-align:center'>
+                                        <b>
+                                            <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Failed</span>
+                                        </b>
+                                        <span style='font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>
+                                            <o:p></o:p>
+                                        </span>
+                                    </p>
+                                </td>
+                                <td width=154 style='border-top:inset gray 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:inset gray 1.0pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                    <p class=MsoNormal align=center style='text-align:center'>
+                                        <b>
+                                            <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Not Executed</span>
+                                        </b>
+                                        <span style='font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>
+                                            <o:p></o:p>
+                                        </span>
+                                    </p>
+                                </td>
+                                <td width=154 style='border-top:inset gray 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:inset gray 1.0pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                    <p class=MsoNormal align=center style='text-align:center'>
+                                        <b>
+                                            <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Total Tests</span>
+                                        </b>
+                                        <span style='font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>
+                                            <o:p></o:p>
+                                        </span>
+                                    </p>
+                                </td>
+                                @if (@Model.CodeCoverageAggregates != null)
+                                {
+                                    <td id="summarycodecoverageheader" width=154 style='border-top:inset gray 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:inset gray 1.0pt;background:#007ACC;padding:0in 0in 0in 0in'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>Code Coverage %</span>
+                                            </b>
+                                            <span style='font-family:"Calibri";color:#DAE3F3;mso-style-textfill-fill-color:#DAE3F3;mso-style-textfill-fill-alpha:100.0%'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                }
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style='height:90pt'>
+                                @{
+                                    if (@Model.ResultSummary != null)
+                                    {
+                                        <td width=154 style='border:inset gray 1.0pt;border-top:none;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
+                                            <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                <b>
+                                                    <span id="passrate">
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.PassRate</span>
+                                                    </span>
+                                                </b>
+                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>%</span>
+                                                <o:p></o:p>
+                                            </p>
+                                        </td>
+                                        <td width=154 style='border-top: none;border-left: none;border-bottom: inset gray 1.0pt;border-right: inset gray 1.0pt;background: white;padding: 0in 0in 0in 0in;height: 65.0pt'>
+                                            <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                <b>
+                                                    <span id="passedtests">
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:lightgreen'>@Model.ResultSummary.Passed</span>
+                                                    </span>
+                                                </b>
+                                                <o:p></o:p>
+                                            </p>
+                                        </td>
+                                        <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
+                                            <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                <b>
+                                                    <span id="failedtests">
+                                                        @if (@Model.ResultSummary.Failed > 0)
+                                                        {
+                                                            <a id="failedtestslink" href="#FailuresbyTestClass">
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                        }
+                                                    </span>
+                                                </b>
+                                                <o:p></o:p>
+                                            </p>
+                                        </td>
+                                        <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
+                                            <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                <b>
+                                                    <span id="notexecutedtests">
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.NotExecuted</span>
+                                                    </span>
+                                                </b>
+                                                <o:p></o:p>
+                                            </p>
+                                        </td>
+                                        <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
+                                            <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                <b>
+                                                    <span id="totaltests">
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%'>@Model.ResultSummary.Total</span>
+                                                    </span>
+                                                </b>
+                                                <o:p></o:p>
+                                            </p>
+                                        </td>
+                                        if (@Model.ResultSummary.CodeCoverage >= 0)
+                                        {
+                                            <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
+                                                <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
+                                                    <b>
+                                                        <span id="codecoverage">
+                                                            <a id="codecoveragetestslink" href="#codecoverageresults">
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black'>@Model.ResultSummary.CodeCoverage%</span>
+                                                            </a>
+                                                        </span>
+                                                    </b>
+                                                    <o:p></o:p>
+                                                </p>
+                                            </td>
+                                        }
+                                    }
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            <!-- Blank Row -->
+            <tr style='height:.1in'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <span style='font-size:7.0pt'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            <!-- Link to results section -->
+            <tr style='height:11.25pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal style='margin-bottom:3.75pt;background:#F2F2F2'>
+                        <b>
+                            <a id="dashboardlink" href="@Model.LinktoDashboard">
+                                <span style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>Test Results Link in Azure DevOps - Build : </span>
+                                <span style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>@Model.BuildVersion</span>
+                            </a>
+                        </b>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            </tr>
+            <!-- Test Class Summary Header -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>
+                            <a name="FailuresbyTestClassSummary">&nbsp;</a>
+                            <o:p>&nbsp;</o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                        <tr>
+                            <td width=0 valign=top>
+                                <p class=MsoNormal></p>
+                            </td>
+                            <td width=694 valign=top style='width:520.35pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal style='margin-top:2.0pt;background:#F2F2F0'>
+                                    <b>
+                                        <span id="testsummarytableheader" style='font-size:24.0pt;color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%;text-transform:uppercase;letter-spacing:.75pt'>Test Class Summary</span>
+                                    </b>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class=MsoNormal>
+                        <span style='color:black'><o:p></o:p></span>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'><o:p>&nbsp;</o:p></span>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Test Results Summary Table -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'><o:p>&nbsp;</o:p></span>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:950pt;border-collapse:collapse'>
+                        <thead>
+                            <tr>
+                                <td style='border:solid #A5A5A5 1.0pt;background:#007acc;padding:4pt;min-width:150pt;'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:0pt;margin-left:0in;text-align:center'>
+                                        <b>
+                                            <span id="testsummarytablecolheader" style='font-size:14.0pt;color:#FBE5D6'>Test Class <o:p></o:p></span>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:4pt;min-width:75pt;'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;text-align:center'>
+                                        <b><span style='font-size:14.0pt;color:#FBE5D6'>Pass Rate % <o:p></o:p></span></b>
+                                    </p>
+                                </td>
+                                <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:4pt;min-width:75pt;'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;text-align:center'>
+                                        <b><span style='font-size:14.0pt;color:#FBE5D6'>Total Tests<o:p></o:p></span></b>
+                                    </p>
+                                </td>
+                                <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:4pt;min-width:75pt;'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;text-align:center'>
+                                        <b><span style='font-size:14.0pt;color:#FBE5D6'>Passed<o:p></o:p></span></b>
+                                    </p>
+                                </td>
+                                <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:4pt;min-width:75pt;'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;text-align:center'>
+                                        <b><span style='font-size:14.0pt;color:#FBE5D6'>Not Executed<o:p></o:p></span></b>
+                                    </p>
+                                </td>
+                                <td style='        border: solid #A5A5A5 1.0pt;
+border-left: none;
+background: #007acc;
+padding: 0in 0in 0in 0in;
+min-width: 75pt;
+'>
+                                    <p class=MsoNormal align=center style='font-family:Calibri;text-align:center'>
+                                        <b><span style='font-size:14.0pt;color:#FBE5D6'>Failed<o:p></o:p></span></b>
+                                    </p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (@Model.TestClassResultsSummary != null)
+                                {
+                                    foreach (var testClassSummaryResult in @Model.TestClassResultsSummary)
+                                    {
+                                        var bgcolor = string.Empty;
+                                        var fgcolor = "#606060";
+                                        if (testClassSummaryResult.Failed > 0)
+                                        {
+                                            bgcolor = "#ec7373";
+                                            fgcolor = "black";
+                                        }
+                                        else if (testClassSummaryResult.NotExecuted == testClassSummaryResult.Total)
+                                        {
+                                            bgcolor = "#ffe196";
+                                            fgcolor = "black";
+                                        }
+
+                                        var linkid = "#" + testClassSummaryResult.TestClassName;
+                                        if (testClassSummaryResult.Failed == 0)
+                                        {
+                                            linkid = "";
+                                        }
+
+                                        var testclass = testClassSummaryResult.TestClassName;
+                                        <tr style="background-color:@bgcolor">
+                                            <td id="@testclass" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt'>
+                                                <p class=MsoNormal style='mso-margin-top-alt:0in;vertical-align:top'>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.TestClassName</span>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt:0in;text-align:center;vertical-align:top'>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.PassRate<o:p></o:p></span>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>%</span>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt:0in;text-align:center;vertical-align:top'>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.Total<o:p></o:p></span>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt:0in;text-align:center;vertical-align:top'>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.Passed<o:p></o:p></span>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt:0in;text-align:center;vertical-align:top'>
+                                                    <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.NotExecuted<o:p></o:p></span>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt:0in;text-align:center;vertical-align:top'>
+                                                    @{
+                                                        if (@testClassSummaryResult.Failed > 0)
+                                                        {
+                                                            <span style='font-family:"Calibri";color:@fgcolor'>
+                                                                <a href="@linkid">@testClassSummaryResult.Failed</a><o:p></o:p>
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style='font-family:"Calibri";color:@fgcolor'>@testClassSummaryResult.Failed<o:p></o:p></span>
+                                                        }
+                                                    }
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <p class=MsoNormal>
+                        <span style='color:black'><o:p></o:p></span>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'><o:p>&nbsp;</o:p></span>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Test Class summary legends section -->
+            @if (@Model.TestClassResultsSummary != null)
+            {
+                <tr style="height:5.4pt">
+                    <td width="24" valign="top" style="width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt">
+                        <p class="MsoNormal">
+                            <span>
+                                <span style="color:black">&nbsp; </span>
+                                <o:p></o:p>
+                            </span>
+                        </p>
+                    </td>
+
+                    <td width="1200" valign="top" style="width:12.5in;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt">
+                        <p class="MsoNormal">
+                            <span style="color:black">&nbsp; </span>
+                            <o:p></o:p>
+                        </p>
+                        <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;border:none">
+                            <tr style="height:3pt">
+                                <td width="20" valign="top" style="width:8pt;border:solid #7F7F7F 1.0pt;background:#ec7373;height:3pt">
+
+                                    <p class="MsoNormal" align="center" style="text-align:center">
+                                        <span>
+                                            <b>
+                                                <span style="font-size:3.0pt"><o:p>&nbsp;</o:p></span>
+                                            </b>
+                                        </span>
+                                    </p>
+                                </td>
+
+                                <td width="593" valign="top" style="width:444.4pt;border:solid #D9D9D9 1.0pt;border-left:none;padding:0in 5.4pt 0in 5.4pt;height:3pt">
+                                    <p class="MsoNormal">
+                                        <i><span style="font-size:8.0pt">Test Classes with Test Failures<o:p></o:p></span></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="height:3pt">
+                                <td width="20" valign="top" style="width:8pt;border:solid #7F7F7F 1.0pt;border-top:none;background:#ffe196;height:3pt">
+
+                                    <p class="MsoNormal" align="center" style="text-align:center">
+                                        <span>
+                                            <b>
+                                                <span style="font-size:3.0pt"><o:p>&nbsp;</o:p></span>
+                                            </b>
+                                        </span>
+                                    </p>
+                                </td>
+
+                                <td width="593" valign="top" style="width:444.4pt;border-top:none;border-left:none;border-bottom:solid #D9D9D9 1.0pt;border-right:solid #D9D9D9 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:3pt">
+                                    <p class="MsoNormal">
+                                        <i><span style="font-size:8.0pt">Test classes with no Test Failures but Total Tests equals Not Executed Tests<o:p></o:p></span></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="height:3pt">
+                                <td width="20" valign="top" style="width:8pt;border:solid #7F7F7F 1.0pt;border-top:none;height:3pt">
+
+                                    <p class="MsoNormal" align="center" style="text-align:center">
+                                        <span>
+                                            <b>
+                                                <span style="font-size:3.0pt"><o:p>&nbsp;</o:p></span>
+                                            </b>
+                                        </span>
+                                    </p>
+                                </td>
+
+                                <td width="593" valign="top" style="width:444.4pt;border-top:none;border-left:none;border-bottom:solid #D9D9D9 1.0pt;border-right:solid #D9D9D9 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:3pt">
+                                    <p class="MsoNormal">
+                                        <i><span style="font-size:8.0pt">Test Classes with 100% passing tests<o:p></o:p></span></i>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="48" valign="top" style="width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt">
+                        <p class="MsoNormal">
+                            <span style="color:black">&nbsp; </span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+            }
+
+            <!-- Blank row -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='        width: 35.75pt;
+background: #F2F2F2;
+padding: 0in 5.4pt 0in 5.4pt;
+height: 5.4pt
+'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Failures Summary Header section -->
+            @if (@Model.FailuresbyTestClass != null && @Model.FailuresbyTestClass.Count() > 0)
+            {
+                <tr style='height:5.4pt' id="failuresbytestclassrow">
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <a name="FailuresbyTestClass">&nbsp;</a>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <!-- Failures table header -->
+                        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                            <tr>
+                                <td width=0 valign=top>
+                                    <p class=MsoNormal></p>
+                                </td>
+                                <td width=694 valign=top style='width:520.35pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p class=MsoNormal style='margin-top:2.0pt;background:#F2F2F0'>
+                                        <b>
+                                            <span style='font-size:24.0pt;color:#d7191c;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%;text-transform:uppercase;letter-spacing:.75pt'>FAILURES BY TEST CLASS</span>
+                                        </b>
+                                        <span style='color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%'> </span>
+                                        <o:p></o:p>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p></o:p></span>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='        width: 35.75pt;
+        background: #F2F2F2;
+        padding: 0in 5.4pt 0in 5.4pt;
+        height: 5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+            }
+
+            <!-- Failures by Test Class Summary table section -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color: black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <!-- Failures by Test Class Table -->
+
+                    @{
+                        if (@Model.FailuresbyTestClass != null && @Model.FailuresbyTestClass.Count > 0)
+                        {
+                            <table id="failuresbytestclasstable" class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:950pt;border-collapse:collapse;border:none;'>
+                                <thead>
+                                    <tr>
+                                        <td style='border:solid #A5A5A5 1.0pt;border-bottom:solid #A5A5A5 1.5pt;background:#D7191C;padding:4pt'>
+                                            <p class=MsoNormal align=center style='mso-margin-top-alt: 0in;text-align: center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Test Class</span>
+                                                </b>
+                                            </p>
+                                        </td>
+                                        <td style='border-top: solid #A5A5A5 1.0pt;border-left: none;border-bottom: solid #A5A5A5 1.5pt;border-right: solid #A5A5A5 1.0pt;background: #D7191C;padding: .05in 0in 2.9pt 0in'>
+                                            <p class=MsoNormal align=center style='text-align: center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Test Name</span>
+                                                </b>
+                                            </p>
+                                        </td>
+                                        <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Duration (sec)</span>
+                                                </b>
+                                            </p>
+                                        </td>
+                                        <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Error Message</span>
+                                                </b>
+                                            </p>
+                                        </td>
+                                        <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Failing since (days)</span>
+                                                </b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+
+                                        var rownumber = 1;
+                                        var rowid = string.Empty;
+
+                                        foreach (var failuredetail in @Model.FailuresbyTestClass)
+                                        {
+                                            rowid = "failuresrow" + rownumber.ToString();
+                                            rownumber++;
+
+                                            var alignment = "top";
+                                            if (failuredetail.RowCount == 1)
+                                            {
+                                                alignment = "middle";
+                                            }
+
+                                            <tr id="@rowid">
+                                                @if (@failuredetail.RowCount > 0)
+                                                {
+                                                    <td rowspan="@failuredetail.RowCount" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
+                                                        <p class=MsoNormal align="center" style='text-align:center;'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                                <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
+                                                            </span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                }
+
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                    <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="@failuredetail.LinktoRunWeb">@failuredetail.TestName</a></span>
+                                                        <o:p></o:p>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.Duration</span>
+                                                        <o:p></o:p>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                    <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
+                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.ErrorMessage</span>
+                                                        <o:p></o:p>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
+                                                        <o:p></o:p>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    }
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Blank row -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal align=center style='text-align:center'>
+                        <b>
+                            <span style='font-size:13.5pt;font-family:"Calibri";color:white'>&nbsp;</span>
+                        </b>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            @if (@Model.CodeCoverageAggregates != null)
+            {
+                <!-- Code coverage Summary Header -->
+                <tr style='height:5.4pt' id="codecoveragesummaryheader">
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>
+                                <a name="FailuresbyTestClass">&nbsp;</a>
+                                <o:p>&nbsp;</o:p>
+                            </span>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                            <tr>
+                                <td width=0 valign=top>
+                                    <p class=MsoNormal>
+                                        <a name="codecoverageresults">&nbsp;</a>
+                                    </p>
+                                </td>
+                                <td width=694 valign=top style='width:520.35pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p class=MsoNormal style='margin-top:2.0pt;background:#F2F2F0'>
+                                        <b><span style='font-size:24.0pt;color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%;text-transform:uppercase;letter-spacing:.75pt'>Code coverage Summary</span></b>
+                                        <span>&nbsp;</span>
+                                        <span style='color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%'>
+                                            <a href="@Model.CodeCoverageFileURL">Link to .coverage file.</a>
+                                        </span>
+                                        <o:p></o:p>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p></o:p></span>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p>&nbsp;</o:p></span>
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Code Coverage Summary Table -->
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p>&nbsp;</o:p></span>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+
+                        @{
+                            <table id="codecoveragesummarytable" class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:950pt;border-collapse:collapse;'>
+                                <thead>
+                                    <tr>
+                                        <td style='border:solid #A5A5A5 1.0pt;background:#007acc;padding:.05in 0in 2.9pt 0in;min-width:150pt;'>
+                                            <p class=MsoNormal align=center style='mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:0pt;margin-left:0in;text-align:center'>
+                                                <b><span style='font-size:12.0pt;color:#FBE5D6'>Assembly Module Name<o:p></o:p></span></b>
+                                            </p>
+                                        </td>
+                                        <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:.05in 0in 2.9pt 0in;min-width:75pt;'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b><span style='font-size:12.0pt;color:#FBE5D6'>Total Blocks <o:p></o:p></span></b>
+                                            </p>
+                                        </td>
+                                        <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:.05in 0in 2.9pt 0in;min-width:75pt;'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b><span style='font-size:12.0pt;color:#FBE5D6'>Covered Blocks <o:p></o:p></span></b>
+                                            </p>
+                                        </td>
+                                        <td style='border:solid #A5A5A5 1.0pt;border-left:none;background:#007acc;padding:.05in 0in 2.9pt 0in;min-width:75pt;'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b><span style='font-size:12.0pt;color:#FBE5D6'>Covered Blocks %<o:p></o:p></span></b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (@Model.CodeCoverageAggregates != null)
+                                    {
+                                        var rowcount = 0;
+                                        var rowid = "";
+
+                                        foreach (var codeCoverageResult in @Model.CodeCoverageAggregates)
+                                        {
+                                            var linkid = "#" + codeCoverageResult.Name;
+                                            rowid = "ccdatarow" + rowcount.ToString();
+                                            rowcount++;
+
+                                            <tr id="@rowid">
+                                                <td style='border:solid #A5A5A5 1.0pt;border-top:none;padding:.05in 0in 2.9pt 0in'>
+                                                    <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                                        <span style='font-family:"Calibri";color:#606060'>@codeCoverageResult.Name</span>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:.05in 0in 2.9pt 0in'>
+                                                    <p class=MsoNormal align=center style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;text-align:center;vertical-align:top'>
+                                                        <span style='font-family:"Calibri";color:#606060'>@codeCoverageResult.TotalBlocks<o:p></o:p></span><span style='font-family:"Calibri";color:#606060'></span>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:.05in 0in 2.9pt 0in'>
+                                                    <p class=MsoNormal align=center style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;text-align:center;vertical-align:top'>
+                                                        <span style='font-family:"Calibri";color:#606060'>@codeCoverageResult.NumberofCoveredBlocks<o:p></o:p></span><span style='font-family:"Calibri";color:#606060'></span>
+                                                    </p>
+                                                </td>
+                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:.05in 0in 2.9pt 0in'>
+                                                    <p class=MsoNormal align=center style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;text-align:center;vertical-align:top'>
+                                                        <span style='font-family:"Calibri";color:#606060'>@codeCoverageResult.CoveredBlocksPercentage<o:p></o:p></span><span style='font-family:"Calibri";color:#606060'>%</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+
+
+                        }
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p></o:p></span>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p>&nbsp;</o:p></span>
+                        </p>
+                    </td>
+                </tr>
+
+
+
+            }
+
+            <!-- Blank row -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal align=center style='text-align:center'>
+                        <b>
+                            <span style='font-size:13.5pt;font-family:"Calibri";color:white'>&nbsp;</span>
+                        </b>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Links table section -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 0in 0in 0in;height:5.4pt'>
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='min-width:400pt;max-width:400pt;border-collapse:collapse;border:none'>
+
+                        @{
+                            if (@Model.TestRunLinks != null && @Model.TestRunLinks.Count() > 0)
+                            {
+                                var rowcount = 0;
+                                var runlinkcount = 0;
+                                var testrunlinks = @Model.TestRunLinks;
+
+                                <tbody>
+                                    @foreach (var testrunlink in testrunlinks)
+                                    {
+                                        var rowid = "testrunlinksrow" + rowcount;
+                                        var cellid = "testruntitlecell" + rowcount;
+                                        var linkcellid = "testrunlinkscell" + rowcount;
+
+                                        <tr id="@rowid" style="height:13.65pt">
+                                            <td id="@cellid" style="padding:0in 5.4pt 0in 5.4pt;height:13.65pt;width:300pt">
+                                                <span style='font-size:11.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.25pt;text-wrap:normal'>
+                                                    <p class="MsoNormal">@testrunlink.Name<o:p></o:p></p>
+                                                </span>
+                                            </td>
+                                            <td style="padding:0in 5.4pt 0in 5.4pt;height:13.65pt;width:200pt">
+                                                <p class="MsoNormal">
+                                                    <a id="@linkcellid" href="@testrunlink.Url">
+                                                        <span style='font-size:11.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.25pt'>Test Run Overview Link</span>
+                                                    </a><o:p></o:p>
+                                                </p>
+                                            </td>
+                                            <td style="padding:0in 5.4pt 0in 5.4pt;height:13.65pt;width:175pt">
+                                                <p class="MsoNormal">
+                                                    <a href="@testrunlink.TestsUrl">
+                                                        <span style='font-size:11.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.25pt'>Test Run Link</span>
+                                                    </a><o:p></o:p>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        rowid = "testrunlinksrow" + (rowcount + 1);
+                                        rowcount++;
+
+                                    }
+
+                                    <tr>
+                                        <td colspan=3 style="margin-top:2px;top:6px;font-size:small">
+                                            <div style='color:black;height:11px'>&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:13.65pt">
+                                        <td colspan="3" valign="top" style="padding:0in 0in 0in 0in;height:13.65pt">
+                                            <p class="MsoNormal">
+                                                <i>
+                                                    <span style="font-size:9.0pt">* Click on the Test Run Overview Link(s) to see test run attachments like logs and coverage data.<o:p></o:p></span>
+                                                </i>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        }
+
+                    </table>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:7.5pt;margin-bottom:0in;margin-left:7.5pt;margin-bottom:.0001pt'>
+                        <i>
+                            <span id="toolsversion" style='font-size:9.0pt;font-family:"Calibri Light";color:black'>Created with Azure Test Reporter Version @Model.ToolVersion</span>
+                        </i>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+        </table>
+                <p class=MsoNormal>
+                    <span style='color:black'>
+                        &nbsp;
+                        <o:p></o:p>
+                    </span>
+                </p>
+                <p class=MsoNormal>
+                    <o:p>&nbsp;</o:p>
+                </p>
+            </div>
+</body>
+</html>

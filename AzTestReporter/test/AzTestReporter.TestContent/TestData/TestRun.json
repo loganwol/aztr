@@ -1,0 +1,566 @@
+{
+  "value": [
+    {
+      "id": 246,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/234",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:23:19.38Z",
+      "completedDate": "2021-01-23T20:23:34.103Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:23:34.633Z",
+      "lastUpdatedDate": "2021-01-23T20:23:36.147Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null,
+        "attempt": 7
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=234&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 236,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/236",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:26:48.21Z",
+      "completedDate": "2021-01-23T20:27:04.477Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:27:05.143Z",
+      "lastUpdatedDate": "2021-01-23T20:27:06.39Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=236&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 238,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/238",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:28:40.02Z",
+      "completedDate": "2021-01-23T20:28:53.073Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:28:53.65Z",
+      "lastUpdatedDate": "2021-01-23T20:28:55.013Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=238&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 240,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/240",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:34:09.493Z",
+      "completedDate": "2021-01-23T20:34:23.08Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:34:23.593Z",
+      "lastUpdatedDate": "2021-01-23T20:34:24.89Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=240&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 242,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/242",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:48:38.247Z",
+      "completedDate": "2021-01-23T20:48:54.68Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:48:55.273Z",
+      "lastUpdatedDate": "2021-01-23T20:48:57.24Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=242&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 244,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/244",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:51:30.727Z",
+      "completedDate": "2021-01-23T20:51:45.487Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:51:46.03Z",
+      "lastUpdatedDate": "2021-01-23T20:51:47.707Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=244&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    },
+    {
+      "id": 246,
+      "name": "MSRepeatIntegrationTests",
+      "url": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_apis/test/Runs/246",
+      "buildConfiguration": {
+        "id": 94,
+        "number": "1.1.27",
+        "flavor": "",
+        "platform": "",
+        "buildDefinitionId": 2,
+        "project": {
+          "name": "ProjeCT"
+        }
+      },
+      "isAutomated": true,
+      "owner": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "project": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": "ProjeCT"
+      },
+      "startedDate": "2021-01-23T20:54:39.92Z",
+      "completedDate": "2021-01-23T20:54:56.47Z",
+      "state": "Completed",
+      "totalTests": 16,
+      "incompleteTests": 0,
+      "notApplicableTests": 0,
+      "passedTests": 16,
+      "unanalyzedTests": 0,
+      "createdDate": "2021-01-23T20:54:57.623Z",
+      "lastUpdatedDate": "2021-01-23T20:54:58.72Z",
+      "lastUpdatedBy": {
+        "displayName": "ProjeCT Build Service (ProjEctCollecTion)",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+          }
+        },
+        "id": "1f4e2149-2787-4125-ad58-ee0a8aed2589",
+        "uniqueName": "Build\\75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "imageUrl": "https://dev.azure.com/ProjEctCollecTion/_apis/GraphProfile/MemberAvatars/svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw",
+        "descriptor": "svc.NDYwNTcyNTYtOGRhYy00ZmMzLTlhM2MtZmJhNjkwMzUwMjM2OkJ1aWxkOjc1ZjE3Nzk0LTZmZGItNGQwZC1hZWViLTc3MDQwYzI5NTA0Nw"
+      },
+      "revision": 0,
+      "release": {
+        "id": 59,
+        "name": null,
+        "environmentId": 59,
+        "environmentName": null,
+        "definitionId": 0,
+        "environmentDefinitionId": 0,
+        "environmentDefinitionName": null
+      },
+      "runStatistics": [
+        {
+          "state": "Unspecified",
+          "outcome": "Passed",
+          "count": 16
+        }
+      ],
+      "webAccessUrl": "https://dev.azure.com/ProjEctCollecTion/ProjeCT/_TestManagement/Runs?runId=246&_a=runCharts",
+      "pipelineReference": {
+        "pipelineId": 94,
+        "stageReference": {},
+        "phaseReference": {},
+        "jobReference": {}
+      }
+    }
+  ],
+  "count": 7
+}

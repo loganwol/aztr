@@ -1,0 +1,516 @@
+﻿<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name=Generator content="Microsoft Word 15 (filtered medium)">
+    <style>
+        <!--
+        /* Font Definitions */
+        font-face {
+            font-family: Century;
+            panose-1: 2 4 6 4 5 5 5 2 3 4;
+        }
+
+        font-face {
+            font-family: "Cambria Math";
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+        }
+
+        font-face {
+            font-family: Calibri;
+            panose-1: 2 15 5 2 2 2 4 3 2 4;
+        }
+
+        font-face {
+            font-family: "Calibri Light";
+            panose-1: 2 15 3 2 2 2 4 3 2 4;
+        }
+
+        font-face {
+            font-family: "Segoe UI Emoji";
+            panose-1: 2 11 5 2 4 2 4 2 2 3;
+        }
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            margin: 0in;
+            margin-bottom: .0001pt;
+            font-size: 11.0pt;
+            font-family: "Calibri";
+        }
+
+        span.EmailStyle17 {
+            mso-style-type: personal-compose;
+            font-family: "Calibri";
+            color: windowtext;
+        }
+
+        .MsoChpDefault {
+            mso-style-type: export-only;
+            font-family: "Calibri";
+        }
+
+        page WordSection1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in 1.0in 1.0in 1.0in;
+        }
+
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        -->
+    </style>
+    <!--[if gte mso 9]><xml>
+    <o:shapedefaults v:ext="edit" spidmax="1026" />
+    </xml><![endif]-->
+    <!--[if gte mso 9]><xml>
+    <o:shapelayout v:ext="edit">
+    <o:idmap v:ext="edit" data="1" />
+    </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=EN-US link="#0563C1" vlink="#954F72">
+    <div class=WordSection1>
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+            <tr style='height:24.0pt'>
+                <td id="failheadertable" width=24 valign=top style='width:17.7pt;background:#D7191C;padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
+                    <p class=MsoNormal>
+                        &nbsp;
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#D7191C;padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
+                    <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                        <tr>
+                            <td width=97 rowspan=7 style='width:72.6pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal align=center style='text-align:center'>
+                                    <span style='font-size:72.0pt;font-family:"Calibri";color:black'>&#128336;</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal>
+                                    <span style='font-size:12.0pt;font-family:"Calibri";color:white;text-transform:uppercase;letter-spacing:1.5pt'>&nbsp;</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal>
+                                    <span id="headertitle" style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:uppercase;letter-spacing:1.5pt'>@Model.HeaderTitle</span>
+                                    <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>&nbsp;-</span>
+                                    <span>&nbsp;</span>
+                                    @{
+                                        if (@Model.ReleaseType.ToLower() == "build")
+                                        {
+                                            <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>Unit</span>
+                                        }
+                                    }
+                                    <span>&nbsp;</span>
+                                    <span style='font-size:20.0pt;font-family:Calibri;color:white;text-transform:capitalize;letter-spacing:1.5pt'>Test Result Report</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                @{
+                                    if (@Model.ReleaseType.ToLower() == "build")
+                                    {
+                                        <p class=MsoNormal>
+                                            <span style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>Build - </span>
+                                            <span id="releasedetail" style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.BuildVersion</span>
+                                            <o:p></o:p>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class=MsoNormal>
+                                            <span id="releasedetail" style='font-size:14.0pt;font-family:Calibri;color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.ReleaseName</span>
+                                            <o:p></o:p>
+                                        </p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr style='height:2.3pt'>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt;height:2.3pt'>
+                                <p class=MsoNormal>
+                                    <span style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>BRANCH: </span>
+                                    <span id="branchInfo" style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.BranchName</span>
+                                    <span>&nbsp;</span>
+                                    <span style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>Repo: </span>
+                                    <span id="branchInfo" style='font-size:14.0pt;font-family:"Calibri";color:lightgreen;text-transform:uppercase;letter-spacing:1.5pt'>@Model.RepoName</span>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span style='font-size:9.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>&nbsp;</span>
+                                    </i>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span id="projectname" style='font-size:9.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>@Model.AzureProjectName Automated test execution report</span>
+                                    </i>
+                                    <o:p></o:p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=676 valign=top style='width:507.1pt;padding:0in 5.4pt 0in 5.4pt'>
+                                <p class=MsoNormal>
+                                    <i>
+                                        <span style='font-size:8.0pt;font-family:"Calibri";color:lightgrey;letter-spacing:1.5pt'>
+                                            <o:p>&nbsp;</o:p>
+                                        </span>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td width=48 valign=top style='        width: 35.75pt;
+        background: #D7191C;
+        padding: 0in 5.4pt 0in 5.4pt;
+        height: 24.0pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+            <!-- Blank Row -->
+            <tr style='height:.1in'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <span style='font-size:7.0pt'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:.1in'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+
+            <!-- Link to results section -->
+            <tr style='height:11.25pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal style='margin-bottom:3.75pt;background:#F2F2F0'>
+                        <b>
+                            <a id="dashboardlink" href="@Model.LinktoDashboard">
+                                <span style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>Logs Link in Azure DevOps - Build : </span>
+                                <span style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>@Model.BuildVersion</span>
+                            </a>
+                        </b>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
+                @if (!string.IsNullOrEmpty(@Model.FailedTaskName))
+                {<!-- Links table section -->
+                    <tr style='height:5.4pt'>
+                        <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                            <p class=MsoNormal>
+                                <span style='color:black'>&nbsp;</span>
+                                <o:p></o:p>
+                            </p>
+                        </td>
+                        <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 0in 0in 0in;height:5.4pt'>
+                            <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='min-width:400pt;max-width:400pt;border-collapse:collapse;border:none'>
+                                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:11.25pt'>
+                                    <p class=MsoNormal style='margin-bottom:3.75pt;background:#F2F2F0'>
+                                        <b>
+                                            <span style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>Failed task name : </span>
+                                            <span id="failedtaskstring" style='font-size:14.0pt;font-family:"Calibri";color:#5D6D8F;letter-spacing:.75pt'>@Model.FailedTaskName</span>
+                                        </b>
+                                        <o:p></o:p>
+                                    </p>
+                                </td>
+                            </table>
+                        </td>
+                    </tr>
+                  }
+
+
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+
+
+                <!-- Blank row -->
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='        width: 35.75pt;
+        background: #F2F2F2;
+        padding: 0in 5.4pt 0in 5.4pt;
+        height: 5.4pt
+'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Failures Summary Header section -->
+                @if (@Model.FailuresbyTestClass != null && @Model.FailuresbyTestClass.Count > 0)
+                {
+                    <tr style='height:5.4pt' id="failuresbytestclassrow">
+                        <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                            <p class=MsoNormal>
+                                <span style='color:black'>&nbsp;</span>
+                                <o:p></o:p>
+                            </p>
+                        </td>
+                        <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                            <!-- Failures table header -->
+                            <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                                <tr>
+                                    <td width=53 valign=top style='width:39.75pt;padding:0in 5.4pt 0in 5.4pt'>
+                                        <p class=MsoNormal>
+                                            <span style='font-size:22.5pt;font-family:"Calibri";color:black;background:#F2F2F0'>&#128027;</span>
+                                            <o:p></o:p>
+                                        </p>
+                                    </td>
+                                    <td width=694 valign=top style='width:520.35pt;padding:0in 5.4pt 0in 5.4pt'>
+                                        <p class=MsoNormal style='margin-top:2.0pt;background:#F2F2F0'>
+                                            <b><span style='font-size:24.0pt;color:#d7191c;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%;text-transform:uppercase;letter-spacing:.75pt'>FAILURES BY TEST AREA</span></b><span style='color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%'> </span>
+                                            <o:p></o:p>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class=MsoNormal>
+                                <span style='color:black'><o:p></o:p></span>
+                            </p>
+                        </td>
+                        <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                            <p class=MsoNormal>
+                                <span style='color:black'>&nbsp;</span>
+                                <o:p></o:p>
+                            </p>
+                        </td>
+                    </tr>
+                }
+                <!-- Failures by Test Class Summary table section -->
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color: black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <!-- Failures by Test Class Table -->
+
+                        @{
+                            if (@Model.FailuresbyTestClass != null && @Model.FailuresbyTestClass.Count() > 0)
+                            {
+                                <table id="failuresbytestclasstable" class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:950pt;border-collapse:collapse;border:none;'>
+                                    <thead>
+                                        <tr>
+                                            <td style='border:solid #A5A5A5 1.0pt;border-bottom:solid #A5A5A5 1.5pt;background:#D7191C;padding:4pt'>
+                                                <p class=MsoNormal align=center style='mso-margin-top-alt: 0in;text-align: center'>
+                                                    <b>
+                                                        <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Test Class</span>
+                                                    </b>
+                                                </p>
+                                            </td>
+                                            <td style='border-top: solid #A5A5A5 1.0pt;border-left: none;border-bottom: solid #A5A5A5 1.5pt;border-right: solid #A5A5A5 1.0pt;background: #D7191C;padding: .05in 0in 2.9pt 0in'>
+                                                <p class=MsoNormal align=center style='text-align: center'>
+                                                    <b>
+                                                        <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Test Name</span>
+                                                    </b>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                                <p class=MsoNormal align=center style='text-align:center'>
+                                                    <b>
+                                                        <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Duration (sec)</span>
+                                                    </b>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                                <p class=MsoNormal align=center style='text-align:center'>
+                                                    <b>
+                                                        <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Error Message</span>
+                                                    </b>
+                                                </p>
+                                            </td>
+                                            <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                                <p class=MsoNormal align=center style='text-align:center'>
+                                                    <b>
+                                                        <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;mso-style-textfill-fill-color:#FBE5D6;mso-style-textfill-fill-alpha:100.0%'>Failing since (days)</span>
+                                                    </b>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+
+                                            var rownumber = 1;
+                                            var rowid = string.Empty;
+
+                                            foreach (var failuredetail in @Model.FailuresbyTestClass)
+                                            {
+                                                rowid = "failuresrow" + rownumber.ToString();
+                                                rownumber++;
+
+                                                var alignment = "top";
+                                                if (failuredetail.RowCount == 1)
+                                                {
+                                                    alignment = "middle";
+                                                }
+
+                                                <tr id="@rowid">
+                                                    @if (@failuredetail.RowCount > 0)
+                                                    {
+                                                        <td rowspan="@failuredetail.RowCount" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
+                                                            <p class=MsoNormal align="center" style='text-align:center;'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                                    <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
+                                                                </span>
+                                                                <o:p></o:p>
+                                                            </p>
+                                                        </td>
+                                                    }
+
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="@failuredetail.LinktoRunWeb">@failuredetail.TestName</a></span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.Duration</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.ErrorMessage</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        }
+
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+
+
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:7.5pt;margin-bottom:0in;margin-left:7.5pt;margin-bottom:.0001pt'>
+                            <i>
+                                <span id="toolsversion" style='font-size:9.0pt;font-family:"Calibri Light";color:black'>Created with Azure Test Reporter Version @Model.ToolVersion</span>
+                            </i>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        <p class=MsoNormal>
+            <span style='color:black'>
+                &nbsp;
+                <o:p></o:p>
+            </span>
+        </p>
+        <p class=MsoNormal>
+            <o:p>&nbsp;</o:p>
+        </p>
+    </div>
+</body>
+</html>

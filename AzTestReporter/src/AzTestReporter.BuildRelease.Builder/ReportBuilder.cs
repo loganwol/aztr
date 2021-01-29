@@ -1,0 +1,300 @@
+﻿namespace AzTestReporter.BuildRelease.Builder
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Reflection;
+    using AutoMapper;
+    using Newtonsoft.Json;
+    using NLog;
+    using AzTestReporter.BuildRelease.Apis;
+    using AzTestReporter.BuildRelease.Apis.Exceptions;
+    using Validation;
+    using static AzTestReporter.BuildRelease.Apis.Exceptions.TestResultReportingReleaseNotFoundException;
+    using System.Text;
+
+    /// <summary>
+    /// Report builder class.
+    /// </summary>
+    public class ReportBuilder
+    {
+        internal static Logger Log;
+        private IBuildandReleaseReader buildandReleaseReader;
+
+        public ReportBuilder(IBuildandReleaseReader buildandReleaseReader)
+        {
+            Requires.NotNull(buildandReleaseReader, nameof(buildandReleaseReader));
+
+            this.buildandReleaseReader = buildandReleaseReader;
+        }
+
+        public DailyHTMLReportBuilder GetReleasesRunsandResults(ref ReportBuilderParameters builderParameters)
+        {
+            Requires.NotNull(builderParameters.PipelineEnvironmentOptions, nameof(builderParameters.PipelineEnvironmentOptions));
+
+            Log = LogManager.GetCurrentClassLogger();
+
+            CodeCoverageModuleDataCollection coverageAggregateColl = null;
+
+            string buildoreleaseid = string.Empty;
+            string testrundashboardlink = string.Empty;
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string buildVersion = string.Empty;
+            string reportBody = string.Empty;
+            string branchName = string.Empty;
+            List<TestResultData> testResultData = new List<TestResultData>();
+            List<string> logs = new List<string>();
+            List<Run> supportedRunsList = null;
+            List<string> testrunnameslist = null;
+            int executionStageId = -1;
+            bool isPipelineFailed = false;
+            bool tasksFailed = false;
+            bool testRunContainsFailures = false;
+            DateTime buildtime = DateTime.Now;
+            string failedTaskName = string.Empty;
+            DateTime releasetesttaskexecutiontime = DateTime.MaxValue;
+
+            Log?.Trace("Setting up HTTPclient to call REST apis");
+
+            // use REST API and HTTP Client to access ADO
+            using (HttpClient client = new HttpClient())
+            {
+                buildandReleaseReader.SetupandAuthenticate(client, builderParameters.PipelineEnvironmentOptions.SystemAccessToken);
+
+                Log?.Trace("Authentication completed.");
+
+                if (builderParameters.ResultSourceIsBuild)
+                {
+                    Log?.Info("Getting data for Unit test results");
+
+                    BuildData builddata = GetBuildData(builderParameters);
+                    coverageAggregateColl = new CodeCoverageModuleDataCollection(this.buildandReleaseReader, builddata.BuildId);
+
+                    testrunnameslist = new List<string>() { builddata.BuildId };
+                    branchName = builddata.BranchName;
+                    builderParameters.IsPrivateRelease = builddata.IsPrivateBuild;
+                    buildoreleaseid = builddata.BuildId;
+                    testrundashboardlink = builddata.GetBuildTestsUrl(
+                        builderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI,
+                        builderParameters.PipelineEnvironmentOptions.SystemTeamProject);
+
+                    if (builderParameters.IsPrivateRelease)
+                    {
+                        if (string.IsNullOrEmpty(builddata.BuildRequestedBy))
+                        {
+                            throw new TestResultReportingSendToNullException("Build Requested by is blank.", JsonConvert.SerializeObject(builddata));
+                        }
+
+                        builderParameters.SendTo = builddata.BuildRequestedBy;
+                        Log?.Info($"This is a private release {builddata.BuildRequestedBy}");
+                    }
+
+                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildNumber))
+                    {
+                        Log?.Info($"Build number was not found, setting to {builddata.BuildNumber}");
+                        buildVersion = builddata.BuildNumber;
+                    }
+                    else
+                    {
+                        buildVersion = builderParameters.PipelineEnvironmentOptions.BuildNumber;
+                    }
+
+                    if (builddata.Result.ToUpperInvariant() == "failed".ToUpperInvariant())
+                    {
+                        Log?.Info("Pipeline contains failed jobs or tasks");
+                        isPipelineFailed = true;
+                    }
+
+                    buildtime = builddata.ExecutionDateTime;
+                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildRepositoryName))
+                    {
+                        Log?.Info($"Using build data repository as pipeline did not contain the data.");
+                        builderParameters.PipelineEnvironmentOptions.BuildRepositoryName = builddata.RepositoryName;
+                    }
+                }
+                else
+                {
+                    Log?.Info("Getting data for Integration test results");
+
+                    var releaseDetails = buildandReleaseReader
+                        .GetReleaseResultAsync(builderParameters.PipelineEnvironmentOptions.ReleaseID)
+                        .GetAwaiter().GetResult();
+                    if (releaseDetails == null)
+                    {
+                        throw new TestResultReportingReleaseNotFoundException(ReleaseDataType.ReleaseDefinition, builderParameters.PipelineEnvironmentOptions.ReleaseDefinitionName);
+                    }
+
+                    buildoreleaseid = releaseDetails.Id;
+                    executionStageId = builderParameters.PipelineEnvironmentOptions.ReleaseStageID;
+                    releaseDetails.CurrentAttempt = builderParameters.PipelineEnvironmentOptions.ReleaseAttempt;
+                    testrundashboardlink = releaseDetails.GetTestRunLink(
+                        builderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI,
+                        builderParameters.PipelineEnvironmentOptions.SystemTeamProject);
+
+                    testrunnameslist = releaseDetails.TestRunNames;
+                    if (!testrunnameslist.Any())
+                    {
+                        throw new TestResultReportingException("No test runs found.");
+                    }
+
+                    releasetesttaskexecutiontime = releaseDetails.FirstJobExecutionDateTime;
+
+                    Log?.Info($"Current Release execution stage id for which the report is being generated is : {executionStageId}");
+                    Log?.Info($"Found the following test runs to generate report: {string.Join(",", testrunnameslist?.ToArray())}");
+
+                    failedTaskName = releaseDetails.FailedTaskName;
+                    if (!string.IsNullOrEmpty(failedTaskName))
+                    {
+                        Log?.Warn("This stage has failures before the test run task!");
+                        tasksFailed = true;
+                        testrundashboardlink = releaseDetails.GetTestRunLogLink(
+                            builderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI,
+                            builderParameters.PipelineEnvironmentOptions.SystemTeamProject);
+                    }
+
+                    builderParameters.IsPrivateRelease = releaseDetails.ReleaseType != JobType.Master;
+                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildNumber))
+                    {
+                        builderParameters.PipelineEnvironmentOptions.BuildNumber = releaseDetails.AssociatedBuildNumber;
+                    }
+
+                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildRepositoryName))
+                    {
+                        builderParameters.PipelineEnvironmentOptions.BuildRepositoryName = releaseDetails.RepoName;
+                    }
+
+                    branchName = releaseDetails.BranchName;
+
+                    if (builderParameters.IsPrivateRelease)
+                    {
+                        if (string.IsNullOrEmpty(releaseDetails.CreatedBy.EmailAddress))
+                        {
+                            throw new TestResultReportingSendToNullException("Created by Email address is blank.", JsonConvert.SerializeObject(releaseDetails));
+                        }
+
+                        builderParameters.SendTo = releaseDetails.CreatedBy.EmailAddress;
+                    }
+                }
+
+
+                if (!tasksFailed)
+                { 
+                    TestRunsCollection testruns = new TestRunsCollection(
+                        buildandReleaseReader,
+                        buildtime,
+                        buildoreleaseid,
+                        builderParameters.ResultSourceIsBuild);
+
+                    if (!isPipelineFailed && testruns.Count == 0 && !tasksFailed)
+                    {
+                        throw new TestResultReportingNoResultsFoundException($"No runs were found for the current Release or Build Id: {buildoreleaseid} \r\n Link: {testrundashboardlink}");
+                    }
+                    else if (testruns.Count == 0 && tasksFailed)
+                    {
+                        isPipelineFailed = true;
+                    }
+
+                    if (builderParameters.ResultSourceIsBuild)
+                    {
+                        supportedRunsList = testruns.MatchedRunsByBuildIds(testrunnameslist);
+                    }
+                    else
+                    {
+                        supportedRunsList = testruns.MatchedRunsbyStageandExecution(executionStageId, releasetesttaskexecutiontime);
+                    }
+
+                    Log?.Info($"Found {supportedRunsList.Count} runs in the current stage.");
+                    Log?.Info($"Found the following runs with ID to generate report: {string.Join(",", supportedRunsList?.Select(r => r.Id).Distinct().ToArray())}");
+
+                    foreach (Run run in supportedRunsList)
+                    {
+                        var testRunResult = buildandReleaseReader.GetTestResultListAsync(run.Id).GetAwaiter().GetResult();
+
+                        var testDataCollection = new TestResultDataCollection(testRunResult);
+
+                        List<TestResultData> failuresWithLinks = new List<TestResultData>();
+                        List<TestResultData> testcaseResultsInterim = testDataCollection;
+
+                        List<TestResultData> testRunCasesFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome.ToLower() == "failed");
+                        if (testRunCasesFailures.Any())
+                        {
+                            testRunContainsFailures = true;
+                            foreach (TestResultData data in testRunCasesFailures)
+                            {
+                                failuresWithLinks.Add(buildandReleaseReader.GetTestResultWithLinksAsync(run.Id, data.Id).GetAwaiter().GetResult());
+                            }
+                        }
+
+                        List<TestResultData> testRunCasesNonFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome.ToLower() != "failed");
+
+                        testResultData.AddRange(testRunCasesNonFailures);
+                        testResultData.AddRange(failuresWithLinks);
+                    }
+                }
+            }
+
+            Log?.Info("Copying datamodel result parameters from startcollection.");
+            MapperConfiguration mapperconfig = new MapperConfiguration(cnf =>
+            {
+                cnf.CreateMap<ReportBuilderParameters, DailyTestResultBuilderParameters>()
+                    .ForMember(dest => dest.IsUnitTest, act => act.MapFrom(src => src.ResultSourceIsBuild));
+            });
+
+            var configMapper = new Mapper(mapperconfig);
+            DailyTestResultBuilderParameters testResultBuilderParameters = configMapper.Map<DailyTestResultBuilderParameters>(builderParameters);
+
+            testResultBuilderParameters.ToolVersion = version;
+            testResultBuilderParameters.TestResultsData = testResultData.OrderBy(r => r.TestClassName).ToList();
+            testResultBuilderParameters.TestRunsList = supportedRunsList;
+            testResultBuilderParameters.AzureReportLink = testrundashboardlink;            
+            testResultBuilderParameters.IsPipelineFail = isPipelineFailed;
+            testResultBuilderParameters.FailedTaskName = failedTaskName;
+            testResultBuilderParameters.PipelineEnvironmentOptions = builderParameters.PipelineEnvironmentOptions;
+            testResultBuilderParameters.ContainsFailures = testRunContainsFailures;
+
+            if (coverageAggregateColl != null && coverageAggregateColl.All.Count > 0)
+            {
+                Log?.Info("Adding code coverage aggregate data");
+                testResultBuilderParameters.CodeCoverageData = coverageAggregateColl?.All.OrderBy(r => r.Name).ToList();
+                testResultBuilderParameters.CodeCoverageFileURL = coverageAggregateColl.CodeCoverageURL;
+            }
+
+            if (!string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildDefinitionName))
+            {
+                testResultBuilderParameters.BuildTime = buildtime;
+            }
+
+            Log?.Info("Creating HTML Datamodel");
+            return new DailyHTMLReportBuilder(testResultBuilderParameters);
+        }
+
+        // Local function.
+        internal BuildData GetBuildData(ReportBuilderParameters builderParameters)
+        {
+            Requires.NotNull(builderParameters, nameof(builderParameters));
+            Requires.NotNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildDefinitionID, nameof(builderParameters.PipelineEnvironmentOptions.BuildDefinitionID));
+
+            DateTime maxDate = DateTime.Now.Date.AddDays(2);
+            string maxDateString = maxDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            string minDateString = maxDate.AddDays(-7).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            BuildsCollection buildCollection = new BuildsCollection(
+                this.buildandReleaseReader,
+                builderParameters.PipelineEnvironmentOptions.BuildDefinitionID,
+                builderParameters.PipelineEnvironmentOptions.ReleaseSourceBranchName,
+                minDateString,
+                maxDateString,
+                includebuildswithunittestfailures: true,
+                retry: true);
+            BuildData buildData = buildCollection.GetBuildDataforBuild(builderParameters.PipelineEnvironmentOptions.BuildDefinitionID, builderParameters.PipelineEnvironmentOptions.BuildNumber);
+            if (buildData == null)
+            {
+                throw new TestResultReportingException($"Build data for {builderParameters.PipelineEnvironmentOptions.BuildDefinitionID} was not found.");
+            }
+
+            return buildData;
+        }
+    }
+}

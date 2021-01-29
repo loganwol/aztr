@@ -1,0 +1,55 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  major: 1
+  minor: 0
+
+name: $(major).$(minor)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    testSelector: testAssemblies
+    testAssemblyVer2: | 
+      **\*test.unit*.dll
+      !**\*TestAdapter.dll
+      !**\obj\** 
+    codeCoverageEnabled: true
+    runSettingsFile: AzTestReporter\CodeCoverage.runsettings
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: $(Common.TestResultsDirectory)/*.coverage
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '.\AzTestReporter\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

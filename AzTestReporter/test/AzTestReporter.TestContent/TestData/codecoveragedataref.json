@@ -1,0 +1,144 @@
+{
+  "value": [
+    {
+      "configuration": {
+        "id": 97,
+        "uri": "vstfs:///Build/Build/60",
+        "flavor": "Release",
+        "platform": "Any CPU",
+        "project": {}
+      },
+      "state": "0",
+      "lastError": "",
+      "modules": [
+        {
+          "blockCount": 2720,
+          "blockData": "LhP+TA8sEwAtAAkAAeIdAAlSCwADAAcACxgFMAEAEQYNBgsAISABNAUACwAPABMABwAPAg8GHwwRVgUGCwQdAh8AHQ4NAgHyCQAFAA0AAwAHAAMABQAPAAMABwADAAUADwAHAAUAHwABPgUGDQADBAkOAQIL0gEEDSIfBAEABwYBAgUCBwIF0gMAAwQDAgMGBzIFagUACwgjZAXCaQQDBA0AATYPCjcKEwoVCgP+hhECGxYLBAEGCQALAA8AAwAPIhE+F/7iAQIBLgEAWQQnCiMKEwAFCjGi",
+          "name": "xunit.runner.visualstudio.testadapter.dll",
+          "signature": "6a41a0e8-b350-764f-b618-747f502c8fdf",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 749,
+            "blocksNotCovered": 1870,
+            "linesCovered": 433,
+            "linesNotCovered": 1330,
+            "linesPartiallyCovered": 19
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 7286,
+          "blockData": "CxABAgEoBwQB/gOCBf5QCQQJrAf+OAUUAyADhgeoCQILAAUSJQIBEAUEATQFAgf2AyILQhP+WgsGFRgHOhEAARANAAEmAQABfhMADwwBkhOOAVIBUA0gDQIJAhk8BRoJRgUeBf5wDwABAAUAMfQLBgH+/pQFPgkAAwAZDhlABwILDgcCBSwPCBFOCzADAgMsBdoLagcEAQQDBAMEAwQLBAMKAwQBAgsCLQIJ4BkABQIDdAEUBx4TAg8kBRwFAhtGAw4DDhEoFQABBAkQIQQDCAUYDwAJBBP+/v7CDZQpAgMABwQDDgUCAQIBICsEEwARHAUeExwHFAPmByoB/iYDAIkAAwIBIgs2KeoZACkwJRYBJAsKA5gJFAcEEwIBJgHkZwwP/mYBAAleBZ4L/m4L/v4kAQIPAAECCx4HAAsgBxIXAgECBUoLWA0AAUAHcgcCAQADBAcAAQoJFAMEAQQFGAVOFQABAA0gAQQHGhkAES4VBAFaAQAJCgEAAQILGAcAAwIJBAtAAQANaAUACTIFEgMMAwQNhgVCC5YFIAUAAQADAhVU",
+          "name": "xunit.runner.utility.net452.dll",
+          "signature": "ab69c56d-f9ed-8343-a160-4e4514bace4f",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 1113,
+            "blocksNotCovered": 5916,
+            "linesCovered": 653,
+            "linesNotCovered": 3091,
+            "linesPartiallyCovered": 76
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 843,
+          "blockData": "DT4JAAMOWwARCgUsCwADyCMEH3wDAAMWEyARABu+B0wJAFFEAwA1EgNsC0IVLgMAAwYFIA==",
+          "name": "AzTestReporter.buildrelease.apis.dll",
+          "signature": "ddd00b17-3418-704d-828c-17eab160ccb7",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 251,
+            "blocksNotCovered": 568,
+            "linesCovered": 112,
+            "linesNotCovered": 259,
+            "linesPartiallyCovered": 8
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 1799,
+          "blockData": "/v7+/v7+/v7+/v7+/v4M",
+          "name": "xunit.assert.dll",
+          "signature": "8100e88e-9b33-1549-b94f-4fc49439de35",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksNotCovered": 1772,
+            "linesNotCovered": 1025
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 867,
+          "blockData": "IAP+AAOgAaoFAANoAwQDBAHMBTIHoANUDSADKgWGA74=",
+          "name": "xunit.core.dll",
+          "signature": "6d24b0c2-580c-9648-bf82-4d6136ea0da0",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 38,
+            "blocksNotCovered": 816,
+            "linesCovered": 33,
+            "linesNotCovered": 452,
+            "linesPartiallyCovered": 1
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 6294,
+          "blockData": "BgMGBQoJAAcADQAFGA0SKwAPAgkOBQQBBAEEAQwBIg8AFw4NAhcABQAPAAFCCwgjMh8CBwgbEgcALwADAA0ADQAJDgN6EQYLDAEEHQQDAAMgEQANAAcCGQoZRAVeDQALQCMCAwIPAgECQwAdAgMCBZwHAAUABSAHIAEIAwATAAEAAwABMA0AARANAg0AHRYHHAkCBRgFEAkAAQYDBgkGAwYDBgMGAwYPBgMGAwwDDAMGCVARIgkCDwgPDkkCBzIxDgsyDVInOA1eAwofDBsSAQgJAgMCER4RAgucPxYDAgsAFwADAAMABQADAAsEBQYFAAMKAwAFHhsSFQgVIAcGAQAXDAMCHQgFCAUCHUIHEBdMAQABAgECBQgRQA0CEQYRAA8oEQoJEgsYBzgBBAcSCxADCAECARILJgUSCQgjFi+eDwINDhkIDQAdDgNMCQABGAU2CxYHagECFwYLCAlMKwgdEhsMCwhDAgUCCQoBKAUEDQIRTBMSAwAFCAMoDQRFCBUEBQAJBAcADQQPACMIBwwTABcKBV4BAhEiAQIBAgcIAVAFIFUEIwQJCgcsCQIDBB8AJwADBAcAIQIDBAMAAwIDLgcKCwAFEisAAxwHAhEAAzYDBAUCGywHAg8AAwADBAcAAQoJCA0EBQQJAAcSCTIDAiE0ATQHAgUWCxgFAB0UARgBcAUAAwQJBAEgAwIJBAcEAQANNgECGQAFBA0KDRQNAgEQA2IHuAsGdwQJAAkAETwLPBcAAQABAAEAAQABAAEAAQABAAEEEQIBBAMGBwQbAAkABQYPBAUIERIPAgMMGywJAB8WBf6aBQADCAEACwYXZCEIBQ4FBAsEAwQHEC0gFyAbMgcQBQQbEgMIBwIBAgECDw4NCAcEBQYPFBcaCQojHgceEwARAgdeCyQVAgkKCRYHDAsOVRIdAAUwNRQTJgMEFQIBAgEKHRhBDgc0FRIHMAsoBQwJEBEAAwADAAkCAwYHAisMBwoNDAEK",
+          "name": "xunit.execution.desktop.dll",
+          "signature": "6564656f-4dd4-4449-883c-503f09175ef5",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 2480,
+            "blocksNotCovered": 3643,
+            "linesCovered": 1570,
+            "linesNotCovered": 1945,
+            "linesPartiallyCovered": 61
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 1439,
+          "blockData": "UgH+IgH+/v6eC5gD/v7+WgH+sAta",
+          "name": "xunit.runner.reporters.net452.dll",
+          "signature": "9f31c13a-aa95-e44a-8e10-d518debf2836",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 17,
+            "blocksNotCovered": 1391,
+            "linesCovered": 6,
+            "linesNotCovered": 905,
+            "linesPartiallyCovered": 2
+          },
+          "functions": [],
+          "fileUrl": ""
+        },
+        {
+          "blockCount": 1035,
+          "blockData": "Lm9IBxItAj0ACwARAA0AOwBfBgECBxILAFv+/qA5EF0GpQYPBgcCDV4HAkEaNQAD",
+          "name": "AzTestReporter.buildrelease.builder.dll",
+          "signature": "57ea1645-c7bf-e044-8e55-3e9b0219cf4b",
+          "signatureAge": 1,
+          "statistics": {
+            "blocksCovered": 501,
+            "blocksNotCovered": 504,
+            "linesCovered": 206,
+            "linesNotCovered": 216,
+            "linesPartiallyCovered": 13
+          },
+          "functions": [],
+          "fileUrl": ""
+        }
+      ],
+      "codeCoverageFileUrl": "https://vstmr.dev.azure.com/AzTestReporter/AzureTRR/_apis/testresults/codecoverage/download/513695?filePath=%2FBuildCoverage%2F1.1.2.Release.Any%20CPU.97.coverage"
+    }
+  ],
+  "count": 1
+}

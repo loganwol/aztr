@@ -1,0 +1,326 @@
+{
+  "count": 50,
+  "value": [
+    {
+      "id": 2044748,
+      "buildNumber": "1.6.191125-1654",
+      "status": "completed",
+      "result": "succeeded",
+      "queueTime": "2019-11-26T00:54:45.2596799Z",
+      "startTime": "2019-11-26T00:54:47.2847033Z",
+      "finishTime": "2019-11-26T01:04:07.1162358Z",
+      "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Builds/2044748",
+      "definition": {
+        "drafts": [],
+        "id": 10301,
+        "name": "CI_Organization-Tools",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Definitions/10301?revision=1",
+        "uri": "vstfs:///Build/Definition/10301",
+        "path": "\\Organization-Tools",
+        "type": "build",
+        "queueStatus": "enabled",
+        "revision": 1,
+        "project": {
+          "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+          "name": "Organization",
+          "description": "Welcome to the  Test Engineering Team Project",
+          "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+          "state": "wellFormed",
+          "revision": 23183329,
+          "visibility": "private",
+          "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+        }
+      },
+      "buildNumberRevision": 2,
+      "project": {
+        "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+        "name": "Organization",
+        "description": "Welcome to the  Test Engineering Team Project",
+        "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+        "state": "wellFormed",
+        "revision": 23183329,
+        "visibility": "private",
+        "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+      },
+      "uri": "vstfs:///Build/Build/2044748",
+      "sourceBranch": "refs/heads/master",
+      "sourceVersion": "c08280ee0fb71b1db90591793ccd0d6e973e4e52",
+      "queue": {
+        "id": 6873,
+        "name": "SW Build VS2019 Agents",
+        "pool": {
+          "id": 78,
+          "name": "SW Build VS2019 Agents"
+        }
+      },
+      "priority": "normal",
+      "reason": "batchedCI",
+      "requestedFor": {
+        "displayName": "Dean Hatch",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/a8eeb591-5502-49d3-8a70-d5c9c1b43821",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.YmY4MDRhNzMtMDgzNC03Y2Y1LThkMTAtNzAyMDZlNzNlMTU0" } },
+        "id": "a8eeb591-5502-49d3-8a70-d5c9c1b43821",
+        "uniqueName": "ReportingPerson@CompanyDomain.com",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.YmY4MDRhNzMtMDgzNC03Y2Y1LThkMTAtNzAyMDZlNzNlMTU0",
+        "descriptor": "aad.YmY4MDRhNzMtMDgzNC03Y2Y1LThkMTAtNzAyMDZlNzNlMTU0"
+      },
+      "requestedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "lastChangedDate": "2019-11-26T01:04:08.72Z",
+      "lastChangedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "orchestrationPlan": { "planId": "7430b1da-2329-4518-8d3d-05728fb014c9" },
+      "logs": {
+        "id": 0,
+        "type": "Container",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044748/logs"
+      },
+      "repository": {
+        "id": "e4ab201a-af8a-421e-a87e-9e671bef2f95",
+        "type": "TfsGit",
+        "name": "Organization-Tools",
+        "url": "https://dev.azure.com/Team/Organization/_git/Organization-Tools",
+        "clean": null,
+        "checkoutSubmodules": false
+      },
+      "keepForever": false,
+      "retainedByRelease": false,
+      "triggeredByBuild": null
+    },
+    {
+      "_links": {
+        "self": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Builds/2044739" },
+        "web": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_build/results?buildId=2044739" },
+        "sourceVersionDisplayUri": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044739/sources" },
+        "timeline": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044739/Timeline" },
+        "badge": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/status/10301" }
+      },
+      "properties": {},
+      "tags": [ "Official" ],
+      "validationResults": [],
+      "plans": [ { "planId": "527aa740-6a88-42d6-a03c-40788e7c3927" } ],
+      "triggerInfo": {},
+      "id": 2044739,
+      "buildNumber": "1.5.191125-1646",
+      "status": "completed",
+      "result": "succeeded",
+      "queueTime": "2019-11-26T00:46:21.2144026Z",
+      "startTime": "2019-11-26T00:46:23.859908Z",
+      "finishTime": "2019-11-26T00:53:46.2262953Z",
+      "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Builds/2044739",
+      "definition": {
+        "drafts": [],
+        "id": 10301,
+        "name": "CI_Organization-Tools",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Definitions/10301?revision=1",
+        "uri": "vstfs:///Build/Definition/10301",
+        "path": "\\Organization-Tools",
+        "type": "build",
+        "queueStatus": "enabled",
+        "revision": 1,
+        "project": {
+          "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+          "name": "Organization",
+          "description": "Welcome to the  Test Engineering Team Project",
+          "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+          "state": "wellFormed",
+          "revision": 23183329,
+          "visibility": "private",
+          "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+        }
+      },
+      "buildNumberRevision": 1,
+      "project": {
+        "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+        "name": "Organization",
+        "description": "Welcome to the  Test Engineering Team Project",
+        "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+        "state": "wellFormed",
+        "revision": 23183329,
+        "visibility": "private",
+        "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+      },
+      "uri": "vstfs:///Build/Build/2044739",
+      "sourceBranch": "refs/heads/master",
+      "sourceVersion": "53fb32cb6d020252ed89f50ff093d2f455de7e42",
+      "queue": {
+        "id": 6873,
+        "name": "SW Build VS2019 Agents",
+        "pool": {
+          "id": 78,
+          "name": "SW Build VS2019 Agents"
+        }
+      },
+      "priority": "normal",
+      "reason": "batchedCI",
+      "requestedFor": {
+        "displayName": "Requester Name",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/49e76e61-af01-479a-a2c3-3895e7e3cf80",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.MDExZTllMzctMzMyOC03YTZjLTg1N2MtMDkxMjdjMTAyYjcw" } },
+        "id": "49e76e61-af01-479a-a2c3-3895e7e3cf80",
+        "uniqueName": "requester-alias@CompanyDomain.com",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.MDExZTllMzctMzMyOC03YTZjLTg1N2MtMDkxMjdjMTAyYjcw",
+        "descriptor": "aad.MDExZTllMzctMzMyOC03YTZjLTg1N2MtMDkxMjdjMTAyYjcw"
+      },
+      "requestedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "lastChangedDate": "2019-11-26T00:53:46.563Z",
+      "lastChangedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "orchestrationPlan": { "planId": "527aa740-6a88-42d6-a03c-40788e7c3927" },
+      "logs": {
+        "id": 0,
+        "type": "Container",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044739/logs"
+      },
+      "repository": {
+        "id": "e4ab201a-af8a-421e-a87e-9e671bef2f95",
+        "type": "TfsGit",
+        "name": "Organization-Tools",
+        "url": "https://dev.azure.com/Team/Organization/_git/Organization-Tools",
+        "clean": null,
+        "checkoutSubmodules": false
+      },
+      "keepForever": false,
+      "retainedByRelease": false,
+      "triggeredByBuild": null
+    },
+    {
+      "_links": {
+        "self": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Builds/2044693" },
+        "web": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_build/results?buildId=2044693" },
+        "sourceVersionDisplayUri": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044693/sources" },
+        "timeline": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044693/Timeline" },
+        "badge": { "href": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/status/8797" }
+      },
+      "properties": {},
+      "tags": [ "Official" ],
+      "id": 2044693,
+      "buildNumber": "1.96.191126-0011",
+      "status": "completed",
+      "result": "succeeded",
+      "queueTime": "2019-11-26T00:11:19.8733679Z",
+      "startTime": "2019-11-26T00:11:22.2198916Z",
+      "finishTime": "2019-11-26T00:22:00.0159203Z",
+      "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Builds/2044693",
+      "definition": {
+        "drafts": [],
+        "id": 8797,
+        "name": "CI_Build.ExternalDrops",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/Definitions/8797?revision=8",
+        "uri": "vstfs:///Build/Definition/8797",
+        "path": "\\",
+        "type": "build",
+        "queueStatus": "enabled",
+        "revision": 8,
+        "project": {
+          "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+          "name": "Organization",
+          "description": "Welcome to the  Test Engineering Team Project",
+          "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+          "state": "wellFormed",
+          "revision": 23183329,
+          "visibility": "private",
+          "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+        }
+      },
+      "buildNumberRevision": 94,
+      "project": {
+        "id": "89ce17af-3021-4fd0-9586-12aff6749535",
+        "name": "Organization",
+        "description": "Welcome to the  Test Engineering Team Project",
+        "url": "https://dev.azure.com/Team/_apis/projects/89ce17af-3021-4fd0-9586-12aff6749535",
+        "state": "wellFormed",
+        "revision": 23183329,
+        "visibility": "private",
+        "lastUpdateTime": "2019-11-14T21:40:16.7Z"
+      },
+      "uri": "vstfs:///Build/Build/2044693",
+      "sourceBranch": "refs/heads/master",
+      "sourceVersion": "fb966ab64ddd805231b8c0dcb0a4ef9f4a2659d7",
+      "queue": {
+        "id": 2637,
+        "name": "SW Build Organization Agents",
+        "pool": {
+          "id": 55,
+          "name": "SW Build Organization Agents"
+        }
+      },
+      "priority": "normal",
+      "reason": "batchedCI",
+      "requestedFor": {
+        "displayName": "Requester Name",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/708ce195-899b-63da-81b0-9033023f50bd",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.NzA4Y2UxOTUtODk5Yi03M2RhLTgxYjAtOTAzMzAyM2Y1MGJk" } },
+        "id": "708ce195-899b-63da-81b0-9033023f50bd",
+        "uniqueName": "requester-alias@CompanyDomain.com",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/aad.NzA4Y2UxOTUtODk5Yi03M2RhLTgxYjAtOTAzMzAyM2Y1MGJk",
+        "descriptor": "aad.NzA4Y2UxOTUtODk5Yi03M2RhLTgxYjAtOTAzMzAyM2Y1MGJk"
+      },
+      "requestedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "lastChangedDate": "2019-11-26T00:22:00.65Z",
+      "lastChangedBy": {
+        "displayName": "CompanyDomain.VisualStudio.Services.TFS",
+        "url": "https://vssps.dev.azure.com/e/CompanyDomain/_apis/Identities/00000002-0000-8888-8000-000000000000",
+        "_links": { "avatar": { "href": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA" } },
+        "id": "00000002-0000-8888-8000-000000000000",
+        "uniqueName": "00000002-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+        "imageUrl": "https://dev.azure.com/Team/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+        "descriptor": "s2s.MDAwMDAwMDItMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      },
+      "orchestrationPlan": { "planId": "8ceeede7-ced0-4159-8201-fcc46cd7548e" },
+      "logs": {
+        "id": 0,
+        "type": "Container",
+        "url": "https://dev.azure.com/Team/89ce17af-3021-4fd0-9586-12aff6749535/_apis/build/builds/2044693/logs"
+      },
+      "repository": {
+        "id": "d4063023-7652-4816-9ed0-59df0548e45d",
+        "type": "TfsGit",
+        "name": "ORG.ExternalDrops",
+        "url": "https://dev.azure.com/Team/Organization/_git/ORG.ExternalDrops",
+        "clean": null,
+        "checkoutSubmodules": false
+      },
+      "keepForever": false,
+      "retainedByRelease": false,
+      "triggeredByBuild": null
+    }
+  ]
+}
