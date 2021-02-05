@@ -85,3 +85,11 @@ This table shows the summary results of code coverage by Total covered blocks, C
 ![](Media/codecoveragesummary.png "Code Coverage Summary table")
 
 To easily enable users to further investigate results, a convenient link to the original .coverage file is included right next to the summary header. Download the coverage file and view in Visual Studio or covert it to a readable HTML format using your favorite tools.
+
+## 2. Execution Failure Test Report
+The execution failure test report is meant to notify the team that there was an error in test execution of the Tests. There are 2 behaviors exhibited in AzTestReporter, 
+
+1. In the Build pipeline, if there is a unit test error, a report with the test failure is generated. 
+2. In the Release pipeline, if a failure happened before test execution a failure report with the task name that failed is generated. The failure report, shows the source of the failure and provides a link to the stage to further analyze and address the failure in the test pipeline.
+
+The report itself is made up of similar sections as the Success test report, a Header section and based on the context of the failure, a Failures Summary table is shown or a Link to the Failed stage is shown. Here's a sample to the output report - ["ExecutionFailuresReport-Attempt0-1.1.37.html"]("ExecutionFailuresReport-Attempt0-1.1.37.html").
