@@ -1,4 +1,4 @@
-## Report details
+# ![Logo](Media/logo.png) AzTestReporter - Report details
 
 AzTestReporter generates report is in HTML format that can be used to send out email to the team after execution of a pipeline or the output HTML file can be use for custom purposes with subsequent tasks in the pipeline. There are 2 reports that are generated, 
 
