@@ -1,17 +1,4 @@
-<div style="display: block;width: 100%;">
-	<div style="clear: both;">
-		<div style="float: left;height: 60px;overflow: hidden;padding: 3px 1.8%;">
-			<img src="AzTestReporter/docs/Media/logo.png" alt="AzTR" style="width:50px"/>
-		</div>
-		<div style="float: left;height: 60px;overflow: hidden;padding: 3px 1.8%;width:82%;font-style:bold;font-size:xx-large;vertical-align:middle;padding-top:20px">
-		AzTestReporter
-		</div>
-	</div>
-</div>
-
-<br/>
-<hr/>
-
+# ![Logo](AzTestReporter/docs/Media/logo.png) AzTestReporter
 Summarize Azure DevOps test results into a HTML report format that is output to HTML file. The tool also has the capability to be configured to send a mail to the desired email's as part of execution.
 
 ## 1. Why?
