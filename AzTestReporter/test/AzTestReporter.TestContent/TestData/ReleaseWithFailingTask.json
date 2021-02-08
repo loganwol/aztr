@@ -1,0 +1,649 @@
+{
+    "id": 76,
+    "name": "ATR Release-46",
+    "status": "active",
+    "createdOn": "2021-01-27T20:33:26.55Z",
+    "modifiedOn": "2021-01-27T20:33:26.55Z",
+    "modifiedBy": {
+        "displayName": "Dean Hatch",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+        "_links": {
+            "avatar": {
+                "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+            }
+        },
+        "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+        "uniqueName": "dean888@msn.com",
+        "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+        "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+    },
+    "createdBy": {
+        "displayName": "Dean Hatch",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+        "_links": {
+            "avatar": {
+                "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+            }
+        },
+        "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+        "uniqueName": "dean888@msn.com",
+        "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+        "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+    },
+    "createdFor": {
+        "displayName": "Dean Hatch",
+        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+        "_links": {
+            "avatar": {
+                "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+            }
+        },
+        "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+        "uniqueName": "dean888@msn.com",
+        "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+        "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+    },
+    "environments": [
+        {
+            "id": 76,
+            "releaseId": 76,
+            "name": "Run and Save HTML",
+            "status": "rejected",
+            "variables": {},
+            "variableGroups": [],
+            "preDeployApprovals": [
+                {
+                    "id": 234,
+                    "revision": 1,
+                    "approvalType": "preDeploy",
+                    "createdOn": "2021-01-27T20:33:26.76Z",
+                    "modifiedOn": "2021-01-27T20:33:26.77Z",
+                    "status": "approved",
+                    "comments": "",
+                    "isAutomated": true,
+                    "isNotificationOn": false,
+                    "trialNumber": 1,
+                    "attempt": 1,
+                    "rank": 1,
+                    "release": {
+                        "id": 76,
+                        "name": "ATR Release-46",
+                        "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76",
+                        "_links": {}
+                    },
+                    "releaseDefinition": {
+                        "id": 1,
+                        "name": "Azure Test Reporter Release",
+                        "path": "\\",
+                        "projectReference": null,
+                        "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/definitions/1",
+                        "_links": {}
+                    },
+                    "releaseEnvironment": {
+                        "id": 76,
+                        "name": "Run and Save HTML",
+                        "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76",
+                        "_links": {}
+                    },
+                    "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/approvals/234"
+                }
+            ],
+            "postDeployApprovals": [],
+            "preApprovalsSnapshot": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 0
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": null,
+                    "releaseCreatorCanBeApprover": false,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMinutes": 0,
+                    "executionOrder": "beforeGates"
+                }
+            },
+            "postApprovalsSnapshot": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 0
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": null,
+                    "releaseCreatorCanBeApprover": false,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMinutes": 0,
+                    "executionOrder": "afterSuccessfulGates"
+                }
+            },
+            "deploySteps": [
+                {
+                    "id": 235,
+                    "deploymentId": 104,
+                    "attempt": 1,
+                    "reason": "automated",
+                    "status": "failed",
+                    "operationStatus": "PhaseFailed",
+                    "releaseDeployPhases": [
+                        {
+                            "id": 114,
+                            "phaseId": "114",
+                            "name": "Agent job",
+                            "rank": 1,
+                            "phaseType": "agentBasedDeployment",
+                            "status": "failed",
+                            "runPlanId": "a1c8e611-5230-40f5-94ed-2ba7a1770362",
+                            "deploymentJobs": [
+                                {
+                                    "job": {
+                                        "id": 10,
+                                        "timelineRecordId": "73b1a9e9-a0f9-5939-4184-d3e3e34ce5fd",
+                                        "name": "Agent job",
+                                        "dateStarted": "2021-01-27T20:33:43.0966667Z",
+                                        "dateEnded": "2021-01-27T20:34:03Z",
+                                        "startTime": "2021-01-27T20:33:43.0966667Z",
+                                        "finishTime": "2021-01-27T20:34:03Z",
+                                        "status": "failed",
+                                        "rank": 1,
+                                        "issues": [],
+                                        "agentName": "Hosted Agent",
+                                        "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/10/logs"
+                                    },
+                                    "tasks": [
+                                        {
+                                            "id": 4,
+                                            "timelineRecordId": "88db0954-84db-47ce-a3ca-7983194d4211",
+                                            "name": "Initialize job",
+                                            "dateStarted": "2021-01-27T20:33:43.3166667Z",
+                                            "dateEnded": "2021-01-27T20:33:49.66Z",
+                                            "startTime": "2021-01-27T20:33:43.3166667Z",
+                                            "finishTime": "2021-01-27T20:33:49.66Z",
+                                            "status": "succeeded",
+                                            "rank": 1,
+                                            "issues": [],
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/4/logs"
+                                        },
+                                        {
+                                            "id": 5,
+                                            "timelineRecordId": "dca76169-15a0-5a25-1f40-2a79fe8d4c4d",
+                                            "name": "Download artifact - _loganwol.aztestresultsummary - drop",
+                                            "dateStarted": "2021-01-27T20:33:49.67Z",
+                                            "dateEnded": "2021-01-27T20:33:54.2733333Z",
+                                            "startTime": "2021-01-27T20:33:49.67Z",
+                                            "finishTime": "2021-01-27T20:33:54.2733333Z",
+                                            "status": "succeeded",
+                                            "rank": 2,
+                                            "issues": [],
+                                            "task": {
+                                                "id": "a433f589-fce1-4460-9ee6-44a624aeb1fb",
+                                                "name": "DownloadBuildArtifacts",
+                                                "version": "0.178.0"
+                                            },
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/5/logs"
+                                        },
+                                        {
+                                            "id": 6,
+                                            "timelineRecordId": "6218ae3f-05d4-5b62-e1cc-1876d144c1cf",
+                                            "name": "Generate report",
+                                            "dateStarted": "2021-01-27T20:33:54.2733333Z",
+                                            "dateEnded": "2021-01-27T20:34:02.1533333Z",
+                                            "startTime": "2021-01-27T20:33:54.2733333Z",
+                                            "finishTime": "2021-01-27T20:34:02.1533333Z",
+                                            "status": "succeeded",
+                                            "rank": 3,
+                                            "issues": [],
+                                            "task": {
+                                                "id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+                                                "name": "PowerShell",
+                                                "version": "2.180.1"
+                                            },
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/6/logs"
+                                        },
+                                        {
+                                            "id": 7,
+                                            "timelineRecordId": "1c88c775-7cb8-5500-8aad-663d830ddabb",
+                                            "name": "Upload report to logs in release",
+                                            "dateStarted": "2021-01-27T20:34:02.1533333Z",
+                                            "dateEnded": "2021-01-27T20:34:02.69Z",
+                                            "startTime": "2021-01-27T20:34:02.1533333Z",
+                                            "finishTime": "2021-01-27T20:34:02.69Z",
+                                            "status": "succeeded",
+                                            "rank": 4,
+                                            "issues": [],
+                                            "task": {
+                                                "id": "15842bb5-6315-4dfe-bf93-c876be6ccb08",
+                                                "name": "PublishReleaseArtifact",
+                                                "version": "1.0.7"
+                                            },
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/7/logs"
+                                        },
+                                        {
+                                            "id": 8,
+                                            "timelineRecordId": "cdfb22bf-1898-56f6-6d50-5ab3b0aa9ef6",
+                                            "name": "Upload debug jsons",
+                                            "dateStarted": "2021-01-27T20:34:02.69Z",
+                                            "dateEnded": "2021-01-27T20:34:02.98Z",
+                                            "startTime": "2021-01-27T20:34:02.69Z",
+                                            "finishTime": "2021-01-27T20:34:02.98Z",
+                                            "status": "failed",
+                                            "rank": 5,
+                                            "issues": [
+                                                {
+                                                    "issueType": "Error",
+                                                    "message": "No file or directory found at D:\\a\\r1\\a\\_loganwol.aztestresultsummary\\*.json",
+                                                    "data": {
+                                                        "type": "error",
+                                                        "logFileLineNumber": "9"
+                                                    }
+                                                },
+                                                {
+                                                    "issueType": "Error",
+                                                    "message": "ENOENT: no such file or directory, lstat 'D:\\a\\r1\\a\\_loganwol.aztestresultsummary\\*.json'",
+                                                    "data": {
+                                                        "type": "error",
+                                                        "logFileLineNumber": "10"
+                                                    }
+                                                }
+                                            ],
+                                            "task": {
+                                                "id": "15842bb5-6315-4dfe-bf93-c876be6ccb08",
+                                                "name": "PublishReleaseArtifact",
+                                                "version": "1.0.7"
+                                            },
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/8/logs"
+                                        },
+                                        {
+                                            "id": 9,
+                                            "timelineRecordId": "8f857798-4b0d-4b5e-b919-d30f01dc96f1",
+                                            "name": "Finalize Job",
+                                            "dateStarted": "2021-01-27T20:34:02.9866667Z",
+                                            "dateEnded": "2021-01-27T20:34:02.9933333Z",
+                                            "startTime": "2021-01-27T20:34:02.9866667Z",
+                                            "finishTime": "2021-01-27T20:34:02.9933333Z",
+                                            "status": "succeeded",
+                                            "percentComplete": 100,
+                                            "rank": 6,
+                                            "issues": [],
+                                            "agentName": "Hosted Agent",
+                                            "logUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/environments/76/deployPhases/114/tasks/9/logs"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "manualInterventions": [],
+                            "startedOn": "2021-01-27T20:33:38.68Z"
+                        }
+                    ],
+                    "requestedBy": {
+                        "displayName": "Microsoft.VisualStudio.Services.ReleaseManagement",
+                        "id": "0000000d-0000-8888-8000-000000000000",
+                        "uniqueName": "0000000d-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+                        "descriptor": "s2s.MDAwMDAwMGQtMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+                    },
+                    "requestedFor": {
+                        "displayName": "Dean Hatch",
+                        "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+                        "_links": {
+                            "avatar": {
+                                "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+                            }
+                        },
+                        "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+                        "uniqueName": "dean888@msn.com",
+                        "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+                        "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+                    },
+                    "queuedOn": "2021-01-27T20:33:26.6Z",
+                    "lastModifiedBy": {
+                        "displayName": "Microsoft.VisualStudio.Services.ReleaseManagement",
+                        "id": "0000000d-0000-8888-8000-000000000000",
+                        "uniqueName": "0000000d-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+                        "descriptor": "s2s.MDAwMDAwMGQtMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+                    },
+                    "lastModifiedOn": "2021-01-27T20:34:06.837Z",
+                    "hasStarted": true,
+                    "tasks": [],
+                    "runPlanId": "00000000-0000-0000-0000-000000000000",
+                    "issues": []
+                }
+            ],
+            "rank": 1,
+            "definitionEnvironmentId": 1,
+            "environmentOptions": {
+                "emailNotificationType": "OnlyOnFailure",
+                "emailRecipients": "release.environment.owner;release.creator",
+                "skipArtifactsDownload": false,
+                "timeoutInMinutes": 0,
+                "enableAccessToken": false,
+                "publishDeploymentStatus": true,
+                "badgeEnabled": false,
+                "autoLinkWorkItems": false,
+                "pullRequestDeploymentEnabled": false
+            },
+            "demands": [],
+            "conditions": [
+                {
+                    "result": true,
+                    "name": "ReleaseStarted",
+                    "conditionType": "event",
+                    "value": ""
+                }
+            ],
+            "createdOn": "2021-01-27T20:33:26.6Z",
+            "modifiedOn": "2021-01-27T20:34:06.827Z",
+            "workflowTasks": [],
+            "deployPhasesSnapshot": [
+                {
+                    "deploymentInput": {
+                        "parallelExecution": {
+                            "parallelExecutionType": "none"
+                        },
+                        "agentSpecification": {
+                            "identifier": "vs2017-win2016"
+                        },
+                        "skipArtifactsDownload": false,
+                        "artifactsDownloadInput": {
+                            "downloadInputs": []
+                        },
+                        "queueId": 9,
+                        "demands": [],
+                        "enableAccessToken": true,
+                        "timeoutInMinutes": 0,
+                        "jobCancelTimeoutInMinutes": 1,
+                        "condition": "succeeded()",
+                        "overrideInputs": {}
+                    },
+                    "rank": 1,
+                    "phaseType": "agentBasedDeployment",
+                    "name": "Agent job",
+                    "refName": null,
+                    "workflowTasks": [
+                        {
+                            "environment": {},
+                            "taskId": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+                            "version": "2.*",
+                            "name": "Generate report",
+                            "refName": "",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "overrideInputs": {},
+                            "condition": "succeeded()",
+                            "inputs": {
+                                "targetType": "inline",
+                                "filePath": "",
+                                "arguments": "",
+                                "script": "# Write your PowerShell commands here.\n\nWrite-Host \"Run reporter\"\n\ndrop\\AzTestReporter.App.exe --trt Unit --sendmail false",
+                                "errorActionPreference": "stop",
+                                "failOnStderr": "false",
+                                "showWarnings": "false",
+                                "ignoreLASTEXITCODE": "false",
+                                "pwsh": "false",
+                                "workingDirectory": "$(System.DefaultWorkingDirectory)\\_$(Build.DefinitionName)\\"
+                            }
+                        },
+                        {
+                            "environment": {},
+                            "taskId": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+                            "version": "2.*",
+                            "name": "Tree command",
+                            "refName": "",
+                            "enabled": false,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "overrideInputs": {},
+                            "condition": "succeeded()",
+                            "inputs": {
+                                "targetType": "inline",
+                                "filePath": "",
+                                "arguments": "",
+                                "script": "# Write your PowerShell commands here.\n\ntree /f /a ",
+                                "errorActionPreference": "stop",
+                                "failOnStderr": "false",
+                                "showWarnings": "false",
+                                "ignoreLASTEXITCODE": "false",
+                                "pwsh": "false",
+                                "workingDirectory": "$(System.DefaultWorkingDirectory)\\_$(Build.DefinitionName)\\"
+                            }
+                        },
+                        {
+                            "environment": {},
+                            "taskId": "15842bb5-6315-4dfe-bf93-c876be6ccb08",
+                            "version": "1.*",
+                            "name": "Upload report to logs in release",
+                            "refName": "",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "overrideInputs": {},
+                            "condition": "succeeded()",
+                            "inputs": {
+                                "artifactPath": "$(System.DefaultWorkingDirectory)\\_$(Build.DefinitionName)\\$(Build.BuildNumber)TestExecutionReport.html"
+                            }
+                        },
+                        {
+                            "environment": {},
+                            "taskId": "15842bb5-6315-4dfe-bf93-c876be6ccb08",
+                            "version": "1.*",
+                            "name": "Upload debug jsons",
+                            "refName": "",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "overrideInputs": {},
+                            "condition": "succeeded()",
+                            "inputs": {
+                                "artifactPath": "$(System.DefaultWorkingDirectory)\\_$(Build.DefinitionName)\\*.json"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "owner": {
+                "displayName": "Dean Hatch",
+                "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+                "_links": {
+                    "avatar": {
+                        "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+                    }
+                },
+                "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+                "uniqueName": "dean888@msn.com",
+                "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+                "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+            },
+            "schedules": [],
+            "release": {
+                "id": 76,
+                "name": "ATR Release-46",
+                "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76",
+                "_links": {
+                    "web": {
+                        "href": "https://dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_release?releaseId=76&_a=release-summary"
+                    },
+                    "self": {
+                        "href": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76"
+                    }
+                }
+            },
+            "releaseDefinition": {
+                "id": 1,
+                "name": "Azure Test Reporter Release",
+                "path": "\\",
+                "projectReference": null,
+                "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/definitions/1",
+                "_links": {
+                    "web": {
+                        "href": "https://dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_release?definitionId=1"
+                    },
+                    "self": {
+                        "href": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/definitions/1"
+                    }
+                }
+            },
+            "releaseCreatedBy": {
+                "displayName": "Dean Hatch",
+                "url": "https://spsprodcus2.vssps.visualstudio.com/A46057256-8dac-4fc3-9a3c-fba690350236/_apis/Identities/30d124df-0984-4b16-ac0b-3959583cbe09",
+                "_links": {
+                    "avatar": {
+                        "href": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+                    }
+                },
+                "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+                "uniqueName": "dean888@msn.com",
+                "imageUrl": "https://dev.azure.com/TestRunResultReporter/_apis/GraphProfile/MemberAvatars/msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex",
+                "descriptor": "msa.MjczYWZmMTMtM2NiOC03NGZjLWEzZWYtZmRiNjIzYTFkM2Ex"
+            },
+            "triggerReason": "ReleaseStarted",
+            "timeToDeploy": 0.6672333333333333,
+            "processParameters": {},
+            "preDeploymentGatesSnapshot": {
+                "id": 0,
+                "gatesOptions": null,
+                "gates": []
+            },
+            "postDeploymentGatesSnapshot": {
+                "id": 0,
+                "gatesOptions": null,
+                "gates": []
+            }
+        }
+    ],
+    "variables": {},
+    "variableGroups": [],
+    "artifacts": [
+        {
+            "sourceId": "75f17794-6fdb-4d0d-aeeb-77040c295047:1",
+            "type": "Build",
+            "alias": "_loganwol.aztestresultsummary",
+            "definitionReference": {
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://dev.azure.com/TestRunResultReporter/_permalink/_build/index?collectionId=ca8350c2-9bcb-43d7-bd4d-b6eac8e8ba13&projectId=75f17794-6fdb-4d0d-aeeb-77040c295047&definitionId=1",
+                    "name": ""
+                },
+                "branches": {
+                    "id": "main",
+                    "name": "main"
+                },
+                "buildUri": {
+                    "id": "vstfs:///Build/Build/118",
+                    "name": null
+                },
+                "definition": {
+                    "id": "1",
+                    "name": "loganwol.aztestresultsummary"
+                },
+                "IsMultiDefinitionType": {
+                    "id": "False",
+                    "name": "False"
+                },
+                "IsTriggeringArtifact": {
+                    "id": "True",
+                    "name": "True"
+                },
+                "IsXamlBuildArtifactType": {
+                    "id": "False",
+                    "name": null
+                },
+                "project": {
+                    "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+                    "name": "AzureTRR"
+                },
+                "repository.provider": {
+                    "id": "GitHub",
+                    "name": null
+                },
+                "repository": {
+                    "id": "loganwol/aztestresultsummary",
+                    "name": "loganwol/aztestresultsummary"
+                },
+                "requestedFor": {
+                    "id": "Dean Hatch",
+                    "name": null
+                },
+                "requestedForId": {
+                    "id": "30d124df-0984-4b16-ac0b-3959583cbe09",
+                    "name": null
+                },
+                "sourceVersion": {
+                    "id": "c78d6158a93baeaedb9bc4d6a5219c1659ede949",
+                    "name": null
+                },
+                "version": {
+                    "id": "118",
+                    "name": "1.1.31"
+                },
+                "artifactSourceVersionUrl": {
+                    "id": "https://dev.azure.com/TestRunResultReporter/_permalink/_build/index?collectionId=ca8350c2-9bcb-43d7-bd4d-b6eac8e8ba13&projectId=75f17794-6fdb-4d0d-aeeb-77040c295047&buildId=118",
+                    "name": ""
+                },
+                "branch": {
+                    "id": "refs/heads/main",
+                    "name": "refs/heads/main"
+                }
+            },
+            "isPrimary": true,
+            "isRetained": true
+        }
+    ],
+    "releaseDefinition": {
+        "id": 1,
+        "name": "Azure Test Reporter Release",
+        "path": "\\",
+        "projectReference": null,
+        "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/definitions/1",
+        "_links": {
+            "self": {
+                "href": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/definitions/1"
+            },
+            "web": {
+                "href": "https://dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_release?definitionId=1"
+            }
+        }
+    },
+    "releaseDefinitionRevision": 27,
+    "description": "Triggered by loganwol.aztestresultsummary 1.1.31.",
+    "reason": "continuousIntegration",
+    "releaseNameFormat": "ATR Release-$(rev:r)",
+    "keepForever": false,
+    "definitionSnapshotRevision": 1,
+    "logsContainerUrl": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76/logs",
+    "url": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76",
+    "_links": {
+        "self": {
+            "href": "https://vsrm.dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_apis/Release/releases/76"
+        },
+        "web": {
+            "href": "https://dev.azure.com/TestRunResultReporter/75f17794-6fdb-4d0d-aeeb-77040c295047/_release?releaseId=76&_a=release-summary"
+        }
+    },
+    "tags": [],
+    "triggeringArtifactAlias": null,
+    "projectReference": {
+        "id": "75f17794-6fdb-4d0d-aeeb-77040c295047",
+        "name": null
+    },
+    "properties": {}
+}
