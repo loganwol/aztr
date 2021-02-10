@@ -4,14 +4,76 @@ Summarize Azure DevOps test results into a HTML report format that is output to 
 ## 1. Why?
 
 ## 2. Usage
+Run the Executable from the command line, in Visual Studio or in an Azure Pipeline or Release.
 
-### 2.1 Run the executable
+### 2.1 Set Environment Variables for local run
+For local run several Environment Variables will need to be set to enable run:
 
-### 2.2 Run via Azure Extensions
+It is recommended to set up a powershell script to make this easier if not running in Visual Studio
+$env:SYSTEM_ACCESSTOKEN = 'Your personal access token'
+$env:BUILD_SOURCEBRANCH = 'Your branch for build pipeline in Azure DevOps'
+$env:BUILD_DEFINITIONNAME = 'Build definition'
+$env:SYSTEM_TEAMPROJECT = 'Team project in Azure DevOps'
+$env:SYSTEM_DEFINITIONID = 'Definition ID'
+$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI = 'https://dev.azure.com/*your_organization'
+$env:BUILD_REPOSITORY_NAME = 'Name of code repository'
+$env:SYSTEM_ENABLEACCESSTOKEN = 'true'
+$env:SYSTEM_TEAMFOUNDATIONSERVERURI = 'https://vsrm.dev.azure.com/*your_organization'
+$env:BUILD_BUILDNUMBER = 'Build number'
+$env:SYSTEM_HOSTTYPE = 'Release'
 
-### 2.3 Enable in Build Pipeline
+When running in Visual Studio debug create the following launchSettings.json under the properties for the AzTestReporter.App
 
-### 2.4 Enable in Release Pipeline
+{
+    "profiles": {
+        "AzTestReporter.App": {
+            "commandName": "Project",
+            "commandLineArgs": "--trt Unit --sendmail false --v true",
+            "environmentVariables": {
+                "SYSTEM_ACCESSTOKEN": "Your personal access token",
+                "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
+                "BUILD_DEFINITIONNAME": "Build definition",
+                "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
+                "SYSTEM_DEFINITIONID": "Definition ID",
+                "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "https://dev.azure.com/*your_organization",
+                "BUILD_REPOSITORY_NAME": "Name of code repository",
+                "SYSTEM_ENABLEACCESSTOKEN": "true",
+                "SYSTEM_TEAMFOUNDATIONSERVERURI": "https://vsrm.dev.azure.com/*your_organization",
+                "BUILD_BUILDNUMBER": "Build number",
+                "SYSTEM_HOSTTYPE": "Release"
+            }
+        }
+    }
+}
+
+### 2.2 Run the executable
+In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switch --help to display switch options
+
+  --trt            Specify the test run type, supported types are - (Unit|Integration)
+
+  --sendmail       (Default: true) Set this to false when debugging or when trying out the tool and not sending mail
+                   inadvertently.
+
+  --mailserver     The mail server to use when sending mail containing the test results.
+
+  --mailaccount    The mail account to send mail.
+
+  --mailpwd        The mail account password to use when sending mail.
+
+  --sendto         List of people or groups mail needs to be sent to. This is a comma delimited list
+
+  --cc             List of people or groups to cc in mail sent. This is a comma delimited list
+
+  --help           Display this help screen.
+
+  --version        Display version information.
+  
+  
+### 2.3 Run via Azure Extensions
+
+### 2.4 Enable in Build Pipeline
+
+### 2.5 Enable in Release Pipeline
 
 ## 3. High Level Architecture.
 
