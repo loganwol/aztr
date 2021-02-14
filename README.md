@@ -1,12 +1,10 @@
 # ![Logo](AzTestReporter/docs/Media/logo.png) AzTestReporter
 Summarize Azure DevOps test results into a HTML report format that is output to HTML file. The tool also has the capability to be configured to send a mail to the desired email's as part of execution.
 
-## 1. Why?
-
-## 2. Usage
+## 1. Usage
 Run the Executable from the command line, in Visual Studio or in an Azure Pipeline or Release.
 
-### 2.1 Set Environment Variables for local run
+### 1.1 Set Environment Variables for local run
 For local run several Environment Variables will need to be set to enable run:
 
 It is recommended to set up a powershell script to make this easier if not running in Visual Studio
@@ -46,7 +44,7 @@ When running in Visual Studio debug create the following launchSettings.json und
     }
 }
 
-### 2.2 Run the executable
+### 1.2 Run the executable
 In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switch --help to display switch options
 
   --trt            Specify the test run type, supported types are - (Unit|Integration)
@@ -69,15 +67,15 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
   --version        Display version information.
   
   
-### 2.3 Run via Azure Extensions
+## 2. Run via Azure Extensions
 
-### 2.4 Enable in Build Pipeline
+## 3. Enable in Build Pipeline
 
-### 2.5 Enable in Release Pipeline
+## 4. Enable in Release Pipeline
 
-## 3. High Level Architecture.
+## High Level Architecture.
 
-## 4. Generated Reports
+## Generated Reports
 The tool supports generating reports for tests executed in both Build (Unit tests) and Release pipelines (Integration tests). In cases where there are failures encountered before the actual tests are executed, the tool outputs a Execution Failure report file. For quick samples of how the final reports would look, please view sample reports in the following links:
 
 - [Build Test Report](AzTestReporter/docs/UnitTestResults-Example-TestExecutionReport.html)
@@ -86,7 +84,7 @@ The tool supports generating reports for tests executed in both Build (Unit test
 For in depth details what the final report looks like, please go [here](AzTestReporter/docs/ReportDetails.md).
 
 
-## 4. What's next.
+## What's next.
 
 1. View Execution Environment details.
 2. Ability to support custom templates.
@@ -94,6 +92,6 @@ For in depth details what the final report looks like, please go [here](AzTestRe
 4. Code coverage reporting for Integration tests.
 5. Object Model overview.
 
-## 5. Support
+## Support
 
-## 6. Contributions
+## Contributions
