@@ -53,11 +53,6 @@
                             .Select(r => r.Name)
                             .ToList();
 
-                        if (testtasks.Any())
-                        {
-                            
-                        }
-
                         return testtasks;
                     }
                 }

@@ -7,14 +7,14 @@
 
   <ItemGroup>
     <None Remove="MailTemplates\BuildFailureDetectedTemplate.cshtml" />
-    <None Remove="MailTemplates\DailyTestResultReportTemplate.cshtml" />
+    <None Remove="MailTemplates\TestResultReportTemplate.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="MailTemplates\BuildFailureDetectedTemplate.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MailTemplates\DailyTestResultReportTemplate.cshtml">
+    <Content Include="MailTemplates\TestResultReportTemplate.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -12,11 +12,7 @@
   <Import Project="$(SolutionDir)directory.build.test.props" />
 
   <ItemGroup>
-    <Compile Remove="EnvironmentTest.cs" />
-    <Compile Remove="ReleaseCollectionTests.cs" />
     <Compile Remove="ReleasedetectionandFilteringTests.cs" />
-    <Compile Remove="ReleaseTest.cs" />
-    <Compile Remove="TestRunDetectionTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
