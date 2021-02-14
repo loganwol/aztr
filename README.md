@@ -19,8 +19,9 @@ Summarize Azure DevOps test results into a HTML report format output to HTML fil
 ## 4. Generated Reports
 The tool supports generating reports for tests executed in both Build (Unit tests) and Release pipelines (Integration tests). In cases where there are failures encountered before the actual tests are executed, the tool outputs a Execution Failure report file. For quick samples of how the final reports would look, please view sample reports in the following links:
 
-- [Build Test Report](docs/UnitTestResults-Example-TestExecutionReport.html)
+- [Build Test Report](https://loganwol.github.io/aztr/UnitTestResults-Example-TestExecutionReport.html)
 - [Release Test Report](docs/)
+- [Failures Report](https://loganwol.github.io/aztr/ExecutionFailuresReport-Attempt0-1.1.37.html) 
 
 For in depth details what the final report looks like, please go [here](docs/ReportDetails.md).
 
