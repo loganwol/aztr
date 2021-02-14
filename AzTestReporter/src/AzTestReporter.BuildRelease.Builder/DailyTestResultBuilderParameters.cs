@@ -100,8 +100,8 @@
         /// Gets the mail template string.
         /// </summary>
         public string MailTemplate => string.IsNullOrEmpty(this.fullpath) ? 
-            @"MailTemplates\DailyTestResultReportTemplate.cshtml" : 
-            Path.Combine(this.fullpath, @"MailTemplates\DailyTestResultReportTemplate.cshtml");
+            @"MailTemplates\TestResultReportTemplate.cshtml" : 
+            Path.Combine(this.fullpath, @"MailTemplates\TestResultReportTemplate.cshtml");
 
         /// <summary>
         /// Gets the failed build template string.

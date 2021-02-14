@@ -1,5 +1,5 @@
-# ![Logo](AzTestReporter/docs/Media/logo.png) AzTestReporter
-Summarize Azure DevOps test results into a HTML report format that is output to HTML file. The tool also has the capability to be configured to send a mail to the desired email's as part of execution.
+# ![Logo](docs/Media/logo.png) AzTestReporter
+Summarize Azure DevOps test results into a HTML report format output to HTML file that includes, high-level summary of Test Runs & Code Coverage, summary details of Tests executed by Test class, Failure details if there are failures by Test class, summary of Code coverage results by module. 
 
 ## 1. Usage
 Run the Executable from the command line, in Visual Studio or in an Azure Pipeline or Release.
@@ -78,10 +78,11 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 ## Generated Reports
 The tool supports generating reports for tests executed in both Build (Unit tests) and Release pipelines (Integration tests). In cases where there are failures encountered before the actual tests are executed, the tool outputs a Execution Failure report file. For quick samples of how the final reports would look, please view sample reports in the following links:
 
-- [Build Test Report](AzTestReporter/docs/UnitTestResults-Example-TestExecutionReport.html)
-- [Release Test Report](AzTestReporter/docs/)
+- [Build Test Report](https://loganwol.github.io/aztr/UnitTestResults-Example-TestExecutionReport.html)
+- [Release Test Report](docs/)
+- [Failures Report](https://loganwol.github.io/aztr/ExecutionFailuresReport-Attempt0-1.1.37.html) 
 
-For in depth details what the final report looks like, please go [here](AzTestReporter/docs/ReportDetails.md).
+For in depth details what the final report looks like, please go [here](docs/ReportDetails.md).
 
 
 ## What's next.

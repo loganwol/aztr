@@ -291,7 +291,7 @@
             BuildData buildData = buildCollection.GetBuildDataforBuild(builderParameters.PipelineEnvironmentOptions.BuildDefinitionID, builderParameters.PipelineEnvironmentOptions.BuildNumber);
             if (buildData == null)
             {
-                throw new TestResultReportingException($"Build data for {builderParameters.PipelineEnvironmentOptions.BuildDefinitionID} was not found.");
+                throw new TestResultReportingException($"Build data for build id: {builderParameters.PipelineEnvironmentOptions.BuildNumber} was not found.");
             }
 
             return buildData;

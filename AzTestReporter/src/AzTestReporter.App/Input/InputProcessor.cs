@@ -130,14 +130,29 @@
             string reportBody = reportBuilder.ToHTML();
             string emailsubject = reportBuilder.Title;
 
-            StringBuilder outputfilename = new StringBuilder($"TestExecutionReport-");
-            outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+            StringBuilder outputfilename = new StringBuilder();
+
+            if (reportBuilder.IsPipelineFailed)
+            {
+                outputfilename.Append("ExecutionFailuresReport-");
+            }
+            else
+            {
+                outputfilename.Append("TestExecutionReport-");
+            }
+
+            if (!reportBuilderParameters.ResultSourceIsBuild)
+            {
+                outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+            }
+
             outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
             outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
+            
             string outputfilepath = Path.Combine(Directory.GetCurrentDirectory(), outputfilename.ToString());
             File.WriteAllText(outputfilepath, reportBody);
 
-            Log?.Info($"Successfully generated {outputfilename}.");
+            Log?.Info($"Successfully generated \"{outputfilepath}\".");
             Log?.Trace("Generated HTML successfully");
 
             mailerParameters.MailSubject = emailsubject;

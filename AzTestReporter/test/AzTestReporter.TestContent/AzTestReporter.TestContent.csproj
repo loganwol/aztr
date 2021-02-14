@@ -64,4 +64,13 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData\releases.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ReleaseWithFailingTask.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
