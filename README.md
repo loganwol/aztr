@@ -121,16 +121,16 @@ When running in Visual Studio debug create the following launchSettings.json und
 In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switch --help to display switch options
 
 | Command 		| Description 																		|
-| ------------- | --------------------------------------------------------------------------------- |
-| --trt	  | Specify the test run type, supported types are - (Unit|Integration) 					|
-|  --sendmail | (Default: true) Set this to false when debugging or when trying out the tool and not sending mail inadvertently. |
-| --mailserver | The mail server to use when sending mail containing the test results.|
-| --mailaccount | The mail account to send mail. |
-| --mailpwd | 	The mail account password to use when sending mail. |
-| --sendto |  List of people or groups mail needs to be sent to. This is a comma delimited list. |
-| --cc | List of people or groups to cc in mail sent. This is a comma delimited list |
-|  --help | Display this help screen. |
-|  --version | Display version information. |
+| ------------- 	| --------------------------------------------------------------------------------- |
+| --trt	  		| Specify the test run type, supported types are - (Unit|Integration) 					|
+|  --sendmail 		| (Default: true) Set this to false when debugging or when trying out the tool and not sending mail inadvertently. |
+| --mailserver 		| The mail server to use when sending mail containing the test results.|
+| --mailaccount 	| The mail account to send mail. |
+| --mailpwd 		| 	The mail account password to use when sending mail. |
+| --sendto 		|  List of people or groups mail needs to be sent to. This is a comma delimited list. |
+| --cc 			| List of people or groups to cc in mail sent. This is a comma delimited list |
+| --help 		| Display this help screen. |
+| --version 		| Display version information. |
   
   
 ## 2. Run via Azure Extensions
