@@ -34,6 +34,9 @@
         [Option('v', HelpText = "Enable verbose debug output.", Hidden = true, Default = false)]
         public bool Verbose { get; set; }
 
+        [Option('o', HelpText = "Output directory path.")]
+        public string OutputDirectory { get; set; }
+
         public AzurePipelineEnvironmentOptions PipelineEnvironmentOptions { get; set; }
 
         public void ProcessPipelineEnvVars()

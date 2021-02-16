@@ -129,6 +129,7 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 | --mailpwd 	| 	The mail account password to use when sending mail. |
 | --sendto 		|  List of people or groups mail needs to be sent to. This is a comma delimited list. |
 | --cc 			| List of people or groups to cc in mail sent. This is a comma delimited list |
+|  --o 			| The directory where the report file will be output to. |
 |  --help 		| Display this help screen. |
 |  --version 	| Display version information. |
   
