@@ -15,7 +15,12 @@
                 <ModulePath>.*coverlet..*\.dll$</ModulePath>
                 <ModulePath>fluent.*\.dll$</ModulePath>
                 <ModulePath>fluentvalidation.*\.dll$</ModulePath>
-                <ModulePath>xunit..*.dll$</ModulePath>
+                <ModulePath>.*xunit.assert.dll</ModulePath>
+                <ModulePath>.*xunit.core.dll</ModulePath>
+                <ModulePath>.*xunit.execution.desktop.dll</ModulePath>
+                <ModulePath>.*xunit.runner.reporters.net452.dll</ModulePath>
+                <ModulePath>.*xunit.runner.utility.net452.dll</ModulePath>                
+                <ModulePath>.*xunit.runner.visualstudio.testadapter.dll</ModulePath>                
                 <ModulePath>htmlagilitypack.*\.dll$</ModulePath>
                 <ModulePath>.*microsoft.codeanalysis*\.dll$</ModulePath>
               </Exclude>
