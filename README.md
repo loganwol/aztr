@@ -162,6 +162,7 @@ For in depth details what the final report looks like, please go [here](docs/Rep
 3. Output the datamodel into JSON for users to upload the json to datastore of their choice to enable data monitoring scenarios.
 4. Code coverage reporting for Integration tests.
 5. Object Model overview.
+6. .netcore support.
 
 ## Support
 

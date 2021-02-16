@@ -178,6 +178,7 @@
             {
                 this.IsReleasePipeline = true;
 
+                this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
                 this.ReleaseID = this.environmentvars["RELEASE_RELEASEID"];
                 this.ReleaseDefinitionName = this.environmentvars["RELEASE_DEFINITIONNAME"];
                 this.ReleaseName = this.environmentvars["RELEASE_RELEASENAME"];
@@ -210,7 +211,11 @@
             this.BuildRepositoryName = this.environmentvars["BUILD_REPOSITORY_NAME"];
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
-            this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
+
+            if (!this.IsReleasePipeline)
+            {
+                this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
+            }
         }
 
         public override string ToString()
