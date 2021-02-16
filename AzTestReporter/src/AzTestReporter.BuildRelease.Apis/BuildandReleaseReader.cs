@@ -195,7 +195,7 @@ namespace AzTestReporter.BuildRelease.Apis
         {
             string responseBody = string.Empty;
 
-            Log.Trace($"Query Url {queryurl}");
+            Log?.Trace($"Query Url {queryurl}");
             using (HttpResponseMessage response = await this.httpClient.GetAsync(queryurl))
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
