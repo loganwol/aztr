@@ -175,12 +175,10 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
         [SkippableFact]
         public void Output_all_env_variables()
         {
-            Skip.IfNot(string.IsNullOrEmpty(Environment.GetEnvironmentVariable("TF_BUILD")), "This test is intended to run only in azure pipelines as an integration test.");
-
             var systemhost = Environment.GetEnvironmentVariable("SYSTEM_HOSTTYPE");
 
-            Skip.IfNot(systemhost != null && systemhost.Equals("release", StringComparison.InvariantCultureIgnoreCase),
-                "This test is intended to run only in release pipelines as an integration test.");
+            Skip.IfNot(systemhost != null && systemhost.Equals("build", StringComparison.InvariantCultureIgnoreCase),
+                "This test is intended to run only in build pipelines as an integration test.");
 
             var environmentvars = Environment.GetEnvironmentVariables()
                         .Cast<DictionaryEntry>()
