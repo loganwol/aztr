@@ -184,12 +184,12 @@
 
             if (readreleasepipelineenvvars == true && !runninglocal && this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
             {
-                Log?.Trace("Running in Release pipeline");
+                Log?.Info("Running in Release pipeline");
 
                 this.IsReleasePipeline = true;
 
                 this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
-                Log?.Debug($"Build definition ID = {this.environmentvars["BUILD_DEFINITIONID"]}");
+                Log?.Debug($"Build definition ID via build definition ID = {this.environmentvars["BUILD_DEFINITIONID"]}");
 
                 this.ReleaseID = this.environmentvars["RELEASE_RELEASEID"];
                 this.ReleaseDefinitionName = this.environmentvars["RELEASE_DEFINITIONNAME"];
@@ -224,11 +224,11 @@
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
 
-            if (!this.IsReleasePipeline)
+            if (this.IsReleasePipeline == false)
             {
-                Log?.Trace("Running in build pipeline.");
+                Log?.Info("Running in build pipeline.");
                 this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
-                Log?.Debug($"Build definition ID = {this.environmentvars["SYSTEM_DEFINITIONID"]}");
+                Log?.Debug($"Build definition ID via system id = {this.environmentvars["SYSTEM_DEFINITIONID"]}");
             }
         }
 
