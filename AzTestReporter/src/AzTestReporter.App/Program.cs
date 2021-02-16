@@ -79,8 +79,8 @@
             }
             catch (TestResultReportingException trrex)
             {
-                log.Error($"There was a known failure when generating the reports.");
-                log.Trace("Application threw an exception that is one of the recognized points of failure.");
+                log.Error($"There was a known failure when generating the reports \"{trrex.Message}\".");
+                log.Trace($"Application threw an exception that is one of the recognized points of failure.");
 
                 var tempdictionary = startCollectionInfo.ToDictionary();
                 log.Trace("Application encountered a known point of failure.", new Dictionary<string, string>()

@@ -24,7 +24,7 @@ If a Release pipeline exists, then go to one of the stages in the pipeline. Clic
 	set BUILD_SOURCEBRANCH='Your branch for build pipeline in Azure DevOps'
 	set BUILD_DEFINITIONNAME='The desired Build definition name'
 	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
-	set SYSTEM_DEFINITIONID='Definition ID'
+	set BUILD_DEFINITIONID='Definition ID'
 	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
 	set BUILD_REPOSITORY_NAME='Name of code repository'
 	set SYSTEM_ENABLEACCESSTOKEN='true'
@@ -40,7 +40,7 @@ If a Release pipeline exists, then go to one of the stages in the pipeline. Clic
 	set BUILD_SOURCEBRANCH='Your branch for build pipeline in Azure DevOps'
 	set BUILD_DEFINITIONNAME='The desired Build definition name'
 	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
-	set SYSTEM_DEFINITIONID='Definition ID'
+	set BUILD_DEFINITIONID='Definition ID'
 	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
 	set BUILD_REPOSITORY_NAME='Name of code repository'
 	set SYSTEM_ENABLEACCESSTOKEN='true'
@@ -71,7 +71,7 @@ When running in Visual Studio debug create the following launchSettings.json und
                 "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
                 "BUILD_DEFINITIONNAME": "Build definition",
                 "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
-                "SYSTEM_DEFINITIONID": "Definition ID",
+                "BUILD_DEFINITIONID": "Definition ID",
                 "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "https://dev.azure.com/*your_organization",
                 "BUILD_REPOSITORY_NAME": "Name of code repository",
                 "SYSTEM_ENABLEACCESSTOKEN": "true",
@@ -97,7 +97,7 @@ When running in Visual Studio debug create the following launchSettings.json und
             "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
             "BUILD_DEFINITIONNAME": "Build definition",
             "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
-            "SYSTEM_DEFINITIONID": "Definition ID",
+            "BUILD_DEFINITIONID": "Definition ID",
             "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "your_organization_devops_url",
             "BUILD_REPOSITORY_NAME": "Name of code repository",
             "SYSTEM_ENABLEACCESSTOKEN": "true",
