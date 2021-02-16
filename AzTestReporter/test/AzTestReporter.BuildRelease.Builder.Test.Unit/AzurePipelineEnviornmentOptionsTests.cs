@@ -172,6 +172,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             pipeline.SystemAccessToken.Should().NotBeNullOrEmpty();
         }
 
+        [SkippableFact]
         public void Output_all_env_variables()
         {
             Skip.IfNot(string.IsNullOrEmpty(Environment.GetEnvironmentVariable("TF_BUILD")), "This test is intended to run only in azure pipelines as an integration test.");
