@@ -188,6 +188,8 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             {
                 this.outputHelper.WriteLine($"{envvar.Key}\t={envvar.Value}");
             }
+
+            environmentvars.Should().HaveCount(1);
         }
     }
 }
