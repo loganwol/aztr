@@ -5,37 +5,65 @@ Summarize Azure DevOps test results into a HTML report format output to HTML fil
 Run the Executable from the command line, in Visual Studio or in an Azure Pipeline or Release.
 
 ### 1.1 Set Environment Variables for local run
-For local run several Environment Variables will need to be set to enable run:
+For a local run, several Environment Variables will need to be set to enable run the utility. *Important: This is only required if you're running locally, if you are running in Azure pipelines, you should download the project nuget package.* 
 
-It is recommended to set up a powershell script to make this easier if not running in Visual Studio
+a. When running the exe standalone, please create a .bat file, copy paste the script below.
+b. When running the exe from the solution, please create a launchSettings.json file for  AzTestReporter.App project. 
 
-$env:SYSTEM_ACCESSTOKEN = 'Your personal access token'
+Suggestion: Sometimes it's hard to figure out all the parameters. If you've having difficulty figuring this out, refer to an existing Release pipeline or create one. 
+If a Release pipeline exists, then go to one of the stages in the pipeline. Click on the Logs button when you hover over the stage and then click on the first task that's executed. It should be named Initialize job. Here you can search for each of the environment variables mentioned below and enter it. 
 
-$env:BUILD_SOURCEBRANCH = 'Your branch for build pipeline in Azure DevOps'
+[Example Release pipeline](https://dev.azure.com/HermesProjects/MSTestRepeat/_releaseProgress?_a=release-environment-logs&releaseId=2&environmentId=2)
 
-$env:BUILD_DEFINITIONNAME = 'Build definition'
+#### Batch files samples
 
-$env:SYSTEM_TEAMPROJECT = 'Team project in Azure DevOps'
+##### 1.1.a Build Pipeline Batch file
 
-$env:SYSTEM_DEFINITIONID = 'Definition ID'
+```bat 
+	set SYSTEM_ACCESSTOKEN='Your personal access token'
+	set BUILD_SOURCEBRANCH='Your branch for build pipeline in Azure DevOps'
+	set BUILD_DEFINITIONNAME='The desired Build definition name'
+	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
+	set SYSTEM_DEFINITIONID='Definition ID'
+	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
+	set BUILD_REPOSITORY_NAME='Name of code repository'
+	set SYSTEM_ENABLEACCESSTOKEN='true'
+	set SYSTEM_TEAMFOUNDATIONSERVERURI='https://vsrm.dev.azure.com/*your_organization'
+	set BUILD_BUILDNUMBER='Build number'
+	set SYSTEM_HOSTTYPE='build'
+```
 
-$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI = 'https://dev.azure.com/*your_organization'
+##### 1.1.b Release Pipeline Batch file
 
-$env:BUILD_REPOSITORY_NAME = 'Name of code repository'
+```bat 
+	set SYSTEM_ACCESSTOKEN='Your personal access token'
+	set BUILD_SOURCEBRANCH='Your branch for build pipeline in Azure DevOps'
+	set BUILD_DEFINITIONNAME='The desired Build definition name'
+	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
+	set SYSTEM_DEFINITIONID='Definition ID'
+	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
+	set BUILD_REPOSITORY_NAME='Name of code repository'
+	set SYSTEM_ENABLEACCESSTOKEN='true'
+	set SYSTEM_TEAMFOUNDATIONSERVERURI='https://vsrm.dev.azure.com/*your_organization'
+	set BUILD_BUILDNUMBER='Build number'
+	set SYSTEM_HOSTTYPE='Release'
+	set RELEASE_RELEASEID='The release ID'
+	set RELEASE_DEFINITIONNAME=''
+	set RELEASE_RELEASENAME=''
+	set RELEASE_ENVIRONMENTNAME=''
+	set RELEASE_ENVIRONMENTID=''
+	set RELEASE_ATTEMPTNUMBER=''
+	set AGENT_ID=''
+```
 
-$env:SYSTEM_ENABLEACCESSTOKEN = 'true'
+When running in Visual Studio debug create the following launchSettings.json under the properties for the AzTestReporter.App.
 
-$env:SYSTEM_TEAMFOUNDATIONSERVERURI = 'https://vsrm.dev.azure.com/*your_organization'
+##### 1.1.c Build Pipeline launchSettings.json file
 
-$env:BUILD_BUILDNUMBER = 'Build number'
-
-$env:SYSTEM_HOSTTYPE = 'Release'
-
-When running in Visual Studio debug create the following launchSettings.json under the properties for the AzTestReporter.App
-
+```json
 {
     "profiles": {
-        "AzTestReporter.App": {
+        "UniqueProfileName": {
             "commandName": "Project",
             "commandLineArgs": "--trt Unit --sendmail false --v true",
             "environmentVariables": {
@@ -54,37 +82,68 @@ When running in Visual Studio debug create the following launchSettings.json und
         }
     }
 }
+```
+
+##### 1.1.d Release Pipeline launchSettings.json file
+
+```json
+{
+  "profiles": {
+    "UniqueProfileName": {
+          "commandName": "Project",
+          "commandLineArgs": "--trt Integration --sendmail false --v true",
+          "environmentVariables": {
+            "SYSTEM_ACCESSTOKEN": "Your personal access token",
+            "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
+            "BUILD_DEFINITIONNAME": "Build definition",
+            "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
+            "SYSTEM_DEFINITIONID": "Definition ID",
+            "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "your_organization_devops_url",
+            "BUILD_REPOSITORY_NAME": "Name of code repository",
+            "SYSTEM_ENABLEACCESSTOKEN": "true",
+            "SYSTEM_TEAMFOUNDATIONSERVERURI": "your_organization_devops_url starts with https://vsrm",
+            "BUILD_BUILDNUMBER": "Build number",
+            "SYSTEM_HOSTTYPE": "Release",
+            "RELEASE_RELEASEID": "Release ID",
+            "RELEASE_DEFINITIONNAME": "Release definition name",
+            "RELEASE_RELEASENAME": "Release name",
+            "RELEASE_ENVIRONMENTNAME": "Release environemt name",
+            "RELEASE_ENVIRONMENTID": "Environment ID",
+            "RELEASE_ATTEMPTNUMBER": "Attempt",
+            "AGENT_ID": "Agent ID"
+          }
+        }
+    }
+}
+```
 
 ### 1.2 Run the executable
 In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switch --help to display switch options
 
-  --trt            Specify the test run type, supported types are - (Unit|Integration)
-
-  --sendmail       (Default: true) Set this to false when debugging or when trying out the tool and not sending mail
-                   inadvertently.
-
-  --mailserver     The mail server to use when sending mail containing the test results.
-
-  --mailaccount    The mail account to send mail.
-
-  --mailpwd        The mail account password to use when sending mail.
-
-  --sendto         List of people or groups mail needs to be sent to. This is a comma delimited list
-
-  --cc             List of people or groups to cc in mail sent. This is a comma delimited list
-
-  --help           Display this help screen.
-
-  --version        Display version information.
+| Command 		| Description 																		|
+| ------------- | --------------------------------------------------------------------------------- |
+| --trt	  | Specify the test run type, supported types are - (Unit|Integration) 					|
+|  --sendmail | (Default: true) Set this to false when debugging or when trying out the tool and not sending mail inadvertently. |
+| --mailserver | The mail server to use when sending mail containing the test results.|
+| --mailaccount | The mail account to send mail. |
+| --mailpwd | 	The mail account password to use when sending mail. |
+| --sendto |  List of people or groups mail needs to be sent to. This is a comma delimited list. |
+| --cc | List of people or groups to cc in mail sent. This is a comma delimited list |
+|  --help | Display this help screen. |
+|  --version | Display version information. |
   
   
 ## 2. Run via Azure Extensions
+Coming soon.
 
 ## 3. Enable in Build Pipeline
+Coming soon.
 
 ## 4. Enable in Release Pipeline
+Coming soon.
 
 ## High Level Architecture.
+Coming soon.
 
 ## Generated Reports
 The tool supports generating reports for tests executed in both Build (Unit tests) and Release pipelines (Integration tests). In cases where there are failures encountered before the actual tests are executed, the tool outputs a Execution Failure report file. For quick samples of how the final reports would look, please view sample reports in the following links:
