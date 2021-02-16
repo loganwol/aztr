@@ -172,7 +172,6 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             pipeline.SystemAccessToken.Should().NotBeNullOrEmpty();
         }
 
-        [SkippableFact]
         public void Output_all_env_variables()
         {
             var systemhost = Environment.GetEnvironmentVariable("SYSTEM_HOSTTYPE");
