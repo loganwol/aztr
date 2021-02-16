@@ -8,16 +8,27 @@ Run the Executable from the command line, in Visual Studio or in an Azure Pipeli
 For local run several Environment Variables will need to be set to enable run:
 
 It is recommended to set up a powershell script to make this easier if not running in Visual Studio
+
 $env:SYSTEM_ACCESSTOKEN = 'Your personal access token'
+
 $env:BUILD_SOURCEBRANCH = 'Your branch for build pipeline in Azure DevOps'
+
 $env:BUILD_DEFINITIONNAME = 'Build definition'
+
 $env:SYSTEM_TEAMPROJECT = 'Team project in Azure DevOps'
+
 $env:SYSTEM_DEFINITIONID = 'Definition ID'
+
 $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI = 'https://dev.azure.com/*your_organization'
+
 $env:BUILD_REPOSITORY_NAME = 'Name of code repository'
+
 $env:SYSTEM_ENABLEACCESSTOKEN = 'true'
+
 $env:SYSTEM_TEAMFOUNDATIONSERVERURI = 'https://vsrm.dev.azure.com/*your_organization'
+
 $env:BUILD_BUILDNUMBER = 'Build number'
+
 $env:SYSTEM_HOSTTYPE = 'Release'
 
 When running in Visual Studio debug create the following launchSettings.json under the properties for the AzTestReporter.App
