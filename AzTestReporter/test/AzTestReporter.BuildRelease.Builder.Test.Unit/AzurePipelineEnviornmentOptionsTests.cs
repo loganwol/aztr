@@ -145,6 +145,65 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             pipeline.SystemAccessToken.Should().Be("thisisasecret");
         }
 
+        [Fact]
+        public void Can_successfully_read_build_pipeline_environment_variables()
+        {
+            var pipeline = new AzurePipelineEnvironmentOptions();
+            pipeline.environmentvars = new Dictionary<string, string>()
+            {
+                { "SYSTEM_HOSTTYPE", "build" },
+                { "SYSTEM_ENABLEACCESSTOKEN", string.Empty },
+                { "SYSTEM_ACCESSTOKEN", "thisisasecret" },
+                { "BUILD_SOURCEBRANCH", "sourcebranch" },
+                { "BUILD_DEFINITIONNAME", "definitionname" },
+                { "SYSTEM_TEAMPROJECT", "teamproject" },
+                { "SYSTEM_DEFINITIONID", "1" },
+                { "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI", "somehttpuri" },
+                { "BUILD_REPOSITORY_NAME", "reponame" },
+                { "SYSTEM_TEAMFOUNDATIONSERVERURI", "somehttpuri" },
+                { "BUILD_BUILDNUMBER", "buildnumber" },
+            };
+
+            // Act
+            pipeline.Read(true);
+
+            // Verify
+            pipeline.BuildDefinitionID.Should().Be("1");
+        }
+
+        [Fact]
+        public void Can_successfully_read_release_pipeline_environment_variables()
+        {
+            var pipeline = new AzurePipelineEnvironmentOptions();
+            pipeline.environmentvars = new Dictionary<string, string>()
+            {
+                { "SYSTEM_HOSTTYPE", "release" },
+                { "SYSTEM_ENABLEACCESSTOKEN", string.Empty },
+                { "SYSTEM_ACCESSTOKEN", "thisisasecret" },
+                { "BUILD_SOURCEBRANCH", "sourcebranch" },
+                { "BUILD_DEFINITIONNAME", "definitionname" },
+                { "SYSTEM_TEAMPROJECT", "teamproject" },
+                { "BUILD_DEFINITIONID", "100" },
+                { "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI", "somehttpuri" },
+                { "BUILD_REPOSITORY_NAME", "reponame" },
+                { "SYSTEM_TEAMFOUNDATIONSERVERURI", "somehttpuri" },
+                { "BUILD_BUILDNUMBER", "buildnumber" },
+                { "RELEASE_RELEASEID", "13" },
+                { "RELEASE_DEFINITIONNAME", "release def name" },
+                { "RELEASE_RELEASENAME", "release name" },
+                { "RELEASE_ENVIRONMENTNAME", "env name" },
+                { "RELEASE_ENVIRONMENTID", "23" },
+                { "RELEASE_ATTEMPTNUMBER", "2" },
+                { "AGENT_ID", "23" },
+            };
+
+            // Act
+            pipeline.Read(true);
+
+            // Verify
+            pipeline.BuildDefinitionID.Should().Be("100");
+        }
+
         [SkippableFact]
         public void Can_read_required_azure_pipeline_build_envrionmentvariables()
         {

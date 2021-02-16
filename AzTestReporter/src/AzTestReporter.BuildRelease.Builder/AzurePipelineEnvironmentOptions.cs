@@ -182,20 +182,6 @@
 
             this.IsExecutinginReleasePipeline = true;
 
-            if (this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
-            {
-                Log?.Info("Running in release pipeline.");
-                this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
-                Log?.Debug($"Build definition ID via build definition ID = {this.environmentvars["BUILD_DEFINITIONID"]}");
-            }
-            else if (this.SystemHostType.Equals("build", StringComparison.InvariantCultureIgnoreCase))
-            {
-                Log?.Info("Running in build pipeline.");
-                this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
-                Log?.Debug($"Build definition ID via system id = {this.environmentvars["SYSTEM_DEFINITIONID"]}");
-            }
-
-
             if (readreleasepipelineenvvars == true && !runninglocal && this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
             {
                 this.IsReleasePipeline = true;
@@ -233,6 +219,19 @@
             this.BuildRepositoryName = this.environmentvars["BUILD_REPOSITORY_NAME"];
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
+
+            if (this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Log?.Info("Running in release pipeline.");
+                this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
+                Log?.Debug($"Build definition ID via build definition ID = {this.environmentvars["BUILD_DEFINITIONID"]}");
+            }
+            else if (this.SystemHostType.Equals("build", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Log?.Info("Running in build pipeline.");
+                this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
+                Log?.Debug($"Build definition ID via system id = {this.environmentvars["SYSTEM_DEFINITIONID"]}");
+            }
         }
 
         public override string ToString()
