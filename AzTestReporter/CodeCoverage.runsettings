@@ -15,7 +15,7 @@
                 <ModulePath>.*coverlet..*\.dll$</ModulePath>
                 <ModulePath>fluent.*\.dll$</ModulePath>
                 <ModulePath>fluentvalidation.*\.dll$</ModulePath>
-                <ModulePath>xunit..*\.dll$</ModulePath>
+                <ModulePath>xunit.*.dll$</ModulePath>
                 <ModulePath>xunit.assert\.dll$</ModulePath>
                 <ModulePath>xunit.core\.dll$</ModulePath>
                 <ModulePath>xunit.execution.desktop\.dll$</ModulePath>
