@@ -154,20 +154,22 @@
             if (string.IsNullOrEmpty(outputdirectory))
             {
                 outputdirectory = Directory.GetCurrentDirectory();
-                if (!Directory.Exists(outputdirectory))
-                {
-                    Log?.Info("Creating output directory.");
-                    Directory.CreateDirectory(outputdirectory);
-                }
-
-                var files = Directory.GetFiles(outputdirectory, "*.html");
-                if (files.Any())
-                {
-                    Directory.Delete(outputdirectory, true);
-                }
+            }
+            
+            if (!Directory.Exists(outputdirectory))
+            {
+                Log?.Info("Creating output directory.");
+                Directory.CreateDirectory(outputdirectory);
             }
 
             string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
+
+            if (File.Exists(outputfilepath))
+            {
+                Log?.Info("Found previous report file, deleting the file.");
+                File.Delete(outputfilepath);
+            }
+
             File.WriteAllText(outputfilepath, reportBody);
 
             Log?.Info($"Successfully generated \"{outputfilepath}\".");
