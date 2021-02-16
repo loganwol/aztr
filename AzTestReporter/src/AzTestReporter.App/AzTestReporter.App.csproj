@@ -3,7 +3,21 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net472</TargetFramework>
-    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+
+    <IsPackable>true</IsPackable>
+    <Version>1.1.28</Version>
+    <NeutralLanguage>English</NeutralLanguage>
+    <OutputPath>$(SolutionDir)publish\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+    <IsTestProject>false</IsTestProject>
+    <PackageId>aztestreporter</PackageId>
+    <RepositoryUrl>https://github.com/loganwol/aztr/</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/loganwol/aztr/</PackageProjectUrl>
+    <Description>Summarize Azure DevOps test results into a HTML report format that can be share via email.</Description>
+    <Authors>loganwol;deanhamsft</Authors>
+    <Product>AzTestReporter</Product>
+    <AssemblyVersion>1.0.28.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
   </PropertyGroup>
 
   <ItemGroup>

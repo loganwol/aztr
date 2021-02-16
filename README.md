@@ -1,10 +1,18 @@
 # ![Logo](docs/Media/logo.png) AzTestReporter
 Summarize Azure DevOps test results into a HTML report format output to HTML file that includes, high-level summary of Test Runs & Code Coverage, summary details of Tests executed by Test class, Failure details if there are failures by Test class, summary of Code coverage results by module. 
 
-## 1. Usage
+## Status
+![Build Status](https://img.shields.io/azure-devops/build/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/2)
+![Test Status](https://img.shields.io/azure-devops/tests/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/2)
+![Code Coverage Status](https://img.shields.io/azure-devops/coverage/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/2)
+
+## Releases
+![Nuget Release](https://img.shields.io/nuget/v/aztestreporter)
+
+## Usage
 Run the Executable from the command line, in Visual Studio or in an Azure Pipeline or Release.
 
-### 1.1 Set Environment Variables for local run
+### 1. Set Environment Variables for local run
 For a local run, several Environment Variables will need to be set to enable run the utility. *Important: This is only required if you're running locally, if you are running in Azure pipelines, you should download the project nuget package.* 
 
 a. When running the exe standalone, please create a .bat file, copy paste the script below.
@@ -13,13 +21,17 @@ b. When running the exe from the solution, please create a launchSettings.json f
 Suggestion: Sometimes it's hard to figure out all the parameters. If you've having difficulty figuring this out, refer to an existing Release pipeline or create one. 
 If a Release pipeline exists, then go to one of the stages in the pipeline. Click on the Logs button when you hover over the stage and then click on the first task that's executed. It should be named Initialize job. Here you can search for each of the environment variables mentioned below and enter it. 
 
-[Example Release pipeline](https://dev.azure.com/HermesProjects/MSTestRepeat/_releaseProgress?_a=release-environment-logs&releaseId=2&environmentId=2)
+[Example Release pipeline](https://dev.azure.com/HermesProjects/AzureTestReports/_release?_a=releases&view=mine&definitionId=1)
+1. Click on the latest Release.
+2. Click on the first stage in the Release pipeline.
+3. Click on Initialize job.
+4. CTRL+F to search for the environment variables.
 
-#### Batch files samples
+#### 1.1 Batch file samples
 
 ##### 1.1.a Build Pipeline Batch file
 
-```bat 
+``` bat 
 	set SYSTEM_ACCESSTOKEN='Your personal access token'
 	set BUILD_SOURCEBRANCH='Your branch for build pipeline in Azure DevOps'
 	set BUILD_DEFINITIONNAME='The desired Build definition name'
@@ -58,14 +70,16 @@ If a Release pipeline exists, then go to one of the stages in the pipeline. Clic
 
 When running in Visual Studio debug create the following launchSettings.json under the properties for the AzTestReporter.App.
 
-##### 1.1.c Build Pipeline launchSettings.json file
+#### 1.2 launchSettings.json file samples
+
+##### 1.2.c Build Pipeline launchSettings.json file
 
 ```json
 {
     "profiles": {
         "UniqueProfileName": {
             "commandName": "Project",
-            "commandLineArgs": "--trt Unit --sendmail false --v true",
+            "commandLineArgs": "--trt Unit --sendmail false",
             "environmentVariables": {
                 "SYSTEM_ACCESSTOKEN": "Your personal access token",
                 "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
@@ -84,14 +98,14 @@ When running in Visual Studio debug create the following launchSettings.json und
 }
 ```
 
-##### 1.1.d Release Pipeline launchSettings.json file
+##### 1.2.d Release Pipeline launchSettings.json file
 
 ```json
 {
   "profiles": {
     "UniqueProfileName": {
           "commandName": "Project",
-          "commandLineArgs": "--trt Integration --sendmail false --v true",
+          "commandLineArgs": "--trt Integration --sendmail false",
           "environmentVariables": {
             "SYSTEM_ACCESSTOKEN": "Your personal access token",
             "BUILD_SOURCEBRANCH": "Your branch for build pipeline in Azure DevOps",
@@ -117,7 +131,7 @@ When running in Visual Studio debug create the following launchSettings.json und
 }
 ```
 
-### 1.2 Run the executable
+### 1.3 Executable command line options
 In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switch --help to display switch options
 
 | Command 				| Description 																		|
@@ -134,13 +148,13 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 |  --version 	| Display version information. |
   
   
-## 2. Run via Azure Extensions
+### 2. Run via Azure Extensions
 Coming soon.
 
-## 3. Enable in Build Pipeline
+### 3. Enable in Build Pipeline
 Coming soon.
 
-## 4. Enable in Release Pipeline
+### 4. Enable in Release Pipeline
 Coming soon.
 
 ## High Level Architecture.
