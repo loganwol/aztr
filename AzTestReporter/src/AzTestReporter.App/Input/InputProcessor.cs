@@ -8,6 +8,7 @@
     using AzTestReporter.BuildRelease.Apis;
     using AzTestReporter.BuildRelease.Builder;
     using Validation;
+    using System.Linq;
 
     public class InputProcessor
     {
@@ -138,18 +139,35 @@
             }
             else
             {
-                outputfilename.Append("TestExecutionReport-");
+                outputfilename.Append("TestExecutionReport");
             }
 
             if (!reportBuilderParameters.ResultSourceIsBuild)
             {
-                outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+                outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
             }
 
             outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
             outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
-            
-            string outputfilepath = Path.Combine(Directory.GetCurrentDirectory(), outputfilename.ToString());
+
+            string outputdirectory = clOptions.OutputDirectory;
+            if (string.IsNullOrEmpty(outputdirectory))
+            {
+                outputdirectory = Directory.GetCurrentDirectory();
+                if (!Directory.Exists(outputdirectory))
+                {
+                    Log?.Info("Creating output directory.");
+                    Directory.CreateDirectory(outputdirectory);
+                }
+
+                var files = Directory.GetFiles(outputdirectory, "*.html");
+                if (files.Any())
+                {
+                    Directory.Delete(outputdirectory, true);
+                }
+            }
+
+            string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
             File.WriteAllText(outputfilepath, reportBody);
 
             Log?.Info($"Successfully generated \"{outputfilepath}\".");

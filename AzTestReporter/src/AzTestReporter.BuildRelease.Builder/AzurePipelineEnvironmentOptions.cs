@@ -1,5 +1,6 @@
 ﻿namespace AzTestReporter.BuildRelease.Builder
 {
+    using NLog;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -9,7 +10,13 @@
     public class AzurePipelineEnvironmentOptions
     {
         internal Dictionary<string, string> environmentvars;
+        internal static Logger Log;
         private Dictionary<string, string> displayvalues;
+
+        public AzurePipelineEnvironmentOptions()
+        {
+            Log = LogManager.GetCurrentClassLogger();
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether gets or sets the value indicating that TRR is executing within a pipeline or not.
@@ -132,6 +139,7 @@
                     return this.BranchName.StartsWith("release", StringComparison.InvariantCultureIgnoreCase) ||
                         this.BranchName.StartsWith("feature", StringComparison.InvariantCultureIgnoreCase) ||
                         this.BranchName.StartsWith("master", StringComparison.InvariantCultureIgnoreCase) ||
+                        this.BranchName.StartsWith("main", StringComparison.InvariantCultureIgnoreCase) ||
                         this.BranchName.StartsWith("product", StringComparison.InvariantCultureIgnoreCase);
                 }
 
@@ -177,8 +185,8 @@
             if (readreleasepipelineenvvars == true && !runninglocal && this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
             {
                 this.IsReleasePipeline = true;
+                Log?.Info("Reading release variables for Integration test run details.");
 
-                this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
                 this.ReleaseID = this.environmentvars["RELEASE_RELEASEID"];
                 this.ReleaseDefinitionName = this.environmentvars["RELEASE_DEFINITIONNAME"];
                 this.ReleaseName = this.environmentvars["RELEASE_RELEASENAME"];
@@ -212,9 +220,17 @@
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
 
-            if (!this.IsReleasePipeline)
+            if (this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
             {
+                Log?.Info("Running in release pipeline.");
+                this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
+                Log?.Debug($"Build definition ID via build definition ID = {this.environmentvars["BUILD_DEFINITIONID"]}");
+            }
+            else if (this.SystemHostType.Equals("build", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Log?.Info("Running in build pipeline.");
                 this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
+                Log?.Debug($"Build definition ID via system id = {this.environmentvars["SYSTEM_DEFINITIONID"]}");
             }
         }
 
