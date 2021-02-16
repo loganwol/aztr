@@ -210,7 +210,7 @@
             this.BuildRepositoryName = this.environmentvars["BUILD_REPOSITORY_NAME"];
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
-            this.BuildDefinitionID = this.environmentvars["SYSTEM_DEFINITIONID"];
+            this.BuildDefinitionID = this.environmentvars["BUILD_DEFINITIONID"];
         }
 
         public override string ToString()
