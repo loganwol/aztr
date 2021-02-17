@@ -43,13 +43,8 @@ steps:
     codeCoverageEnabled: true
     runSettingsFile: AzTestReporter\CodeCoverage.runsettings
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: $(Common.TestResultsDirectory)/*.coverage
-
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.\AzTestReporter\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
     ArtifactName: 'drop'
     publishLocation: 'Container'
