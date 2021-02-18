@@ -45,6 +45,12 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\net472'
     ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\*.$(name).nupkg'
+    ArtifactName: 'nugetpkg'
     publishLocation: 'Container'
