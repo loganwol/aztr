@@ -6,6 +6,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>AzTestReporter.BuildRelease.Builder.Test.Unit</RootNamespace>
+    <AssemblyVersion>$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
   </PropertyGroup>
   <Import Project="$(SolutionDir)directory.build.test.props" />

@@ -18,6 +18,7 @@ variables:
 
 name: $(major).$(minor)$(Rev:.r)
 
+
 steps:
 - task: NuGetToolInstaller@1
 
@@ -36,7 +37,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testSelector: testAssemblies
-    testAssemblyVer2: | 
+    testAssemblyVer2: |
       **\*test.unit*.dll
       !**\*TestAdapter.dll
       !**\obj\** 
@@ -51,6 +52,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\*.nupkg'
+    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
     ArtifactName: 'nugetpkg'
     publishLocation: 'Container'

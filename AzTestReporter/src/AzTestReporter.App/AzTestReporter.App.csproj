@@ -15,7 +15,7 @@
     <Description>Summarize Azure DevOps test results into a HTML report format that can be share via email.</Description>
     <Authors>loganwol;deanhamsft</Authors>
     <Product>AzTestReporter</Product>
-    <AssemblyVersion>1.0.28.0</AssemblyVersion>
+    <AssemblyVersion>$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     
   </PropertyGroup>
