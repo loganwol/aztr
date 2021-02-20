@@ -5,7 +5,7 @@
     <TargetFramework>net472</TargetFramework>
 
     <IsPackable>true</IsPackable>
-    <Version>1.1.28</Version>
+    <Version>$(BUILD_BUILDNUMBER)</Version> <!-- This is the package version -->
     <NeutralLanguage>English</NeutralLanguage>
     <OutputPath>$(SolutionDir)publish\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
     <IsTestProject>false</IsTestProject>
@@ -15,7 +15,7 @@
     <Description>Summarize Azure DevOps test results into a HTML report format that can be share via email.</Description>
     <Authors>loganwol;deanhamsft</Authors>
     <Product>AzTestReporter</Product>
-    <AssemblyVersion>1.0.28.0</AssemblyVersion>
+    <AssemblyVersion>$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     
   </PropertyGroup>

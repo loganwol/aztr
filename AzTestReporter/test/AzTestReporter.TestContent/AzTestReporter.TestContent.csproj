@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <IsPackable>false</IsPackable>
+    <AssemblyVersion>$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
   </PropertyGroup>
 
