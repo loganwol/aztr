@@ -5,7 +5,7 @@
     <TargetFramework>net472</TargetFramework>
 
     <IsPackable>true</IsPackable>
-    <Version>1.1.28</Version>
+    <Version>$(BUILD_BUILDNUMBER)</Version> <!-- This is the package version -->
     <NeutralLanguage>English</NeutralLanguage>
     <OutputPath>$(SolutionDir)publish\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
     <IsTestProject>false</IsTestProject>
