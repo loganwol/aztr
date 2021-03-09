@@ -36,6 +36,9 @@
 
         [Option('o', HelpText = "Output directory path.")]
         public string OutputDirectory { get; set; }
+		
+        [Option('f', HelpText = "Specify the output format of the report (options are HTML|JSON|All)", Default = OutputFormat.HTML )]
+        public OutputFormat OutputFormat { get; set; }
 
         public AzurePipelineEnvironmentOptions PipelineEnvironmentOptions { get; set; }
 

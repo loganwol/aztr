@@ -6,6 +6,7 @@
     using System.Text;
     using AzTestReporter.BuildRelease.Apis.Exceptions;
     using AzTestReporter.BuildRelease.Builder.DataModels;
+    using Newtonsoft.Json;
     using RazorEngine;
     using RazorEngine.Configuration;
     using RazorEngine.Templating;
@@ -144,12 +145,25 @@
 
             Engine.Razor = RazorEngineService.Create(config);
 
-            string emailHtmlBody = Engine.Razor.RunCompile(
+            string htmlcontents = Engine.Razor.RunCompile(
                 templatefilepath,
                 typeof(DailyResultSummaryDataModel),
                 this.dailyResultSummaryDataModel);
 
-            return emailHtmlBody;
+            return htmlcontents;
+        }
+
+        public bool ToJson()
+        {
+            if (!string.IsNullOrEmpty(this.testResultBuilderParameters.FailedTaskName))
+            {
+                return false;
+            }
+
+            var json = JsonConvert.SerializeObject(this.dailyResultSummaryDataModel, Formatting.Indented);
+            string outputfilename = $"{this.testResultBuilderParameters.PipelineEnvironmentOptions.BuildID}-TestResults.json";
+            File.WriteAllText(outputfilename, json);
+            return true;
         }
     }
 }

@@ -37,6 +37,7 @@ If a Release pipeline exists, then go to one of the stages in the pipeline. Clic
 	set BUILD_DEFINITIONNAME='The desired Build definition name'
 	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
 	set BUILD_DEFINITIONID='Definition ID'
+	set BUILD_BUILDID='Definition ID'
 	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
 	set BUILD_REPOSITORY_NAME='Name of code repository'
 	set SYSTEM_ENABLEACCESSTOKEN='true'
@@ -53,6 +54,7 @@ If a Release pipeline exists, then go to one of the stages in the pipeline. Clic
 	set BUILD_DEFINITIONNAME='The desired Build definition name'
 	set SYSTEM_TEAMPROJECT='Team project in Azure DevOps'
 	set BUILD_DEFINITIONID='Definition ID'
+	set BUILD_BUILDID='Definition ID'
 	set SYSTEM_TEAMFOUNDATIONCOLLECTIONURI='https://dev.azure.com/*your_organization'
 	set BUILD_REPOSITORY_NAME='Name of code repository'
 	set SYSTEM_ENABLEACCESSTOKEN='true'
@@ -86,6 +88,7 @@ When running in Visual Studio debug create the following launchSettings.json und
                 "BUILD_DEFINITIONNAME": "Build definition",
                 "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
                 "BUILD_DEFINITIONID": "Definition ID",
+                "BUILD_BUILDID": "Build ID",
                 "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "https://dev.azure.com/*your_organization",
                 "BUILD_REPOSITORY_NAME": "Name of code repository",
                 "SYSTEM_ENABLEACCESSTOKEN": "true",
@@ -112,6 +115,7 @@ When running in Visual Studio debug create the following launchSettings.json und
             "BUILD_DEFINITIONNAME": "Build definition",
             "SYSTEM_TEAMPROJECT": "Team project in Azure DevOps",
             "BUILD_DEFINITIONID": "Definition ID",
+            "BUILD_BUILDID": "Build ID",
             "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI": "your_organization_devops_url",
             "BUILD_REPOSITORY_NAME": "Name of code repository",
             "SYSTEM_ENABLEACCESSTOKEN": "true",
@@ -136,7 +140,7 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 
 | Command 				| Description 																		|
 | --------------------- | --------------------------------------------------------------------------------- |
-| --trt	  		| Specify the test run type, supported types are - (Unit|Integration) 					|
+| --trt	  		| Specify the test run type, supported types are - (Options are: Unit/Integration) 					|
 |  --sendmail 	| (Default: true) Set this to false when debugging or when trying out the tool and not sending mail inadvertently. |
 | --mailserver 	| The mail server to use when sending mail containing the test results.|
 | --mailaccount | The mail account to send mail. |
@@ -144,6 +148,7 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 | --sendto 		|  List of people or groups mail needs to be sent to. This is a comma delimited list. |
 | --cc 			| List of people or groups to cc in mail sent. This is a comma delimited list |
 |  --o 			| The directory where the report file will be output to. |
+|  --f          | The format in which the output is generated. (Options are: HTML/JSON/ALL)  |
 |  --help 		| Display this help screen. |
 |  --version 	| Display version information. |
   
@@ -174,10 +179,8 @@ For in depth details what the final report looks like, please go [here](docs/Rep
 
 1. View Execution Environment details.
 2. Ability to support custom templates.
-3. Output the datamodel into JSON for users to upload the json to datastore of their choice to enable data monitoring scenarios.
-4. Code coverage reporting for Integration tests.
-5. Object Model overview.
-6. .netcore support.
+3. Code coverage reporting for Integration tests.
+4. .netcore support.
 
 ## Support
 

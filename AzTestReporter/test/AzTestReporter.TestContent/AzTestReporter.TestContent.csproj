@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\bugdetails.json" />
+    <None Remove="TestData\builddata.json" />
     <None Remove="TestData\builddefinitionresposeref.json" />
     <None Remove="TestData\builds.json" />
     <None Remove="TestData\codecoveragedataref.json" />
@@ -24,6 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="TestData\bugdetails.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\builddata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\builddefinitionresposeref.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

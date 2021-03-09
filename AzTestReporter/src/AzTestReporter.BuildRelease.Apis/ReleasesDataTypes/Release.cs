@@ -7,6 +7,7 @@
     using AzTestReporter.BuildRelease.Apis.Exceptions;
     using Validation;
     using System.Text;
+    using Newtonsoft.Json.Linq;
 
     public partial class Release
     {
@@ -38,6 +39,30 @@
 
         [JsonProperty(PropertyName = "artifacts")]
         public ReleaseArtifact[] Artifacts { get; set; }
+
+        [JsonProperty(PropertyName = "variables")]
+        internal JToken Variables { get; set; } 
+
+        public Dictionary<string, string> ReleaseVariables
+        {
+            get
+            {
+                if (Variables == null)
+                {
+                    return null;
+                }
+
+                Dictionary<string, string> releasevariables = new Dictionary<string, string>();
+                foreach (var token in Variables)
+                {
+                    var tokenproperty = (Newtonsoft.Json.Linq.JProperty)token;
+                    releasevariables.Add(tokenproperty.Name,
+                        JsonConvert.DeserializeObject<VariableValue>(tokenproperty.Value.ToString())?.Value);
+                }
+
+                return releasevariables;
+            }
+        }
 
         public int CurrentAttempt { private get;  set; }
 

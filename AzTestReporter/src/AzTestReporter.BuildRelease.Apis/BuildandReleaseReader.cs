@@ -140,6 +140,18 @@ namespace AzTestReporter.BuildRelease.Apis
             return await QueryAzureDevOpsAsyncandDeserializetoASR(query);
         }
 
+        public async Task<BuildData> GetBuildData(string buildId)
+        {
+            var query = $"{this.DevOpsServerProjectURI}/_apis/build/builds/{buildId}?api-version=5.1";
+
+            Log?.Trace("Getting build data");
+            debugoutputfilename = "BuildData";
+            
+            string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(query);
+            
+            return JsonConvert.DeserializeObject<BuildData>(responseBody);
+        }
+
         public async Task<AzureSuccessReponse> GetTestBuildCoverageDataAsync(string buildId, string reponame = "")
         {
             string query = $"{this.DevOpsServerProjectURI}/_apis/test/codecoverage?buildId={buildId}&flags=7&api-version=5.1-preview.1";
@@ -171,6 +183,17 @@ namespace AzTestReporter.BuildRelease.Apis
             Log?.Trace("Getting Test result with links.");
             debugoutputfilename = "TestResultLinks";
             return JsonConvert.DeserializeObject<TestResultData>(responseBody);
+        }
+
+        /// <inheritdoc/>
+        public async Task<AzureBugData> GetBugDataAsync(AzureBugLinkData bug)
+        {
+            string queryString = $"{this.DevOpsServerProjectURI}/_apis/wit/workitems/{bug.Id}?api-version=5.1";
+
+            string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(queryString);
+            AzureBugData tempBug = JsonConvert.DeserializeObject<AzureBugData>(responseBody);
+            tempBug.Link = $"{this.DevOpsServerProjectURI}/{this.projectname}/_workitems/edit/{bug.Id}";
+            return tempBug;
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////

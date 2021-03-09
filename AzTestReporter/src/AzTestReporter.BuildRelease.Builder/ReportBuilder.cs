@@ -56,6 +56,9 @@
             DateTime buildtime = DateTime.Now;
             string failedTaskName = string.Empty;
             DateTime releasetesttaskexecutiontime = DateTime.MaxValue;
+            List<AzureBugData> bugs = new List<AzureBugData>();
+            Release releaseDetails = null;
+            Dictionary<string, string> pipelineVariables = null;
 
             Log?.Trace("Setting up HTTPclient to call REST apis");
 
@@ -70,7 +73,14 @@
                 {
                     Log?.Info("Getting data for Unit test results");
 
-                    BuildData builddata = GetBuildData(builderParameters);
+                    BuildData builddata = buildandReleaseReader.GetBuildData(builderParameters.PipelineEnvironmentOptions.BuildID).GetAwaiter().GetResult();
+                    if (builddata == null)
+                    {
+                        throw new TestResultReportingException($"Build data for build id: {builderParameters.PipelineEnvironmentOptions.BuildID} was not found.");
+                    }
+
+                    pipelineVariables = builddata.BuildVariables;
+                    //GetBuildData(builderParameters);
                     coverageAggregateColl = new CodeCoverageModuleDataCollection(this.buildandReleaseReader, builddata.BuildId);
 
                     testrunnameslist = new List<string>() { builddata.BuildId };
@@ -119,13 +129,15 @@
                 {
                     Log?.Info("Getting data for Integration test results");
 
-                    var releaseDetails = buildandReleaseReader
+                    releaseDetails = buildandReleaseReader
                         .GetReleaseResultAsync(builderParameters.PipelineEnvironmentOptions.ReleaseID)
                         .GetAwaiter().GetResult();
                     if (releaseDetails == null)
                     {
                         throw new TestResultReportingReleaseNotFoundException(ReleaseDataType.ReleaseDefinition, builderParameters.PipelineEnvironmentOptions.ReleaseDefinitionName);
                     }
+
+                    pipelineVariables = releaseDetails.ReleaseVariables;
 
                     buildoreleaseid = releaseDetails.Id;
                     executionStageId = builderParameters.PipelineEnvironmentOptions.ReleaseStageID;
@@ -228,6 +240,17 @@
                             }
                         }
 
+                        foreach (TestResultData data in failuresWithLinks)
+                        {
+                            if (data.AssociatedBugs != null)
+                            {
+                                foreach (AzureBugLinkData bugLink in data.AssociatedBugs)
+                                {
+                                    bugs.Add(buildandReleaseReader.GetBugDataAsync(bugLink).GetAwaiter().GetResult());
+                                }
+                            }
+                        }
+
                         List<TestResultData> testRunCasesNonFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome.ToLower() != "failed");
 
                         testResultData.AddRange(testRunCasesNonFailures);
@@ -254,6 +277,8 @@
             testResultBuilderParameters.FailedTaskName = failedTaskName;
             testResultBuilderParameters.PipelineEnvironmentOptions = builderParameters.PipelineEnvironmentOptions;
             testResultBuilderParameters.ContainsFailures = testRunContainsFailures;
+            testResultBuilderParameters.Bugs = bugs;
+            testResultBuilderParameters.PipelineVariables = pipelineVariables;
 
             if (coverageAggregateColl != null && coverageAggregateColl.All.Count > 0)
             {

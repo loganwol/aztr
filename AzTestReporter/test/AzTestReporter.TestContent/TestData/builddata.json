@@ -1,0 +1,143 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/Builds/62"
+    },
+    "web": {
+      "href": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_build/results?buildId=62"
+    },
+    "sourceVersionDisplayUri": {
+      "href": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/builds/62/sources"
+    },
+    "timeline": {
+      "href": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/builds/62/Timeline"
+    },
+    "badge": {
+      "href": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/status/2"
+    }
+  },
+  "properties": {},
+  "tags": [],
+  "validationResults": [],
+  "plans": [
+    {
+      "planId": "27b16cf9-cf3b-42f2-94dc-2ce375ff2ead"
+    }
+  ],
+  "triggerInfo": {
+    "ci.sourceBranch": "refs/heads/main",
+    "ci.sourceSha": "8751036cdbdf2ac08b2507cb04cbe4987f958235",
+    "ci.message": "Merge pull request #12 from loganwol/personal/assemblyversioning",
+    "ci.triggerRepository": "loganwol/aztr"
+  },
+  "id": 62,
+  "buildNumber": "1.1.34",
+  "status": "completed",
+  "result": "succeeded",
+  "queueTime": "2021-02-20T02:46:49.5989667Z",
+  "startTime": "2021-02-20T02:47:03.8501843Z",
+  "finishTime": "2021-02-20T02:48:54.2107641Z",
+  "url": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/Builds/62",
+  "definition": {
+    "drafts": [],
+    "id": 2,
+    "name": "loganwol.aztr",
+    "url": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/Definitions/2?revision=1",
+    "uri": "vstfs:///Build/Definition/2",
+    "path": "\\",
+    "type": "build",
+    "queueStatus": "enabled",
+    "revision": 1,
+    "project": {
+      "id": "e8c0d705-6817-4252-acb1-5ec8ad488166",
+      "name": "AzureTestReports",
+      "url": "https://dev.azure.com/HermesProjects/_apis/projects/e8c0d705-6817-4252-acb1-5ec8ad488166",
+      "state": "wellFormed",
+      "revision": 11,
+      "visibility": "public",
+      "lastUpdateTime": "2021-01-30T18:29:07.717Z"
+    }
+  },
+  "buildNumberRevision": 34,
+  "project": {
+    "id": "e8c0d705-6817-4252-acb1-5ec8ad488166",
+    "name": "AzureTestReports",
+    "url": "https://dev.azure.com/HermesProjects/_apis/projects/e8c0d705-6817-4252-acb1-5ec8ad488166",
+    "state": "wellFormed",
+    "revision": 11,
+    "visibility": "public",
+    "lastUpdateTime": "2021-01-30T18:29:07.717Z"
+  },
+  "uri": "vstfs:///Build/Build/62",
+  "sourceBranch": "refs/heads/main",
+  "sourceVersion": "8751036cdbdf2ac08b2507cb04cbe4987f958235",
+  "parameters": "{\"sample\":\"test\"}",
+  "queue": {
+    "id": 8,
+    "name": "Hosted Ubuntu 1604",
+    "pool": {
+      "id": 8,
+      "name": "Hosted Ubuntu 1604",
+      "isHosted": true
+    }
+  },
+  "priority": "normal",
+  "reason": "individualCI",
+  "requestedFor": {
+    "displayName": "GitHub",
+    "url": "https://spsprodcus5.vssps.visualstudio.com/Ac3f57cfc-697c-4a78-a3e7-d41a4555d495/_apis/Identities/3d784c65-d964-4ab1-8e83-c7c29d29b811",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2"
+      }
+    },
+    "id": "3d784c65-d964-4ab1-8e83-c7c29d29b811",
+    "uniqueName": "GitHub App\\e8c0d705-6817-4252-acb1-5ec8ad488166",
+    "imageUrl": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2",
+    "descriptor": "svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2"
+  },
+  "requestedBy": {
+    "displayName": "GitHub",
+    "url": "https://spsprodcus5.vssps.visualstudio.com/Ac3f57cfc-697c-4a78-a3e7-d41a4555d495/_apis/Identities/3d784c65-d964-4ab1-8e83-c7c29d29b811",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2"
+      }
+    },
+    "id": "3d784c65-d964-4ab1-8e83-c7c29d29b811",
+    "uniqueName": "GitHub App\\e8c0d705-6817-4252-acb1-5ec8ad488166",
+    "imageUrl": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2",
+    "descriptor": "svc.YzNmNTdjZmMtNjk3Yy00YTc4LWEzZTctZDQxYTQ1NTVkNDk1OkdpdEh1YiBBcHA6ZThjMGQ3MDUtNjgxNy00MjUyLWFjYjEtNWVjOGFkNDg4MTY2"
+  },
+  "lastChangedDate": "2021-02-20T02:49:18.57Z",
+  "lastChangedBy": {
+    "displayName": "Microsoft.VisualStudio.Services.ReleaseManagement",
+    "url": "https://spsprodcus5.vssps.visualstudio.com/Ac3f57cfc-697c-4a78-a3e7-d41a4555d495/_apis/Identities/0000000d-0000-8888-8000-000000000000",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMGQtMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+      }
+    },
+    "id": "0000000d-0000-8888-8000-000000000000",
+    "uniqueName": "0000000d-0000-8888-8000-000000000000@2c895908-04e0-4952-89fd-54b0046d6288",
+    "imageUrl": "https://dev.azure.com/HermesProjects/_apis/GraphProfile/MemberAvatars/s2s.MDAwMDAwMGQtMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA",
+    "descriptor": "s2s.MDAwMDAwMGQtMDAwMC04ODg4LTgwMDAtMDAwMDAwMDAwMDAwQDJjODk1OTA4LTA0ZTAtNDk1Mi04OWZkLTU0YjAwNDZkNjI4OA"
+  },
+  "orchestrationPlan": {
+    "planId": "27b16cf9-cf3b-42f2-94dc-2ce375ff2ead"
+  },
+  "logs": {
+    "id": 0,
+    "type": "Container",
+    "url": "https://dev.azure.com/HermesProjects/e8c0d705-6817-4252-acb1-5ec8ad488166/_apis/build/builds/62/logs"
+  },
+  "repository": {
+    "id": "loganwol/aztr",
+    "type": "GitHub",
+    "clean": null,
+    "checkoutSubmodules": false
+  },
+  "keepForever": true,
+  "retainedByRelease": true,
+  "triggeredByBuild": null
+}

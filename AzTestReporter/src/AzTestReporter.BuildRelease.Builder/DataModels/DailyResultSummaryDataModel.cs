@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using AutoMapper;
     using AzTestReporter.BuildRelease.Apis;
     using Validation;
 
@@ -19,15 +20,23 @@
             Requires.NotNull(testResultBuilderParameters, nameof(testResultBuilderParameters));
             Requires.NotNull(testResultBuilderParameters.PipelineEnvironmentOptions, nameof(testResultBuilderParameters.PipelineEnvironmentOptions));
 
-            this.AzureProjectName = testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamProject;
-            this.RepoName = testResultBuilderParameters.PipelineEnvironmentOptions.BuildRepositoryName;
-            this.ReleaseName = testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseName;
-            this.BranchName = testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseSourceBranchName;
+            MapperConfiguration mapperconfig = new MapperConfiguration(cnf =>
+                cnf.CreateMap<DailyTestResultBuilderParameters, DailyResultSummaryDataModel>()
+                            .ForMember(dest => dest.AzureProjectName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.SystemTeamProject))
+                            .ForMember(dest => dest.RepoName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.BuildRepositoryName))
+                            .ForMember(dest => dest.ReleaseName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseName))
+                            .ForMember(dest => dest.BranchName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseSourceBranchName))
+                            .ForMember(dest => dest.ToolVersion, act => act.MapFrom(src => src.ToolVersion))
+                            .ForMember(dest => dest.IsPrivateRun, act => act.MapFrom(src => src.IsPrivateRelease))
+                            .ForMember(dest => dest.FailedTaskName, act => act.MapFrom(src => src.FailedTaskName))
+                            .ForMember(dest => dest.CodeCoverageFileURL, act => act.MapFrom(src => src.CodeCoverageFileURL))
+                            .ForMember(dest => dest.LinktoDashboard, act => act.MapFrom(src => src.AzureReportLink))
+                            .ForMember(dest => dest.PipelineVariables, act => act.MapFrom(src => src.PipelineVariables)));
+            var configMapper = new Mapper(mapperconfig);
+
+            configMapper.Map(testResultBuilderParameters, this);
+
             this.ReleaseType = testResultBuilderParameters.IsUnitTest ? "Build" : "Release";
-            this.ToolVersion = testResultBuilderParameters.ToolVersion;
-            this.IsPrivateRun = testResultBuilderParameters.IsPrivateRelease;
-            this.FailedTaskName = testResultBuilderParameters.FailedTaskName;
-            this.CodeCoverageFileURL = testResultBuilderParameters.CodeCoverageFileURL;
 
             this.HeaderTitle = this.RepoName?.Trim();
 
@@ -40,8 +49,6 @@
                     this.HeaderTitle += $" [Attempt - {testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}] ";
                 }
             }
-
-            this.LinktoDashboard = testResultBuilderParameters.AzureReportLink;
 
             if (testResultBuilderParameters.TestRunsList != null)
             {
@@ -85,6 +92,11 @@
                     this.ResultSummary.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
                 }
             }
+
+            if (testResultBuilderParameters.Bugs != null)
+            {
+                this.Bugs = testResultBuilderParameters.Bugs.ToList();
+            }
         }
 
         /// <summary>
@@ -95,12 +107,12 @@
         /// <summary>
         /// Gets the Name of the target release.
         /// </summary>
-        public object ReleaseName { get; }
+        public object ReleaseName { get; internal set; }
 
         /// <summary>
         /// gets the release type (private or master).
         /// </summary>
-        public string ReleaseType { get; }
+        public string ReleaseType { get; internal set; }
 
         /// <summary>
         /// gets, private sets the version of the tool used to create the report.
@@ -135,7 +147,7 @@
         /// <summary>
         /// gets the name of the project containing the target release pipeline.
         /// </summary>
-        public string AzureProjectName { get; }
+        public string AzureProjectName { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether the tool is running against a private run.
@@ -176,14 +188,16 @@
         /// Gets or Sets a value indicating the name of a failed task.
         /// </summary>
         public string FailedTaskName { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether if the current results span multiple repos.
-        /// </summary>
-        public bool MultipleRepoResults { get; set; }
         
         public int TotalCodeCoverageBlocks { get; }
         
         public int TotalCoveredCodeCoverageBlocks { get; }
+
+        /// <summary>
+        /// gets or sets an instance List of Type <see cref="AzureBugData"/>.
+        /// </summary>
+        public List<AzureBugData> Bugs { get; set; }
+
+        public Dictionary<string, string> PipelineVariables { get; set; }
     }
 }

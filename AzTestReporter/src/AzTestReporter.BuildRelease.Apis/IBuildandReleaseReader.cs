@@ -63,6 +63,14 @@
             int topCount = 0,
             bool includebuildswithunittestfailures = false);
 
+
+        /// <summary>
+        /// Gets the Build data specific to the build Id.
+        /// </summary>
+        /// <param name="buildId">The build ID to get the data for.</param>
+        /// <returns>The Build data object representing the data for the build.</returns>
+        Task<BuildData> GetBuildData(string buildId);
+
         /// <summary>
         /// Gets the code coverage for a specific build by it's build id
         /// and if specified the repo name.
@@ -86,5 +94,12 @@
         /// <param name="resultId">The test result id to use to query for test results in ADO.</param>
         /// <returns>The response that ADO returns.</returns>
         Task<TestResultData> GetTestResultWithLinksAsync(int runId, string resultId);
+
+        /// <summary>
+        /// Get the build data for a specific bug object.
+        /// </summary>
+        /// <param name="bug">The bug details.</param>
+        /// <returns>The response that ADO returns.</returns>
+        Task<AzureBugData> GetBugDataAsync(AzureBugLinkData bug);
     }
 }

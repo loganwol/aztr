@@ -66,6 +66,11 @@
         public string BuildDefinitionID { get; internal set; }
 
         /// <summary>
+        /// Gets the current build ID.
+        /// </summary>
+        public string BuildID { get; internal set; }
+
+        /// <summary>
         /// Gets the current ID of the agent being used.
         /// </summary>
         public string AgentID { get; internal set; }
@@ -219,6 +224,7 @@
             this.BuildRepositoryName = this.environmentvars["BUILD_REPOSITORY_NAME"];
             this.BuildDefinitionName = this.environmentvars["BUILD_DEFINITIONNAME"];
             this.BuildNumber = this.environmentvars["BUILD_BUILDNUMBER"];
+			this.BuildID = this.environmentvars["BUILD_BUILDID"];
 
             if (this.SystemHostType.Equals("release", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -246,6 +252,7 @@
                 { "\tBuild source branch        ", this.ReleaseSourceBranchName },
                 { "\tBuild Definition name      ", this.BuildDefinitionName },
                 { "\tBuild Definition ID        ", this.BuildDefinitionID },
+                { "\tBuild ID                   ", this.BuildID },
                 { "\tBuild Repository name      ", this.BuildRepositoryName },
                 { "\tBuild number               ", this.BuildNumber },
                 { "\tWorking directory          ", this.ReleasePipelineDefaultWorkingDirectory },

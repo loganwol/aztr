@@ -12,7 +12,8 @@ This report is generated whenever there are successful runs where all the tasks 
 2. Test Result summary table
 3. Test class summary table
 4. Failure summary table
-5. Code coverage table
+5. Bug Summary table
+6. Code coverage table
 
 ### 1.1. Header Table
 In this section all high level details about the test execution is listed. Below is a screenshot of how the header section for Unit tests and Integration tests would look.
@@ -79,7 +80,10 @@ This table summarizes all the failures by Test class name. If multiple tests are
 
 The table shows a error message, not the stack of the failure. It also shows how long since the test started failing, to help diagnose the root cause of the failure, helping with the date range of the build that could have started the failure.
 
-#### 1.6 Code Coverage Summary Table
+### 1.6 Bug Coverage Summary Table
+::coming soon::
+
+### 1.7 Code Coverage Summary Table
 This table shows the summary results of code coverage by Total covered blocks, Covered Blocks and Coverage % for each module used in the test. 
 
 ![](Media/codecoveragesummary.png "Code Coverage Summary table")

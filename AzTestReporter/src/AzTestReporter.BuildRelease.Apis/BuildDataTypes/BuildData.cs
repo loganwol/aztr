@@ -1,9 +1,12 @@
 ﻿namespace AzTestReporter.BuildRelease.Apis
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Globalization;
     using System.Text;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
     /// Represents the data structure of Azure Build Data.
@@ -49,6 +52,23 @@
         /// </summary>
         [JsonProperty(PropertyName = "_links", Required = Required.Always)]
         public Link Links { get; set; }
+
+        [JsonProperty(PropertyName = "parameters")]
+        internal string Parameters { get; set; }
+
+        public Dictionary<string, string> BuildVariables
+        {
+            get
+            {
+                if (Parameters == null)
+                {
+                    return null;
+                }
+
+                var variableslist = new List<Variable>();
+                return JsonConvert.DeserializeObject<Dictionary<string, string>>(Parameters);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Build definition the build is related to.
