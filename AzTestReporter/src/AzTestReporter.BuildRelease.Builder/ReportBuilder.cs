@@ -80,8 +80,7 @@
                     }
 
                     pipelineVariables = builddata.BuildVariables;
-                    //GetBuildData(builderParameters);
-                    coverageAggregateColl = new CodeCoverageModuleDataCollection(this.buildandReleaseReader, builddata.BuildId);
+                    buildtime = string.IsNullOrEmpty(builddata.FinishTime) ? builddata.BuildStartTime : builddata.ExecutionDateTime;
 
                     testrunnameslist = new List<string>() { builddata.BuildId };
                     branchName = builddata.BranchName;
@@ -90,6 +89,8 @@
                     testrundashboardlink = builddata.GetBuildTestsUrl(
                         builderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI,
                         builderParameters.PipelineEnvironmentOptions.SystemTeamProject);
+
+                    coverageAggregateColl = new CodeCoverageModuleDataCollection(this.buildandReleaseReader, builddata.BuildId);
 
                     if (builderParameters.IsPrivateRelease)
                     {
@@ -122,7 +123,6 @@
                         isPipelineFailed = true;
                     }
 
-                    buildtime = builddata.ExecutionDateTime;
                     if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildRepositoryName))
                     {
                         Log?.Info($"Using build data repository as pipeline did not contain the data.");
