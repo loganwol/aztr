@@ -12,7 +12,6 @@ pool:
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
   major: 1
   minor: 1
 
@@ -30,12 +29,18 @@ steps:
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    configuration: 'Release'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: 'Debug'
 
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    configuration: 'Release'
     testSelector: testAssemblies
     testAssemblyVer2: |
       **\*test.unit*.dll
@@ -49,7 +54,7 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host "Generating report"      
-      .\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f HTML -o $(System.DefaultWorkingDirectory)\Report
+      .\AzTestReporter\publish\Bin\Debug\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f HTML -o $(System.DefaultWorkingDirectory)\Report
     errorActionPreference: 'continue'
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
@@ -57,14 +62,14 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\net472'
+    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
     ArtifactName: 'drop'
     publishLocation: 'Container'
   condition: always()
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
+    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
     ArtifactName: 'nugetpkg'
     publishLocation: 'Container'
 
