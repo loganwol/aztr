@@ -72,6 +72,11 @@
         public IReadOnlyList<Run> TestRunsList { get; set; }
 
         /// <summary>
+        /// Gets or sets a list of bugs open against runs in the release.
+        /// </summary>
+        public IReadOnlyList<AzureBugData> Bugs { get; set; }
+
+        /// <summary>
         /// Gets or sets the links to target release.
         /// </summary>
         public string AzureReportLink { get; set; }
@@ -95,6 +100,11 @@
         /// Gets or sets a value indicating whether the target pipeline failed.
         /// </summary>
         public bool IsPipelineFail { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets the list of variables used to queue the Build or Release.
+        /// </summary>
+        public Dictionary<string, string> PipelineVariables { get; set; }
 
         /// <summary>
         /// Gets the mail template string.

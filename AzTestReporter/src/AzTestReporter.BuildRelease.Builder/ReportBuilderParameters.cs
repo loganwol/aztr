@@ -3,25 +3,9 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class ReportBuilderParameters
+    public partial class ReportBuilderParameters
     {
         private Dictionary<string, string> currentValues;
-
-        /// <summary>
-        /// The Test type to use when generatinig the report.
-        /// </summary>
-        public enum TestType
-        {
-            /// <summary>
-            /// Unit test
-            /// </summary>
-            Unit,
-
-            /// <summary>
-            /// Integration test.
-            /// </summary>
-            Integration
-        }
 
         /// <summary>
         /// Gets or sets the Organization name to use to construct the Azure REST API URI.

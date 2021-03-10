@@ -12,7 +12,7 @@
 	"revision": 1,
 	"state": "Completed",
 	"testCase": {
-		"name": "Verify_Battery_Charging_State"
+		"name": "Verify_SubComponent_Action_State"
 	},
 	"testRun": {
 		"id": "1391406",
@@ -27,21 +27,21 @@
 		"name": "1.107.200129-2258",
 		"url": "https://dev.azure.com/OrganizationName/_apis/build/Builds/2367902"
 	},
-	"errorMessage": "Assert.AreEqual failed. Expected:<75 (System.UInt32)>. Actual:<75 (System.Int32)>. batteryLevels.min should be 75",
+	"errorMessage": "Assert.AreEqual failed. Expected:<75 (System.UInt32)>. Actual:<75 (System.Int32)>. SubComponentLevels.min should be 75",
 	"createdDate": "2020-01-30T21:15:41.993Z",
 	"associatedBugs": [
 		{
 			"id": "1470539",
-			"name": "Verify_Battery_Charging_State Failed in 1.106.200128-2108",
+			"name": "Verify_SubComponent_Action_State Failed in 1.106.200128-2108",
 			"url": "https://dev.azure.com/OrganizationName/_apis/wit/workItems/1598545"
 		}
 	],
 	"url": "https://dev.azure.com/OrganizationName/Organization/_apis/test/Runs/1391406/Results/100035",
 	"failureType": "None",
-	"automatedTestStorage": "CompanyDomain.test.integration.devicebridge.dll",
+	"automatedTestStorage": "CompanyDomain.test.integration.component.dll",
 	"automatedTestType": "UnitTest",
-	"testCaseTitle": "Verify_Battery_Charging_State",
-	"stackTrace": "   at CompanyDomain.Test.Integration.DeviceBridge.DeviceBatteryTests.Verify_Battery_Charging_State() in C:\\w\\23\\s\\Test.Integration\\test\\Test.Integration.DeviceBridge\\Battery\\DeviceBatteryTests.cs:line 148\r\n",
+	"testCaseTitle": "Verify_SubComponent_Action_State",
+	"stackTrace": "   at CompanyDomain.Test.Integration.component.SubComponent.Verify_SubComponent_Action_State() in C:\\w\\23\\s\\Test.Integration\\test\\Test.Integration.component\\SubComponent\\SubComponent.cs:line 148\r\n",
 	"customFields": [],
 	"failingSince": {
 		"date": "2020-01-30T07:03:59.593Z",
@@ -83,5 +83,5 @@
 		"imageUrl": "https://dev.azure.com/OrganizationName/_apis/GraphProfile/MemberAvatars/svc.YTViZGQzZjEtMzY2Ni00YTA0LTg5NDctMjY1OTUzMTM3NzhhOkJ1aWxkOjVmN2ZiYjllLWQxYzktNDFlNS1iYjk1LTk5MjI2Njc0OTk2NQ",
 		"descriptor": "svc.YTViZGQzZjEtMzY2Ni00YTA0LTg5NDctMjY1OTUzMTM3NzhhOkJ1aWxkOjVmN2ZiYjllLWQxYzktNDFlNS1iYjk1LTk5MjI2Njc0OTk2NQ"
 	},
-	"automatedTestName": "CompanyDomain.Test.Integration.DeviceBridge.DeviceBatteryTests.Verify_Battery_Charging_State"
+	"automatedTestName": "CompanyDomain.Test.Integration.component.SubComponent.Verify_SubComponent_Action_State"
 }

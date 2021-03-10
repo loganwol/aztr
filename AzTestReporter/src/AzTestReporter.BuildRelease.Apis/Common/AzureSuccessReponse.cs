@@ -27,12 +27,12 @@
             };
         }
 
-        public static AzureSuccessReponse BuildAzureSuccessResponseFromValueArray(string valuearraystring)
+        public static AzureSuccessReponse BuildAzureSuccessResponseFromValueArray(string valuearraystring, int count = -1)
         {
             JObject returnData = (JObject)JsonConvert.DeserializeObject("{ 'value' : " + valuearraystring + "}");
             return new AzureSuccessReponse()
             {
-                Count = returnData["value"].Count(),
+                Count = count == -1? returnData["value"].Count(): count,
                 Value = returnData["value"],
             };
         }

@@ -61,14 +61,14 @@ namespace AzTestReporter.BuildRelease.Apis
         {
             // builds list with definition id
             string queryurl = $"{VSRMDevOpsServerProjectURI}/_apis/release/releases?minLastUpdatedDate={minDateString}&maxLastUpdatedDate={maxDateString}&$top=100&api-version=5.0";
-            debugoutputfilename = "ReleasesbyDateRange";
+            debugoutputfilename = "aztr-ReleasesbyDateRange";
             return await this.QueryAzureDevOpsAsyncandDeserializetoASR(queryurl);
         }
 
         public async Task<Release> GetReleaseResultAsync(string releaseId)
         {
             string queryurl = $"{VSRMDevOpsServerProjectURI}/_apis/release/releases/{releaseId}?api-version=5.1";
-            debugoutputfilename = "ReleaseResult";
+            debugoutputfilename = "aztr-ReleaseResult";
             string responseBody = await QueryAzureDevOpsAsyncGetResponseBody(queryurl);
 
             return JsonConvert.DeserializeObject<Release>(responseBody);
@@ -90,7 +90,7 @@ namespace AzTestReporter.BuildRelease.Apis
                 queryUrl = $"{this.DevOpsServerProjectURI}/_apis/test/runs?minLastUpdatedDate={minDateString}&maxLastUpdatedDate={maxDateString}&releaseIds={targetReleaseId}&includeRunDetails=true&api-version=5.1";
             }
 
-            debugoutputfilename = "TestRunListbyDateRange";
+            debugoutputfilename = "aztr-TestRunListbyDateRange";
             string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(queryUrl);
 
             // deserialize runs list
@@ -136,8 +136,20 @@ namespace AzTestReporter.BuildRelease.Apis
             string query = $"{this.DevOpsServerProjectURI}/_apis/build/builds?{urlParameters}&api-version=5.1";
 
             Log?.Trace("Getting Builds by definition");
-            debugoutputfilename = "BuildsbyDefinitionID";
+            debugoutputfilename = "aztr-BuildsbyDefinitionID";
             return await QueryAzureDevOpsAsyncandDeserializetoASR(query);
+        }
+
+        public async Task<BuildData> GetBuildData(string buildId)
+        {
+            var query = $"{this.DevOpsServerProjectURI}/_apis/build/builds/{buildId}?api-version=5.1";
+
+            Log?.Trace("Getting build data");
+            debugoutputfilename = "aztr-BuildData";
+            
+            string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(query);
+            
+            return JsonConvert.DeserializeObject<BuildData>(responseBody);
         }
 
         public async Task<AzureSuccessReponse> GetTestBuildCoverageDataAsync(string buildId, string reponame = "")
@@ -149,7 +161,7 @@ namespace AzTestReporter.BuildRelease.Apis
             }
 
             Log?.Trace("Getting unit test coverage.");
-            debugoutputfilename = "BuildCodeCoverage";
+            debugoutputfilename = "aztr-BuildCodeCoverage";
             return await QueryAzureDevOpsAsyncandDeserializetoASR(query);
         }
 
@@ -157,7 +169,7 @@ namespace AzTestReporter.BuildRelease.Apis
         {
             string query = $"{this.DevOpsServerProjectURI}/_apis/test/Runs/{runId}/results?api-version=5.1";
             Log?.Trace("Getting Test results by run id.");
-            debugoutputfilename = $"TestResults-{runId}";
+            debugoutputfilename = $"aztr-TestResults-{runId}";
             return await QueryAzureDevOpsAsyncandDeserializetoASR(query);
         }
 
@@ -169,8 +181,19 @@ namespace AzTestReporter.BuildRelease.Apis
 
             string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(query);
             Log?.Trace("Getting Test result with links.");
-            debugoutputfilename = "TestResultLinks";
+            debugoutputfilename = "aztr-TestResultLinks";
             return JsonConvert.DeserializeObject<TestResultData>(responseBody);
+        }
+
+        /// <inheritdoc/>
+        public async Task<AzureBugData> GetBugDataAsync(AzureBugLinkData bug)
+        {
+            string queryString = $"{this.DevOpsServerProjectURI}/_apis/wit/workitems/{bug.Id}?api-version=5.1";
+
+            string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(queryString);
+            AzureBugData tempBug = JsonConvert.DeserializeObject<AzureBugData>(responseBody);
+            tempBug.Link = $"{this.DevOpsServerProjectURI}/{this.projectname}/_workitems/edit/{bug.Id}";
+            return tempBug;
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////
@@ -206,18 +229,18 @@ namespace AzTestReporter.BuildRelease.Apis
                 response.EnsureSuccessStatusCode();
                 responseBody = await response.Content.ReadAsStringAsync();
 
+                Log?.Info("Logging debug information for ADO queries and responses.");
+                if (!string.IsNullOrEmpty(debugoutputfilename))
+                {
+                    File.WriteAllText($"{debugoutputfilename}.json", responseBody);
+                    Log?.Trace($"Logged to {debugoutputfilename}.json");
+                }
+
                 if (this.enableoutputlogging)
                 {
-                    Log.Info("Logging debug information for ADO queries and responses.");
-                    if (!string.IsNullOrEmpty(debugoutputfilename))
-                    {
-                        File.WriteAllText($"{debugoutputfilename}.json", responseBody);
-                        Log.Info($"Logged to {debugoutputfilename}.json");
-                    }
-                    
-                    Log.Info("------------- Begin Response body ----------");
-                    Log.Info(responseBody);
-                    Log.Info("------------- End Response body ------------");
+                    Log?.Trace("------------- Begin Response body ----------");
+                    Log?.Trace(responseBody);
+                    Log?.Trace("------------- End Response body ------------");
                 }
             }
 

@@ -45,6 +45,9 @@
         [JsonProperty(PropertyName = "automatedTestStorage")]
         public string AutomatedTestStorage { get; set; }
 
+        [JsonProperty(PropertyName = "associatedBugs")]
+        public List<AzureBugLinkData> AssociatedBugs { get; set; }
+
         /// <summary>
         /// Gets the Test Class Name discovered from the Automated test name.
         /// </summary>

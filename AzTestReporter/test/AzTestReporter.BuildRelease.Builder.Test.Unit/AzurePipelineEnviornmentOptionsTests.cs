@@ -77,7 +77,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             var pipeline = new AzurePipelineEnvironmentOptions();
             pipeline.Read();
 
-            pipeline.ToDictionary().Should().NotBeNull().And.HaveCount(12);
+            pipeline.ToDictionary().Should().NotBeNull().And.HaveCount(13);
         }
 
         [SkippableFact]
@@ -158,6 +158,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
                 { "BUILD_DEFINITIONNAME", "definitionname" },
                 { "SYSTEM_TEAMPROJECT", "teamproject" },
                 { "SYSTEM_DEFINITIONID", "1" },
+                { "BUILD_BUILDID", "3" },
                 { "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI", "somehttpuri" },
                 { "BUILD_REPOSITORY_NAME", "reponame" },
                 { "SYSTEM_TEAMFOUNDATIONSERVERURI", "somehttpuri" },
@@ -184,6 +185,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
                 { "BUILD_DEFINITIONNAME", "definitionname" },
                 { "SYSTEM_TEAMPROJECT", "teamproject" },
                 { "BUILD_DEFINITIONID", "100" },
+                { "BUILD_BUILDID", "1" },
                 { "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI", "somehttpuri" },
                 { "BUILD_REPOSITORY_NAME", "reponame" },
                 { "SYSTEM_TEAMFOUNDATIONSERVERURI", "somehttpuri" },
@@ -202,6 +204,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
 
             // Verify
             pipeline.BuildDefinitionID.Should().Be("100");
+            pipeline.BuildID.Should().Be("1");
         }
 
         [SkippableFact]
@@ -229,6 +232,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             pipeline.BuildNumber.Should().NotBeNullOrEmpty();
             pipeline.BuildRepositoryName.Should().NotBeNullOrEmpty();
             pipeline.SystemAccessToken.Should().NotBeNullOrEmpty();
+            pipeline.BuildID.Should().NotBeNullOrEmpty();
         }
 
         public void Output_all_env_variables()

@@ -832,6 +832,13 @@ height: 5.4pt
                                                 </b>
                                             </p>
                                         </td>
+                                        <td style='border-top:solid #A5A5A5 1.0pt;border-left:none;border-bottom:solid #A5A5A5 1.5pt;border-right:solid #A5A5A5 1.0pt;background:#D7191C;padding:4pt'>
+                                            <p class=MsoNormal align=center style='text-align:center'>
+                                                <b>
+                                                    <span style='font-size:12.0pt;font-family:"Calibri";color:#FBE5D6;'>Associated Bugs</span>
+                                                </b>
+                                            </p>
+                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -888,6 +895,33 @@ height: 5.4pt
                                                         <o:p></o:p>
                                                     </p>
                                                 </td>
+
+                                                @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
+                                                {
+                                                    var bugAlignment = "top";
+                                                    if (failuredetail.BugandLink.Count == 1)
+                                                    {
+                                                        bugAlignment = "middle";
+                                                    }
+                                                    foreach (var bugandlink in failuredetail.BugandLink)
+                                                    {
+                                                        <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
+                                                            <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="#@bugandlink.Key">@bugandlink.Key</a></span>
+                                                                <o:p></o:p>
+                                                            </p>
+                                                        </td>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'></span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                }
                                             </tr>
                                         }
 
@@ -928,6 +962,7 @@ height: 5.4pt
                     </p>
                 </td>
             </tr>
+
             @if (@Model.CodeCoverageAggregates != null)
             {
                 <!-- Code coverage Summary Header -->
@@ -1087,6 +1122,271 @@ height: 5.4pt
                 </td>
             </tr>
 
+            @if (@Model.Bugs != null && @Model.Bugs.Count > 0)
+            {
+                <tr style='height:5.4pt' id="bugstableheaderrow">
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp; </span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=1200 valign=top style='width:12.5in;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse'>
+                            <tr>
+                                <td width=3 valign=top style='width:3pt;padding:0in 5.4pt 0in 5.4pt'>
+                                </td>
+                                <td width=694 valign=top style='width:520.35pt;padding:0in 5.4pt 0in 5.4pt'>
+                                    <p class=MsoNormal style='margin-top:2.0pt;background:#F2F2F0'>
+                                        <b>
+                                            <span style='font-size:24.0pt;color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%;text-transform:uppercase;letter-spacing:.75pt'>BUGS</span>
+                                        </b>
+                                        <span style='color:#2F5597;mso-style-textfill-fill-color:#2F5597;mso-style-textfill-fill-alpha:100.0%'></span>
+                                        <o:p></o:p>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp; </span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+                <tr style='height:5.4pt' id="bugstablerow">
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'><o:p>&nbsp;</o:p></span>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 style='min-width:950pt;max-width:950pt;border-collapse:collapse'>
+                            <thead>
+                                <tr style='height:32.85pt'>
+                                    <td style='border:solid windowtext 1.0pt;background:#0070C0;padding:4.0pt 4.0pt 4.0pt 4.0pt;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>BUG ID</span>
+                                                <span style='color:white'></span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td style='border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:.05in 0in 2.9pt 0in;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>Assigned to</span>
+                                                <span style='color:white'></span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td style='border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:4.0pt 4.0pt 4.0pt 4.0pt;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>Priority</span>
+                                                <span style='color:white'></span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=563 style='width:422.0pt;border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:4.0pt 4.0pt 4.0pt 4.0pt;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>Title</span>
+                                                <span style='color:white'></span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=146 style='width:109.4pt;border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:4.0pt 4.0pt 4.0pt 4.0pt;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>Created Date </span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=71 style='width:53.25pt;border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:0in 0in 0in 0in;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>
+                                                    State
+                                                </span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=105 style='width:78.6pt;border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:0in 0in 0in 0in;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>
+                                                    Last updated
+                                                </span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=81 style='width:61.05pt;border:solid windowtext 1.0pt;border-left:none;background:#0070C0;padding:0in 0in 0in 0in;height:32.85pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <b>
+                                                <span style='font-size:12.0pt;color:white'>
+                                                    Triage
+                                                </span>
+                                            </b>
+                                            <span style='color:white'>
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            @foreach (var Bug in @Model.Bugs)
+                            {
+                                <tr>
+                                    <td style='border-top:none;border-left:solid #A5A5A5 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4.0pt 4.0pt 4.0pt 4.0pt'>
+                                        <p class=MsoNormal align=center style='text-align:center'>
+                                            <span id="@Bug.Id" style='font-size:9.0pt;color:#606060'>
+                                                <a href="http://">
+                                                    <a name="@Bug.Id" href="@Bug.Link">@Bug.Id</a>
+                                                    <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td style='border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4.0pt 4.0pt 4.0pt 4.0pt'>
+                                        <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.AssignedTo
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td style='border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4.0pt 4.0pt 4.0pt 4.0pt'>
+                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.Priority
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=563 style='width:422.0pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4.0pt 4.0pt 4.0pt 4.0pt'>
+                                        <p class=MsoNormal style='vertical-align:top'>
+                                            <span style='font-size:9.0pt'>
+                                                Test failed :
+                                                <span style='color:#606060'>
+                                                    @Bug.Title
+                                                    <o:p></o:p>
+                                                </span>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=146 style='width:109.4pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4.0pt 4.0pt 4.0pt 4.0pt'>
+                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.CreatedDate
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=71 style='width:53.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:0in 0in 0in 0in'>
+                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.State
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=105 style='width:78.6pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:0in 0in 0in 0in'>
+                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.ChangedDate
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td width=81 style='width:61.05pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:0in 0in 0in 0in'>
+                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                            <span style='font-size:9.0pt;color:#606060'>
+                                                @Bug.Triage
+                                                <o:p></o:p>
+                                            </span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp; </span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+                <!-- Blank row -->
+                <tr style='height:5.4pt'>
+                    <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal align=center style='text-align:center'>
+                            <b>
+                                <span style='font-size:13.5pt;font-family:"Calibri";color:white'>&nbsp;</span>
+                            </b>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                    <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                        <p class=MsoNormal>
+                            <span style='color:black'>&nbsp;</span>
+                            <o:p></o:p>
+                        </p>
+                    </td>
+                </tr>
+            }
+
+            <!-- Blank row -->
+            <tr style='height:5.4pt'>
+                <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=952 valign=top style='width:900pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal align=center style='text-align:center'>
+                        <b>
+                            <span style='font-size:13.5pt;font-family:"Calibri";color:white'>&nbsp;</span>
+                        </b>
+                        <o:p></o:p>
+                    </p>
+                </td>
+                <td width=48 valign=top style='width:35.75pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>
+                    <p class=MsoNormal>
+                        <span style='color:black'>&nbsp;</span>
+                        <o:p></o:p>
+                    </p>
+                </td>
+            </tr>
             <!-- Links table section -->
             <tr style='height:5.4pt'>
                 <td width=24 valign=top style='width:17.7pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:5.4pt'>

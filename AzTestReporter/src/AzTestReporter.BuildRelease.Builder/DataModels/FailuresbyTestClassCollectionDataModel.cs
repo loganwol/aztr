@@ -29,8 +29,7 @@
                     int rowcount = 0;
                     for (int i = 0; i < testRunCasesFailures.Count; i++)
                     {
-                        // TODO: This was removed but needs to be re-enabled.
-                        /*var bugsandlinks = new Dictionary<string, string>();
+                        var bugsandlinks = new Dictionary<string, string>();
                         if (testRunCasesFailures[i].AssociatedBugs?.Count > 0)
                         {
                             foreach (var bugandlink in testRunCasesFailures[i].AssociatedBugs)
@@ -40,7 +39,7 @@
                                     bugsandlinks.Add(bugandlink.Id, bugandlink.Url);
                                 }
                             }
-                        }*/
+                        }
 
                         if (i == 0)
                         {
@@ -55,7 +54,7 @@
                         {
                             RowCount = rowcount,
                             TestClassName = feature,
-                            //TODO: BugandLink = bugsandlinks,
+                            BugandLink = bugsandlinks,
                         };
 
                         failuredm.Duration = this.ConvertToSecondsMilliseconds(

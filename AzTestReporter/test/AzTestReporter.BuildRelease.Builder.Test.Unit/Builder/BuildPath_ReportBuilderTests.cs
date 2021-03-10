@@ -16,7 +16,7 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    
+
     public class BuildPath_ReportBuilderTests
     {
         [Fact]
@@ -60,7 +60,7 @@
             act.Should().ThrowExactly<ArgumentNullException>().WithMessage("*BuildDefinitionID*");
         }
 
-            [Fact]
+        [Fact]
         public void Can_successfully_create_a_daily_report_for_build_based_execution_path()
         {
             // Arrange
@@ -74,21 +74,15 @@
                 {
                     BuildDefinitionName = "projectbuilddefinition",
                     BuildRepositoryName = "repository",
-                    BuildDefinitionID = "1",
+                    BuildID = "1",
                     SystemTeamProject = "fake",
                 },
             };
 
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
-            Task<AzureSuccessReponse> buildsasr =
-                Task.Run(() =>
-                {
-                    string response = File.ReadAllText(@"TestData\\builds.json");
-                    return AzureSuccessReponse.ConverttoAzureSuccessResponse(response);
-                });
-
-            azureReader.GetBuildsbyDefinitionIdAsync("1").ReturnsForAnyArgs(buildsasr);
+            var builddata = JsonConvert.DeserializeObject<BuildData>(File.ReadAllText(@"TestData\builddata.json"));
+            azureReader.GetBuildData("1").ReturnsForAnyArgs(builddata);
 
             Task<AzureSuccessReponse> coverageasr = Task.Run(() => AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\codecoveragedataref.json")));
             azureReader.GetTestBuildCoverageDataAsync("1", string.Empty).ReturnsForAnyArgs(coverageasr);
@@ -137,7 +131,7 @@
             reportBuilderParameters.IsPrivateRelease.Should().BeFalse();
         }
 
-        
+
         [Fact]
         public void Can_successfully_create_a_daily_report_for_build_based_execution_path_privatebuilds()
         {
@@ -151,7 +145,7 @@
                 {
                     BuildDefinitionName = "projectbuilddefinition",
                     BuildRepositoryName = "repository",
-                    BuildDefinitionID = "1",
+                    BuildID = "1",
                     SystemTeamProject = "fake",
                 },
 
@@ -160,15 +154,9 @@
 
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
-            AzureSuccessReponse buildsasr = AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\builds.json"));
-
-            // Make the source branch private.
-            var builds = new BuildsCollection(buildsasr);
-            builds[0].SourceBranch = "personal/loganwol/change1";
-
-            buildsasr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(builds));
-
-            azureReader.GetBuildsbyDefinitionIdAsync("1").ReturnsForAnyArgs(buildsasr);
+            var builddata = JsonConvert.DeserializeObject<BuildData>(File.ReadAllText(@"TestData\builddata.json"));
+            builddata.SourceBranch = "personal/loganwol/change1";
+            azureReader.GetBuildData("1").ReturnsForAnyArgs(builddata);
 
             Task<AzureSuccessReponse> coverageasr = Task.Run(() => AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\codecoveragedataref.json")));
             azureReader.GetTestBuildCoverageDataAsync("1", string.Empty).ReturnsForAnyArgs(coverageasr);
@@ -215,7 +203,7 @@
             reportBuilderParameters.IsPrivateRelease.Should().BeTrue();
         }
 
-        
+
         [Fact]
         public void Can_pick_up_a_specific_build_number()
         {
@@ -321,7 +309,7 @@
                 {
                     BuildDefinitionName = "projectbuilddefinition",
                     BuildRepositoryName = "repository",
-                    BuildDefinitionID = "1",
+                    BuildID = "1",
                     SystemTeamProject = "fake",
                 },
 
@@ -330,16 +318,11 @@
 
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
-            AzureSuccessReponse buildsasr = AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\builds.json"));
+            var builddata = JsonConvert.DeserializeObject<BuildData>(File.ReadAllText(@"TestData\builddata.json"));
+            builddata.SourceBranch = "personal/loganwol/change1";
+            builddata.RequestedFor = null;
 
-            // Make the source branch private.
-            var builds = new BuildsCollection(buildsasr);
-            builds[0].SourceBranch = "personal/loganwol/change1";
-            builds[0].RequestedFor = null;
-
-            buildsasr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(builds));
-
-            azureReader.GetBuildsbyDefinitionIdAsync("1").ReturnsForAnyArgs(buildsasr);
+            azureReader.GetBuildData("1").ReturnsForAnyArgs(builddata);
 
             Task<AzureSuccessReponse> coverageasr = Task.Run(() => AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\codecoveragedataref.json")));
             azureReader.GetTestBuildCoverageDataAsync("1", string.Empty).ReturnsForAnyArgs(coverageasr);
@@ -355,6 +338,110 @@
 
             // Verify
             act.Should().ThrowExactly<TestResultReportingSendToNullException>();
+        }
+
+        [Fact]
+        public void Can_successfully_create_a_report_with_bugs_table()
+        {
+            // Arrange
+            // This is a really long set of arranges as there are that many calls
+            // internally to query for various things before
+            // a report can be generated.
+            ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters()
+            {
+                PipelineEnvironmentOptions = new AzurePipelineEnvironmentOptions()
+                {
+                    BuildDefinitionName = "projectbuilddefinition",
+                    BuildRepositoryName = "repository",
+                    BuildID = "94",
+                    SystemTeamProject = "fake",
+                },
+
+                ResultSourceIsBuild = true,
+            };
+
+            IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
+
+            Task<BuildData> buildData = Task.Run(() =>
+            {
+                var builddatajson = File.ReadAllText(@"TestData\\builddata.json");
+                builddatajson = builddatajson.Replace(@": 62,", ": 94,");
+                return JsonConvert.DeserializeObject<BuildData>(builddatajson);
+            });
+
+            azureReader.GetBuildData("94").Returns(buildData);
+
+            Task<AzureSuccessReponse> coverageasr = Task.Run(() => AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\codecoveragedataref.json")));
+            azureReader.GetTestBuildCoverageDataAsync("1", string.Empty).ReturnsForAnyArgs(coverageasr);
+
+            string response = File.ReadAllText(@"TestData\\TestRun.json");
+            response = response.Replace(": 59", ": 0");
+            var testrunasr = AzureSuccessReponse.ConverttoAzureSuccessResponse(response);
+
+            var testruns = new TestRunsCollection(testrunasr);
+            testruns.RemoveRange(1, testruns.Count() - 1);
+
+            testrunasr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(testruns));
+
+            DateTime maxDate = DateTime.Now.Date.AddDays(2);
+            string maxDateString = maxDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            string minDateString = maxDate.AddDays(-7).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            azureReader.GetTestRunListByDateRangeAsync(minDateString, maxDateString, "1", true).ReturnsForAnyArgs(testrunasr);
+
+            Task<AzureSuccessReponse> testresultasr = Task.Run(() =>
+                {
+                    var asr = AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\TestResult.json"));
+                    var testresults = new TestResultDataCollection(asr);
+                    testresults[0].Outcome = "failed";
+
+                    asr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(testresults));
+
+                    return asr;
+                });
+
+            azureReader.GetTestResultListAsync(246).ReturnsForAnyArgs(testresultasr);
+
+            Task<TestResultData> testResultData = Task.Run(() => JsonConvert.DeserializeObject<TestResultData>(File.ReadAllText(@"TestData\\TestResultWithBugLink.json")));
+            azureReader.GetTestResultWithLinksAsync(1, "2").ReturnsForAnyArgs(testResultData);
+
+            var bugdata = JsonConvert.DeserializeObject<AzureBugData>(File.ReadAllText(@"TestData\bugdetails.json"));
+
+            AzureBugLinkData azureBugLinkData = new AzureBugLinkData();
+            azureBugLinkData.Id = "511492";
+            azureReader.GetBugDataAsync(azureBugLinkData).ReturnsForAnyArgs(bugdata);
+
+            int temp = 0;
+            var client = Substitute.For<HttpClient>();
+            client.When(r => r.DefaultRequestHeaders.Add("foo", "bar")).Do(r => temp++);
+
+            azureReader.When(r => r.SetupandAuthenticate(client, string.Empty)).Do(r => temp++);
+
+            // Act
+            var dailyreport = new ReportBuilder(azureReader).GetReleasesRunsandResults(ref reportBuilderParameters);
+
+            // Verify
+            dailyreport.dailyResultSummaryDataModel.Bugs.Should().HaveCount(1);
+            dailyreport.dailyResultSummaryDataModel.Bugs[0].Id.Should().Be(511492);
+            dailyreport.dailyResultSummaryDataModel.PipelineVariables.Should().HaveCount(1);
+            dailyreport.dailyResultSummaryDataModel.PipelineVariables["sample"].Should().Be("test");
+
+            var html = dailyreport.ToHTML();
+            html.Should().NotBeNullOrEmpty();
+
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(html);
+
+            var failuresrow = htmlDocument.GetElementbyId("failuresrow1");
+            failuresrow.Should().NotBeNull();
+
+            var bugstablerow = htmlDocument.GetElementbyId("bugstableheaderrow");
+            bugstablerow.Should().NotBeNull();
+
+            var bugstable = htmlDocument.GetElementbyId("bugstablerow");
+            bugstable.Should().NotBeNull();
+
+            var bugidspan = htmlDocument.GetElementbyId("511492");
+            bugidspan.Should().NotBeNull();
         }
     }
 }

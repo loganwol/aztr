@@ -8,7 +8,9 @@
     using AzTestReporter.BuildRelease.Apis;
     using AzTestReporter.BuildRelease.Builder;
     using Validation;
-    using System.Linq;
+	using System.Linq;
+    using AzTestReporter.BuildRelease.Builder.DataModels;
+    using System.Reflection;
 
     public class InputProcessor
     {
@@ -128,62 +130,104 @@
                 mailerParameters.To = reportBuilderParameters.SendTo;
             }
 
-            string reportBody = reportBuilder.ToHTML();
-            string emailsubject = reportBuilder.Title;
+            var appfullpath = AppDomain.CurrentDomain.BaseDirectory;
 
-            StringBuilder outputfilename = new StringBuilder();
+            if (string.IsNullOrEmpty(appfullpath))
+            {
+                var assembly = Assembly.GetEntryAssembly();
+                if (assembly == null)
+                {
+                    assembly = Assembly.GetExecutingAssembly();
+                }
 
-            if (reportBuilder.IsPipelineFailed)
-            {
-                outputfilename.Append("ExecutionFailuresReport-");
-            }
-            else
-            {
-                outputfilename.Append("TestExecutionReport");
-            }
-
-            if (!reportBuilderParameters.ResultSourceIsBuild)
-            {
-                outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+                if (!assembly.Location.StartsWith(Path.GetTempPath()))
+                {
+                    appfullpath = Path.GetDirectoryName(Path.GetFullPath(assembly.Location));
+                }
             }
 
-            outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
-            outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
-
-            string outputdirectory = clOptions.OutputDirectory;
-            if (string.IsNullOrEmpty(outputdirectory))
+            if (clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.JSON)
             {
-                outputdirectory = Directory.GetCurrentDirectory();
-            }
-            
-            if (!Directory.Exists(outputdirectory))
-            {
-                Log?.Info("Creating output directory.");
-                Directory.CreateDirectory(outputdirectory);
-            }
+                string reportBody = reportBuilder.ToHTML();
+                string emailsubject = reportBuilder.Title;
 
-            string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
+                StringBuilder outputfilename = new StringBuilder();
 
-            if (File.Exists(outputfilepath))
-            {
-                Log?.Info("Found previous report file, deleting the file.");
-                File.Delete(outputfilepath);
-            }
-
-            File.WriteAllText(outputfilepath, reportBody);
-
-            Log?.Info($"Successfully generated \"{outputfilepath}\".");
-            Log?.Trace("Generated HTML successfully");
-
-            mailerParameters.MailSubject = emailsubject;
-            mailerParameters.MailBody = reportBody;
-
-            if (clOptions.SendMail != null && (bool)clOptions.SendMail)
-            {
                 if (reportBuilder.IsPipelineFailed)
                 {
-                    mailerParameters.To = string.Join(",", mailerParameters.FailureSendToList);
+                    outputfilename.Append("ExecutionFailuresReport-");
                 }
+                else
+                {
+                    outputfilename.Append("TestExecutionReport-");
+                }
+
+                if (!reportBuilderParameters.ResultSourceIsBuild)
+                {
+                    outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+                }
+
+                outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
+                outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
+
+	            string outputdirectory = clOptions.OutputDirectory;
+	            if (string.IsNullOrEmpty(outputdirectory))
+	            {
+	                outputdirectory = Directory.GetCurrentDirectory();
+	            }
+            
+	            if (!Directory.Exists(outputdirectory))
+	            {
+	                Log?.Info("Creating output directory.");
+	                Directory.CreateDirectory(outputdirectory);
+	            }
+
+	            string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
+
+	            if (File.Exists(outputfilepath))
+	            {
+	                Log?.Info("Found previous report file, deleting the file.");
+	                File.Delete(outputfilepath);
+	            }
+				
+                File.WriteAllText(outputfilepath, reportBody);
+
+                Log?.Info($"Successfully generated \"{outputfilepath}\".");
+                Log?.Trace("Generated HTML successfully");
+
+                if (!string.IsNullOrWhiteSpace(clOptions.OutputDirectory))
+                {
+                    var debugdirectory = Path.Combine(appfullpath, "Debug");
+                    if (!Directory.Exists(debugdirectory))
+                    {
+                        Directory.CreateDirectory(debugdirectory);
+                    }
+
+                    var aztrfiles = Directory.GetFiles(appfullpath, "aztr-*.json");
+                    Log?.Info($"Moving json files generated \"{aztrfiles.Length}\".");
+
+                    foreach (var file in aztrfiles)
+                    {
+                        Log?.Trace($"Moving file {file} to destination.");
+                        File.Move(file, Path.Combine(debugdirectory, Path.GetFileName(file)));
+                    }
+                }
+
+                mailerParameters.MailSubject = emailsubject;
+                mailerParameters.MailBody = reportBody;
+
+                if (clOptions.SendMail != null && (bool)clOptions.SendMail)
+                {
+                    if (reportBuilder.IsPipelineFailed)
+                    {
+                        mailerParameters.To = string.Join(",", mailerParameters.FailureSendToList);
+                    }
+                }
+            }
+            
+            if (clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.HTML)
+            {
+                reportBuilder.ToJson();
             }
 
             mailerParameters.Type = MessageType.Success;
