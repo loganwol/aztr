@@ -198,18 +198,18 @@
                 if (!string.IsNullOrWhiteSpace(clOptions.OutputDirectory))
                 {
                     var debugdirectory = Path.Combine(appfullpath, "Debug");
-                    if (Directory.Exists(debugdirectory))
+                    if (!Directory.Exists(debugdirectory))
                     {
                         Directory.CreateDirectory(debugdirectory);
                     }
 
-                    var aztrfiles = Directory.GetFiles(debugdirectory, "aztr-*.json");
+                    var aztrfiles = Directory.GetFiles(appfullpath, "aztr-*.json");
                     Log?.Info($"Moving json files generated \"{aztrfiles.Length}\".");
 
                     foreach (var file in aztrfiles)
                     {
                         Log?.Trace($"Moving file {file} to destination.");
-                        File.Move(file, Path.Combine(clOptions.OutputDirectory, Path.GetFileName(file)));
+                        File.Move(file, Path.Combine(debugdirectory, Path.GetFileName(file)));
                     }
                 }
 
