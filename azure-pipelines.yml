@@ -53,10 +53,10 @@ steps:
 
       Write-Host "Generating report"      
       .\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472\AzTestReporter.exe --trt Unit --sendmail false -f HTML -o $(SYSTEM_DEFAULTWORKINGDIRECTORY)\Report
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-    errorActionPreference: 'continue'
-    condition: always()
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  errorActionPreference: 'continue'
+  condition: always()
 
 - task: PublishBuildArtifacts@1
   inputs:
