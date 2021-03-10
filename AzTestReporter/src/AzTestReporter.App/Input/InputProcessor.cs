@@ -10,6 +10,7 @@
     using Validation;
 	using System.Linq;
     using AzTestReporter.BuildRelease.Builder.DataModels;
+    using System.Reflection;
 
     public class InputProcessor
     {
@@ -129,6 +130,22 @@
                 mailerParameters.To = reportBuilderParameters.SendTo;
             }
 
+            var appfullpath = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (string.IsNullOrEmpty(appfullpath))
+            {
+                var assembly = Assembly.GetEntryAssembly();
+                if (assembly == null)
+                {
+                    assembly = Assembly.GetExecutingAssembly();
+                }
+
+                if (!assembly.Location.StartsWith(Path.GetTempPath()))
+                {
+                    appfullpath = Path.GetDirectoryName(Path.GetFullPath(assembly.Location));
+                }
+            }
+
             if (clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.JSON)
             {
                 string reportBody = reportBuilder.ToHTML();
@@ -177,6 +194,24 @@
 
                 Log?.Info($"Successfully generated \"{outputfilepath}\".");
                 Log?.Trace("Generated HTML successfully");
+
+                if (!string.IsNullOrWhiteSpace(clOptions.OutputDirectory))
+                {
+                    var debugdirectory = Path.Combine(appfullpath, "Debug");
+                    if (Directory.Exists(debugdirectory))
+                    {
+                        Directory.CreateDirectory(debugdirectory);
+                    }
+
+                    var aztrfiles = Directory.GetFiles(debugdirectory, "aztr-*.json");
+                    Log?.Info($"Moving json files generated \"{aztrfiles.Length}\".");
+
+                    foreach (var file in aztrfiles)
+                    {
+                        Log?.Trace($"Moving file {file} to destination.");
+                        File.Move(file, Path.Combine(clOptions.OutputDirectory, Path.GetFileName(file)));
+                    }
+                }
 
                 mailerParameters.MailSubject = emailsubject;
                 mailerParameters.MailBody = reportBody;

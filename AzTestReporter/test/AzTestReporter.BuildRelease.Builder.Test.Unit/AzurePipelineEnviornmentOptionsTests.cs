@@ -77,7 +77,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
             var pipeline = new AzurePipelineEnvironmentOptions();
             pipeline.Read();
 
-            pipeline.ToDictionary().Should().NotBeNull().And.HaveCount(12);
+            pipeline.ToDictionary().Should().NotBeNull().And.HaveCount(13);
         }
 
         [SkippableFact]
