@@ -82,7 +82,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: "Publish Test run report"
   inputs:
-    PathtoPublish: '$(SYSTEM_DEFAULTWORKINGDIRECTORY)\Report'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)\Report'
     ArtifactName: 'report'
     publishLocation: 'Container'
   condition: always()
