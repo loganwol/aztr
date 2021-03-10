@@ -48,11 +48,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # Write your PowerShell commands here.
-      tree /a /f
-
       Write-Host "Generating report"      
-      .\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472\AzTestReporter.exe --trt Unit --sendmail false -f HTML -o $(System.DefaultWorkingDirectory)\Report
+      .\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f HTML -o $(System.DefaultWorkingDirectory)\Report
     errorActionPreference: 'continue'
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
