@@ -44,6 +44,20 @@ steps:
     codeCoverageEnabled: true
     runSettingsFile: AzTestReporter\CodeCoverage.runsettings
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      tree /a /f
+
+      Write-Host "Generating report"      
+      .\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472\AzTestReporter.exe --trt Unit --sendmail false -f HTML -o $(SYSTEM_DEFAULTWORKINGDIRECTORY)\Report
+    errorActionPreference: 'continue'
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    condition: always()
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\net472'
@@ -55,3 +69,10 @@ steps:
     PathtoPublish: '.\AzTestReporter\publish\Bin\$(buildConfiguration)\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
     ArtifactName: 'nugetpkg'
     publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(SYSTEM_DEFAULTWORKINGDIRECTORY)\Report'
+    ArtifactName: 'report'
+    publishLocation: 'Container'
+    condition: always()

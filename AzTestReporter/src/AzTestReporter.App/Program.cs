@@ -66,7 +66,7 @@
 
                 processor.GenerateReportMail(startCollectionInfo, clOptions, ref mailerParameters);
 
-                if ((bool)clOptions.SendMail)
+                if ((bool)clOptions.SendMail && clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.JSON)
                 {
                     log.Trace("Mail subject", new Dictionary<string, string>()
                             {

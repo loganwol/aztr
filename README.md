@@ -147,10 +147,10 @@ In PowerShell or Command run the Executable "AzTestReporter.App.exe" using switc
 | --mailpwd 	| 	The mail account password to use when sending mail. |
 | --sendto 		|  List of people or groups mail needs to be sent to. This is a comma delimited list. |
 | --cc 			| List of people or groups to cc in mail sent. This is a comma delimited list |
-|  --o 			| The directory where the report file will be output to. |
-|  --f          | The format in which the output is generated. (Options are: HTML/JSON/ALL)  |
-|  --help 		| Display this help screen. |
-|  --version 	| Display version information. |
+| -o  			| The directory where the report file will be output to. |
+| -f            | The format in which the output is generated. (Options are: HTML/JSON/ALL)  |
+| --help 		| Display this help screen. |
+| --version 	| Display version information. |
   
   
 ### 2. Run via Azure Extensions
