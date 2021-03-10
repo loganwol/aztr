@@ -26,18 +26,21 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: "Build Release"
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: 'Release'
 
 - task: VSBuild@1
+  displayName: "Build Debug"
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: 'Debug'
 
 - task: VSTest@2
+  displayName: "Run Unit tests on Release build"
   inputs:
     platform: '$(buildPlatform)'
     configuration: 'Release'
@@ -50,6 +53,7 @@ steps:
     runSettingsFile: AzTestReporter\CodeCoverage.runsettings
 
 - task: PowerShell@2
+  displayName: "Generate Test run report"
   inputs:
     targetType: 'inline'
     script: |

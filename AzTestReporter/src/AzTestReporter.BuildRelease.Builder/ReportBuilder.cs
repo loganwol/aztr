@@ -112,7 +112,11 @@
                         buildVersion = builderParameters.PipelineEnvironmentOptions.BuildNumber;
                     }
 
-                    if (builddata.Result.ToUpperInvariant() == "failed".ToUpperInvariant())
+                    Log?.Info($"The build status is {builddata.Status} when generating the report.");
+
+                    if (builddata.Status == BuildData.BuildStatus.completed &&
+                        string.IsNullOrEmpty(builddata.Result) == false &&
+                        builddata.Result.ToUpperInvariant() == "failed".ToUpperInvariant())
                     {
                         Log?.Info("Pipeline contains failed jobs or tasks");
                         isPipelineFailed = true;
