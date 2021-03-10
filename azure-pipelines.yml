@@ -85,4 +85,4 @@ steps:
     PathtoPublish: '$(SYSTEM_DEFAULTWORKINGDIRECTORY)\Report'
     ArtifactName: 'report'
     publishLocation: 'Container'
-    condition: always()
+  condition: always()
