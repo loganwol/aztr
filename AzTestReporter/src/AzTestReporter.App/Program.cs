@@ -89,7 +89,7 @@
                             { "Pipeline details of the run", startCollectionInfo?.ToString() },
                         });
 
-                log.Error(trrex.Message);
+                log.Error(trrex);
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@
                             { "Pipeline details of the run", startCollectionInfo?.ToString() },
                         });
 
-                log.Error(ex.Message);
+                log.Error(ex);
             }
         }
 
