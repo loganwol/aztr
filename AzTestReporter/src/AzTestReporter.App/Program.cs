@@ -109,6 +109,7 @@
 
             Debug.Assert(false, "Errors have been reported when parsing the command line arguments.");
             Environment.ExitCode = -1;
+            Environment.Exit(-1);
         }
     }
 }
