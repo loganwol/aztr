@@ -100,11 +100,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit.JSonGeneration
             var dailyreport = new ReportBuilder(azureReader).GetReleasesRunsandResults(ref reportBuilderParameters);
 
             // Verify
-            dailyreport.ToJson().Should().BeTrue();
-
-            File.Exists("94-TestResults.json").Should().BeTrue();
-
-            var json = File.ReadAllText("94-TestResults.json");
+            var json = dailyreport.ToJson();
             json.Should().NotBeNullOrEmpty();
 
             var jsonobject = JsonConvert.DeserializeObject(json);

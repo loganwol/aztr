@@ -153,17 +153,15 @@
             return htmlcontents;
         }
 
-        public bool ToJson()
+        public string ToJson()
         {
             if (!string.IsNullOrEmpty(this.testResultBuilderParameters.FailedTaskName))
             {
-                return false;
+                return string.Empty;
             }
 
-            var json = JsonConvert.SerializeObject(this.dailyResultSummaryDataModel, Formatting.Indented);
-            string outputfilename = $"{this.testResultBuilderParameters.PipelineEnvironmentOptions.BuildID}-TestResults.json";
-            File.WriteAllText(outputfilename, json);
-            return true;
+            var json = JsonConvert.SerializeObject(this.dailyResultSummaryDataModel, Formatting.Indented);          
+            return json;
         }
     }
 }

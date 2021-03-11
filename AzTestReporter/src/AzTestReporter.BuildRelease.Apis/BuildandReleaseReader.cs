@@ -229,11 +229,11 @@ namespace AzTestReporter.BuildRelease.Apis
                 response.EnsureSuccessStatusCode();
                 responseBody = await response.Content.ReadAsStringAsync();
 
-                Log?.Info("Logging debug information for ADO queries and responses.");
+                Log?.Trace("Logging debug information for ADO queries and responses.");
                 if (!string.IsNullOrEmpty(debugoutputfilename))
                 {
                     File.WriteAllText($"{debugoutputfilename}.json", responseBody);
-                    Log?.Trace($"Logged to {debugoutputfilename}.json");
+                    Log?.Info($"Logged JSON response to {debugoutputfilename}.json");
                 }
 
                 if (this.enableoutputlogging)

@@ -146,6 +146,18 @@
                 }
             }
 
+            string outputdirectory = clOptions.OutputDirectory;
+            if (string.IsNullOrEmpty(outputdirectory))
+            {
+                outputdirectory = Directory.GetCurrentDirectory();
+            }
+
+            if (!Directory.Exists(outputdirectory))
+            {
+                Log?.Info("Creating output directory.");
+                Directory.CreateDirectory(outputdirectory);
+            }
+
             if (clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.JSON)
             {
                 string reportBody = reportBuilder.ToHTML();
@@ -169,18 +181,6 @@
 
                 outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
                 outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
-
-	            string outputdirectory = clOptions.OutputDirectory;
-	            if (string.IsNullOrEmpty(outputdirectory))
-	            {
-	                outputdirectory = Directory.GetCurrentDirectory();
-	            }
-            
-	            if (!Directory.Exists(outputdirectory))
-	            {
-	                Log?.Info("Creating output directory.");
-	                Directory.CreateDirectory(outputdirectory);
-	            }
 
 	            string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
 
@@ -227,7 +227,13 @@
             
             if (clOptions.OutputFormat != ReportBuilderParameters.OutputFormat.HTML)
             {
-                reportBuilder.ToJson();
+                string json = reportBuilder.ToJson();
+                if (!string.IsNullOrEmpty(json))
+                {
+                    string outputfilename = $"{reportBuilderParameters.PipelineEnvironmentOptions.BuildID}-TestResults.json";
+                    Log?.Info($"Outputting json file to {outputfilename}.");
+                    File.WriteAllText(Path.Combine(outputdirectory, outputfilename), json);
+                }
             }
 
             mailerParameters.Type = MessageType.Success;
