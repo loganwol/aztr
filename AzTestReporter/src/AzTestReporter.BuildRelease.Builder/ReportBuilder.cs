@@ -53,7 +53,7 @@
             bool isPipelineFailed = false;
             bool tasksFailed = false;
             bool testRunContainsFailures = false;
-            DateTime buildtime = DateTime.Now;
+            DateTime executiontime = DateTime.Now;
             string failedTaskName = string.Empty;
             DateTime releasetesttaskexecutiontime = DateTime.MaxValue;
             List<AzureBugData> bugs = new List<AzureBugData>();
@@ -80,7 +80,7 @@
                     }
 
                     pipelineVariables = builddata.BuildVariables;
-                    buildtime = string.IsNullOrEmpty(builddata.FinishTime) ? builddata.BuildStartTime : builddata.ExecutionDateTime;
+                    executiontime = string.IsNullOrEmpty(builddata.FinishTime) ? builddata.BuildStartTime : builddata.ExecutionDateTime;
 
                     testrunnameslist = new List<string>() { builddata.BuildId };
                     branchName = builddata.BranchName;
@@ -183,6 +183,7 @@
                     }
 
                     branchName = releaseDetails.BranchName;
+                    executiontime = releaseDetails.CreatedOn;
 
                     if (builderParameters.IsPrivateRelease)
                     {
@@ -200,7 +201,7 @@
                 { 
                     TestRunsCollection testruns = new TestRunsCollection(
                         buildandReleaseReader,
-                        buildtime,
+                        executiontime,
                         buildoreleaseid,
                         builderParameters.ResultSourceIsBuild);
 
@@ -283,17 +284,13 @@
             testResultBuilderParameters.ContainsFailures = testRunContainsFailures;
             testResultBuilderParameters.Bugs = bugs;
             testResultBuilderParameters.PipelineVariables = pipelineVariables;
+            testResultBuilderParameters.ExecutionTime = executiontime;
 
             if (coverageAggregateColl != null && coverageAggregateColl.All.Count > 0)
             {
                 Log?.Info("Adding code coverage aggregate data");
                 testResultBuilderParameters.CodeCoverageData = coverageAggregateColl?.All.OrderBy(r => r.Name).ToList();
                 testResultBuilderParameters.CodeCoverageFileURL = coverageAggregateColl.CodeCoverageURL;
-            }
-
-            if (!string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildDefinitionName))
-            {
-                testResultBuilderParameters.BuildTime = buildtime;
             }
 
             Log?.Info("Creating HTML Datamodel");
