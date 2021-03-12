@@ -58,13 +58,15 @@
             var testresultdata = new List<TestResultData>();
             testresultdata.Add(new TestResultData()
             {
-                AutomatedTestName = "test1",
+                AutomatedTestName = "Company.Feature2.subfeature.testclassname1.test1&23(23.@#*)",
+                TestCaseName = "test1&23(23.@#*)",
                 Build = new Build() { Name = "1.2.3.4" },
                 Outcome = "ignore",
             });
             testresultdata.Add(new TestResultData()
             {
-                AutomatedTestName = "test2",
+                AutomatedTestName = "Company.Feature1.subfeature.testclassname2.test2",
+                TestCaseName = "test2",
                 Build = new Build() { Name = "3.2.3.4" },
                 Outcome = "ignore",
             });
@@ -75,8 +77,12 @@
             DailyResultSummaryDataModel resultSummaryDataModel = new DailyResultSummaryDataModel(dailyTestResultBuilderParameters);
 
             resultSummaryDataModel.TestClassResultsSummary.Should().NotBeNull();
-            resultSummaryDataModel.TestClassResultsSummary[0].TestClassName.Should().Be("test1");
-            resultSummaryDataModel.TestClassResultsSummary[1].TestClassName.Should().Be("test2");
+            resultSummaryDataModel.TestClassResultsSummary[0].TestClassName.Should().Be("testclassname1");
+            resultSummaryDataModel.TestClassResultsSummary[1].TestClassName.Should().Be("testclassname2");
+
+
+            resultSummaryDataModel.TestClassResultsSummary[0].TestNamespace.Should().Be("Company.Feature2.subfeature");
+            resultSummaryDataModel.TestClassResultsSummary[1].TestNamespace.Should().Be("Company.Feature1.subfeature");
         }
     }
 }

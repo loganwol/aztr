@@ -40,7 +40,8 @@
             var testdata = new List<TestResultData>();
             testdata.Add(new TestResultData()
             {
-                AutomatedTestName = "foo",
+                AutomatedTestName = "Company.Feature2.subfeature.foo.test1",
+                TestCaseName = "foo",
                 Build = new Build() { Name = "1.2.3.4" },
                 Outcome = "ignore",
             });

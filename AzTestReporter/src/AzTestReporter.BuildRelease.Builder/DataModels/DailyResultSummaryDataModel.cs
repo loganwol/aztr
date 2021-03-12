@@ -37,6 +37,7 @@
             configMapper.Map(testResultBuilderParameters, this);
 
             this.ReleaseType = testResultBuilderParameters.IsUnitTest ? "Build" : "Release";
+            this.ExecutionDate = testResultBuilderParameters.ExecutionTime.ToString("G");
 
             this.HeaderTitle = this.RepoName?.Trim();
 
@@ -199,5 +200,10 @@
         public List<AzureBugData> Bugs { get; set; }
 
         public Dictionary<string, string> PipelineVariables { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the build or release was executed.
+        /// </summary>
+        public string ExecutionDate { get; set; }
     }
 }

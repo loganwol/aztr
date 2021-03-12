@@ -126,6 +126,6 @@
         /// <summary>
         /// Gets or Sets a value indicating what time the build used to run tests was completed.
         /// </summary>
-        public DateTime BuildTime { get; set; } = DateTime.MinValue;
+        public DateTime ExecutionTime { get; set; } = DateTime.MinValue;
     }
 }

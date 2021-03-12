@@ -53,6 +53,29 @@
         /// </summary>
         public string TestClassName => this.GetTestTitle(false);
 
+        /// <summary>
+        /// Gets the namespace where the Test class was contained in.
+        /// </summary>
+        public string TestNamespace
+        {
+            get
+            {
+                var testnamespace = this.AutomatedTestName.Replace(this.TestCaseName, string.Empty);
+                if (testnamespace.EndsWith("."))
+                {
+                    testnamespace = testnamespace.Substring(0, testnamespace.Length - 1);
+                }
+
+                testnamespace = testnamespace.Replace(this.TestClassName, string.Empty);
+                if (testnamespace.EndsWith("."))
+                {
+                    testnamespace = testnamespace.Substring(0, testnamespace.Length - 1);
+                }
+
+                return testnamespace;
+            }
+        }
+
         private string GetTestTitle(bool issubsystem, string reponame = "")
         {
             if (this.AutomatedTestType == AutomatedTestTypeEnum.UnitTest)
