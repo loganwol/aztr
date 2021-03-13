@@ -274,6 +274,12 @@
             var configMapper = new Mapper(mapperconfig);
             DailyTestResultBuilderParameters testResultBuilderParameters = configMapper.Map<DailyTestResultBuilderParameters>(builderParameters);
 
+            if(!string.IsNullOrEmpty(builderParameters.SendTo))
+            {
+                pipelineVariables.Add("Requested By", builderParameters.SendTo);
+                pipelineVariables.Add("Build ID", builderParameters.PipelineEnvironmentOptions.BuildID);
+            }
+
             testResultBuilderParameters.ToolVersion = version;
             testResultBuilderParameters.TestResultsData = testResultData.OrderBy(r => r.TestClassName).ToList();
             testResultBuilderParameters.TestRunsList = supportedRunsList;
