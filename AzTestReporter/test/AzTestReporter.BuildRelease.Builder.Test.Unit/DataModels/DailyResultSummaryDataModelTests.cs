@@ -61,14 +61,14 @@
                 AutomatedTestName = "Company.Feature2.subfeature.testclassname1.test1&23(23.@#*)",
                 TestCaseName = "test1&23(23.@#*)",
                 Build = new Build() { Name = "1.2.3.4" },
-                Outcome = "ignore",
+                Outcome = Apis.Common.OutcomeEnum.Ignore,
             });
             testresultdata.Add(new TestResultData()
             {
                 AutomatedTestName = "Company.Feature1.subfeature.testclassname2.test2",
                 TestCaseName = "test2",
                 Build = new Build() { Name = "3.2.3.4" },
-                Outcome = "ignore",
+                Outcome = Apis.Common.OutcomeEnum.Ignore,
             });
 
             dailyTestResultBuilderParameters.TestResultsData = testresultdata;

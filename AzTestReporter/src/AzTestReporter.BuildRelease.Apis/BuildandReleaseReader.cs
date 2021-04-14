@@ -67,6 +67,7 @@ namespace AzTestReporter.BuildRelease.Apis
 
         public async Task<Release> GetReleaseResultAsync(string releaseId)
         {
+            Requires.NotNullOrEmpty(releaseId, nameof(releaseId));
             string queryurl = $"{VSRMDevOpsServerProjectURI}/_apis/release/releases/{releaseId}?api-version=5.1";
             debugoutputfilename = "aztr-ReleaseResult";
             string responseBody = await QueryAzureDevOpsAsyncGetResponseBody(queryurl);
@@ -177,7 +178,7 @@ namespace AzTestReporter.BuildRelease.Apis
         {
             Requires.NotNullOrEmpty(resultId, nameof(resultId));
 
-            string query = $"{this.DevOpsServerProjectURI}/_apis/test/Runs/{runId}/results/{resultId}?detailsToInclude=workitems&api-version=5.1";
+            string query = $"{this.DevOpsServerProjectURI}/_apis/test/Runs/{runId}/results/{resultId}?detailsToInclude=workitems,subresults&api-version=6.0";
 
             string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(query);
             Log?.Trace("Getting Test result with links.");

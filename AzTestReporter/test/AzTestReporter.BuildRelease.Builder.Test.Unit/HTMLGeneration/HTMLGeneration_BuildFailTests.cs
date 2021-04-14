@@ -33,7 +33,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder failHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -54,7 +54,7 @@
             this.resultBuilderParameters.IsUnitTest = true;
 
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             var testresultdata = new System.Collections.Generic.List<TestResultData>();
             testresultdata.Add(new TestResultData()
@@ -62,7 +62,7 @@
                 AutomatedTestName = "Company.Feature2.subfeature.foo.test1",
                 TestCaseName = "foo",
                 Build = new Build() { Name = "1.2.3.4" },
-                Outcome = "ignore",
+                Outcome = Apis.Common.OutcomeEnum.Ignore,
             });
 
             this.resultBuilderParameters.TestResultsData = testresultdata;
@@ -84,9 +84,9 @@
         {
             // Arrange
             this.resultBuilderParameters.IsUnitTest = false;
-            this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
+            this.resultBuilderParameters.ReleaseName = "myrelease";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -96,8 +96,7 @@
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(emailhtml);
 
-            htmlDocument.GetElementbyId("releasedetail").Should().NotBeNull();
-            htmlDocument.GetElementbyId("releasedetail")?.InnerText.RemoveHTMLExtras().Should().Be("Myrelease");
+            htmlDocument.GetElementbyId("releasedetail").InnerText.RemoveHTMLExtras().Should().Contain("myrelease");
         }
 
         [Fact]
@@ -105,9 +104,9 @@
         {
             // Arrange
             this.resultBuilderParameters.IsUnitTest = false;
-            this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
+            //this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+			this.resultBuilderParameters.FailedTaskName = "abc";
             this.resultBuilderParameters.FailedTaskName = "myFailedTask";
 
             // Act
@@ -128,7 +127,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abd";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -151,7 +150,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -171,7 +170,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -190,7 +189,7 @@
         {
             // Arrange
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             string responseBody = File.ReadAllText(@"TestData\\TestRun.json");
             AzureSuccessReponse runsResponse = JsonConvert.DeserializeObject<AzureSuccessReponse>(responseBody);
@@ -200,8 +199,8 @@
             AzureSuccessReponse testRunResultSuccessReponse = JsonConvert.DeserializeObject<AzureSuccessReponse>(responseBody);
 
             var testresults = AzureSuccessReponse.ConvertTo<TestResultData>(testRunResultSuccessReponse);
-            testresults[0].Outcome = "Failed";
-            testresults[5].Outcome = "Failed";
+            testresults[0].Outcome = Apis.Common.OutcomeEnum.Failed;
+            testresults[5].Outcome = Apis.Common.OutcomeEnum.Failed;
 
             responseBody = JsonConvert.SerializeObject(testresults);
             testRunResultSuccessReponse = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(responseBody);
@@ -254,7 +253,7 @@
         {
             // Arrange
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder failHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);

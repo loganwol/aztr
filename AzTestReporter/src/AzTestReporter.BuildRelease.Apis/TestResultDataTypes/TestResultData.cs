@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using AzTestReporter.BuildRelease.Apis.Common;
     using Newtonsoft.Json;
 
     public class TestResultData
@@ -10,7 +11,7 @@
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "outcome", Required = Required.Always)]
-        public string Outcome { get; set; }
+        public OutcomeEnum Outcome { get; set; }
 
         [JsonProperty(PropertyName = "testCaseTitle", Required = Required.Always)]
         public string TestCaseName { get; set; }
@@ -47,6 +48,12 @@
 
         [JsonProperty(PropertyName = "associatedBugs")]
         public List<AzureBugLinkData> AssociatedBugs { get; set; }
+
+        [JsonProperty(PropertyName = "resultGroupType")]
+        public ResultGroupTypeEnum ResultGroupType { get; set; } 
+
+        [JsonProperty(PropertyName = "subResults")]
+        public TestSubResult[] TestSubResults { get; set; }
 
         /// <summary>
         /// Gets the Test Class Name discovered from the Automated test name.

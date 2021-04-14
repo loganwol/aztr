@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AzTestReporter.BuildRelease.Apis;
     using Validation;
 
@@ -34,27 +35,12 @@
                     continue;
                 }
 
-                int subFailed = 0;
-                int subPassed = 0;
-
-                foreach (RunStatistic stat in testRunResult.RunStatistics)
-                {
-                    if (stat.outcome.Equals("Passed", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        _ = int.TryParse(stat.count.ToString(), out subPassed);
-                        continue;
-                    }
-
-                    if (stat.outcome.Equals("Failed", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        _ = int.TryParse(stat.count.ToString(), out subFailed);
-                        continue;
-                    }
-                }
-
-                totalNum += Convert.ToInt32(testRunResult.totalTests);
-                this.Passed += subPassed;
-                this.Failed += subFailed;
+                this.Passed += testRunResult.RunStatistics
+                    .Where(r => r.outcome == Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
+                this.Failed += testRunResult.RunStatistics
+                    .Where(r => r.outcome == Apis.Common.OutcomeEnum.Failed).Sum(r => r.count);
+                
+                totalNum += this.Passed + this.Failed;
             }
 
             this.Total = totalNum;

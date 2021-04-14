@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using AutoMapper;
     using AzTestReporter.BuildRelease.Apis;
     using Validation;
@@ -24,8 +25,8 @@
                 cnf.CreateMap<DailyTestResultBuilderParameters, DailyResultSummaryDataModel>()
                             .ForMember(dest => dest.AzureProjectName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.SystemTeamProject))
                             .ForMember(dest => dest.RepoName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.BuildRepositoryName))
-                            .ForMember(dest => dest.ReleaseName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseName))
                             .ForMember(dest => dest.BranchName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseSourceBranchName))
+                            .ForMember(dest => dest.ReleaseName, act => act.MapFrom(src => src.ReleaseName))
                             .ForMember(dest => dest.ToolVersion, act => act.MapFrom(src => src.ToolVersion))
                             .ForMember(dest => dest.IsPrivateRun, act => act.MapFrom(src => src.IsPrivateRelease))
                             .ForMember(dest => dest.FailedTaskName, act => act.MapFrom(src => src.FailedTaskName))
@@ -66,8 +67,24 @@
             {
                 if (testResultBuilderParameters.ContainsFailures)
                 {
+                    StringBuilder resultsrooturl = new StringBuilder(testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI);
+                    resultsrooturl.Append($"{testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamProject}/");
+                    if (testResultBuilderParameters.IsUnitTest)
+                    {
+                        resultsrooturl.Append($"_build/results?buildId={testResultBuilderParameters.PipelineEnvironmentOptions.BuildID}&view=ms.vss-test-web.build-test-results-tab");
+                    }
+                    else
+                    {
+                        resultsrooturl.Append($"_releaseProgress?_a=release-environment-extension");
+                        resultsrooturl.Append("&releaseId=");
+                        resultsrooturl.Append(testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseID);
+                        resultsrooturl.Append("&environmentId=");
+                        resultsrooturl.Append(testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseStageID);
+                        resultsrooturl.Append($"&extensionId=ms.vss-test-web.test-result-in-release-environment-editor-tab");
+                    }
+
                     this.FailuresbyTestClass = new FailuresbyTestClassCollectionDataModel(
-                            testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamProject,
+                            resultsrooturl.ToString(),
                             testResultBuilderParameters.TestResultsData);
                 }
 

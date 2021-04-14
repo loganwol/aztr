@@ -16,7 +16,6 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    
     public class ReleasePath_ReportBuilderTests
     {
         private static DateTime maxDate = DateTime.Now.Date.AddDays(2);
@@ -29,18 +28,21 @@
             // Arrange
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
-            var pipelinevars = new AzurePipelineEnvironmentOptions();
-
-            pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
-            pipelinevars.ReleaseExecutionStage = "Integration test Execution";
-            pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
-            pipelinevars.ReleaseAttempt = 1;
-            pipelinevars.ReleaseStageID = 59;
-
-            ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
-            reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
-            reportBuilderParameters.ResultSourceIsBuild = false;
+            ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters()
+            {
+                PipelineEnvironmentOptions = new AzurePipelineEnvironmentOptions()
+                {
+                    ReleaseDefinitionName = "MSTest.Repeat",
+                    //ReleaseName = "MSTest.Repeat 1.1.27- Release 6",
+                    ReleaseExecutionStage = "Integration test Execution",
+                    BuildRepositoryName = "loganwol/mstestrepeat",
+                    ReleaseAttempt = 1,
+                    ReleaseID = "59",
+                    ReleaseStageID = 59,
+                    SystemHostType = "release",
+                },
+                ResultSourceIsBuild = false,
+            };
 
             Release release = JsonConvert.DeserializeObject<Release>(File.ReadAllText(@"TestData\\release.json"));
 
@@ -51,7 +53,6 @@
             {
                 r.Status = "succeeded";
             });
-
 
             azureReader.GetReleaseResultAsync("59").ReturnsForAnyArgs(release);
 
@@ -82,9 +83,8 @@
 
             dailyreport.Should().NotBeNull();
             dailyreport.Title.Should().NotBeNullOrEmpty();
-            dailyreport.Title.Should().StartWith(pipelinevars.BuildRepositoryName)
-                .And.Contain(pipelinevars.ReleaseExecutionStage)
-                .And.Contain($"({pipelinevars.ReleaseName})")
+            dailyreport.Title.Should().StartWith(reportBuilderParameters.PipelineEnvironmentOptions.BuildRepositoryName)
+                .And.Contain(reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage)
                 .And.NotContain("(Private)");
 
             dailyreport.dailyResultSummaryDataModel.ResultSummary.Should().NotBeNull();
@@ -104,13 +104,15 @@
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
             var pipelinevars = new AzurePipelineEnvironmentOptions();
-            
+
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
+            //pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 7;
+            pipelinevars.ReleaseID = "59";
             pipelinevars.ReleaseStageID = 59;
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -149,7 +151,7 @@
             dailyreport.Title.Should().StartWith(pipelinevars.BuildRepositoryName)
                 .And.Contain(pipelinevars.ReleaseExecutionStage)
                 .And.Contain($"[Attempt - {pipelinevars.ReleaseAttempt}]")
-                .And.Contain($"({pipelinevars.ReleaseName})")
+                //.And.Contain($"({pipelinevars.ReleaseName})")
                 .And.NotContain("(Private)");
 
             dailyreport.ToHTML().Should().NotBeNullOrEmpty();
@@ -164,11 +166,13 @@
             var pipelinevars = new AzurePipelineEnvironmentOptions();
 
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
+            //pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 7;
+            pipelinevars.ReleaseID = "59";
             pipelinevars.ReleaseStageID = 59;
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -202,8 +206,8 @@
             dailyreport.Title.Should().StartWith("(Private)")
                 .And.Contain(pipelinevars.BuildRepositoryName)
                 .And.Contain(pipelinevars.ReleaseExecutionStage)
-                .And.Contain($"[Attempt - {pipelinevars.ReleaseAttempt}]")
-                .And.Contain($"({pipelinevars.ReleaseName})");
+                .And.Contain($"[Attempt - {pipelinevars.ReleaseAttempt}]");
+            //.And.Contain($"({pipelinevars.ReleaseName})");
 
             dailyreport.ToHTML().Should().NotBeNullOrEmpty();
 
@@ -226,11 +230,13 @@
             var pipelinevars = new AzurePipelineEnvironmentOptions();
 
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
+            //pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 1;
+            pipelinevars.ReleaseID = "59";
             pipelinevars.ReleaseStageID = 59;
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -280,11 +286,13 @@
             var pipelinevars = new AzurePipelineEnvironmentOptions();
 
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
+            //pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 1;
+            pipelinevars.ReleaseID = "59";
             pipelinevars.ReleaseStageID = 59;
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -297,7 +305,7 @@
 
             // Set to automated release execution.
             release.Reason = "Schedule";
-            
+
             azureReader.GetReleaseResultAsync("59").ReturnsForAnyArgs(release);
 
 
@@ -320,17 +328,18 @@
             // Arrange
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
+			var releasename = "MSTest.Repeat 1.1.27- Release 6";
             var pipelinevars = new AzurePipelineEnvironmentOptions();
 
-            pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
+            pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";            
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 1;
-            pipelinevars.ReleaseStageID = 59;
             pipelinevars.ReleaseID = "59";
+            pipelinevars.ReleaseStageID = 59;
             pipelinevars.SystemTeamFoundationCollectionURI = "https://dev.azure.com/ProjectCollection";
             pipelinevars.SystemTeamProject = "Project";
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -359,7 +368,7 @@
             dailyreport.Title.Should().NotBeNullOrEmpty();
             dailyreport.Title.Should().StartWith(pipelinevars.BuildRepositoryName)
                 .And.Contain(pipelinevars.ReleaseExecutionStage)
-                .And.Contain($"({pipelinevars.ReleaseName})")
+                .And.Contain($"({releasename})")
                 .And.NotContain("(Private)");
 
             dailyreport.dailyResultSummaryDataModel.ResultSummary.Should().BeNull();
@@ -395,17 +404,16 @@
             // Arrange
             IBuildandReleaseReader azureReader = Substitute.For<IBuildandReleaseReader>();
 
-            var pipelinevars = new AzurePipelineEnvironmentOptions();
-
+			var pipelinevars = new AzurePipelineEnvironmentOptions();
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 6";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 1;
-            pipelinevars.ReleaseStageID = 59;
             pipelinevars.ReleaseID = "59";
+            pipelinevars.ReleaseStageID = 59;
             pipelinevars.SystemTeamFoundationCollectionURI = "https://dev.azure.com/ProjectCollection";
             pipelinevars.SystemTeamProject = "Project";
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;
@@ -461,7 +469,7 @@
             var resultslink = htmldoc.GetElementbyId("dashboardlink");
             resultslink.InnerText.RemoveHTMLExtras().Should().Be("TestResultsLinkinAzureDevOps-Build:1.1.27");
 
-            htmldoc.GetElementbyId("failedtaskstring").Should().BeNull();   
+            htmldoc.GetElementbyId("failedtaskstring").Should().BeNull();
         }
 
         [Fact]
@@ -473,11 +481,13 @@
             var pipelinevars = new AzurePipelineEnvironmentOptions();
 
             pipelinevars.ReleaseDefinitionName = "MSTest.Repeat";
-            pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 11";
+            //pipelinevars.ReleaseName = "MSTest.Repeat 1.1.27- Release 11";
             pipelinevars.ReleaseExecutionStage = "Integration test Execution";
             pipelinevars.BuildRepositoryName = "loganwol/mstestrepeat";
             pipelinevars.ReleaseAttempt = 3;
+            pipelinevars.ReleaseID = "72";
             pipelinevars.ReleaseStageID = 72;
+            pipelinevars.SystemHostType = "release";
 
             ReportBuilderParameters reportBuilderParameters = new ReportBuilderParameters();
             reportBuilderParameters.PipelineEnvironmentOptions = pipelinevars;

@@ -18,9 +18,24 @@
             this.TestNamespace = testResults[0].TestNamespace;
 
             this.TestClassName = testclassname;
-            this.Total = testResults.Count;
-            this.Passed = testResults.Where(r => r.Outcome == "Passed").Count();
-            this.Failed = testResults.Where(r => r.Outcome == "Failed").Count();
+
+            foreach (var testresult in testResults)
+            {
+                if (testresult.TestSubResults.Any())
+                {
+                    this.Total += testresult.TestSubResults.Count();
+                    this.Passed += testresult.TestSubResults
+                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();
+                    this.Failed += testresult.TestSubResults
+                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed).Count();
+                }
+                else
+                {
+                    this.Total++;
+                    this.Passed += testresult.Outcome == Apis.Common.OutcomeEnum.Passed ? 1 : 0;
+                    this.Failed += testresult.Outcome == Apis.Common.OutcomeEnum.Failed ? 1 : 0;
+                }
+            }
         }
     }
 }

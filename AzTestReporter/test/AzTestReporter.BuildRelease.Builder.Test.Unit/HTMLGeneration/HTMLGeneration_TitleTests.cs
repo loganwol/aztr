@@ -25,7 +25,7 @@
                 PipelineEnvironmentOptions = new AzurePipelineEnvironmentOptions()
                 {
                     SystemTeamProject = "Project",
-                    ReleaseName = "My release",
+                    //ReleaseName = "My release",
                 }
             };            
         }
@@ -43,7 +43,7 @@
                 AutomatedTestName = "Company.Feature2.subfeature.foo.test1",
                 TestCaseName = "foo",
                 Build = new Build() { Name = "1.2.3.4" },
-                Outcome = "ignore",
+                Outcome = Apis.Common.OutcomeEnum.Ignore,
             });
 
             this.builderParameters.TestResultsData = testdata;
@@ -66,6 +66,7 @@
             // Arrange
             this.builderParameters.IsUnitTest = false;
             this.builderParameters.ToolVersion = "1.2.3.4";
+            this.builderParameters.ReleaseName = "Myrelease";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.builderParameters);

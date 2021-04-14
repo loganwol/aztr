@@ -167,22 +167,37 @@
 
                 if (reportBuilder.IsPipelineFailed)
                 {
-                    outputfilename.Append("ExecutionFailuresReport-");
+                    outputfilename.Append("ExecutionFailuresReport");
                 }
                 else
                 {
-                    outputfilename.Append("TestExecutionReport-");
+                    outputfilename.Append("TestExecutionReport");
                 }
 
                 if (!reportBuilderParameters.ResultSourceIsBuild)
                 {
-                    outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
+                    outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseExecutionStage}");
                 }
 
-                outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
-                outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}.html");
+                if (reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt > 0)
+                {
+                    outputfilename.Append($"-Attempt{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseAttempt}");
+                }
 
-	            string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
+                outputfilename.Append($"-{reportBuilderParameters.PipelineEnvironmentOptions.BuildNumber}");
+
+                if (clOptions.TestRunType == ReportBuilderParameters.TestType.Unit)
+                {
+                    outputfilename.Append($"-ExecutionID{reportBuilderParameters.PipelineEnvironmentOptions.BuildID}");
+                }
+                else
+                {
+                    outputfilename.Append($"-ExecutionID{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseID}");
+                }
+
+                outputfilename.Append(".html");
+
+                string outputfilepath = Path.Combine(outputdirectory, outputfilename.ToString());
 
 	            if (File.Exists(outputfilepath))
 	            {
@@ -230,9 +245,20 @@
                 string json = reportBuilder.ToJson();
                 if (!string.IsNullOrEmpty(json))
                 {
-                    string outputfilename = $"{reportBuilderParameters.PipelineEnvironmentOptions.BuildID}-TestResults.json";
-                    Log?.Info($"Outputting json file to {outputfilename}.");
-                    File.WriteAllText(Path.Combine(outputdirectory, outputfilename), json);
+                    StringBuilder outputfilename = new StringBuilder();
+
+                    if (clOptions.TestRunType == ReportBuilderParameters.TestType.Unit)
+                    {
+                        outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.BuildID}");
+                    }
+                    else
+                    {
+                        outputfilename.Append($"{reportBuilderParameters.PipelineEnvironmentOptions.ReleaseID}");
+                    }
+
+                    outputfilename.Append($"-TestResults.json");
+                    Log?.Info($"Outputting json file to {outputfilename.ToString()}.");
+                    File.WriteAllText(Path.Combine(outputdirectory, outputfilename.ToString()), json);
                 }
             }
 

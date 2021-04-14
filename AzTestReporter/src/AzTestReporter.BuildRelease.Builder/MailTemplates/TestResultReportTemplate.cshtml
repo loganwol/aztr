@@ -858,73 +858,76 @@ height: 5.4pt
                                                 alignment = "middle";
                                             }
 
-                                            <tr id="@rowid">
-                                                @if (@failuredetail.RowCount > 0)
-                                                {
-                                                    <td rowspan="@failuredetail.RowCount" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
-                                                        <p class=MsoNormal align="center" style='text-align:center;'>
-                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
-                                                                <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
-                                                            </span>
-                                                            <o:p></o:p>
-                                                        </p>
-                                                    </td>
-                                                }
-
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="@failuredetail.LinktoRunWeb">@failuredetail.TestName</a></span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.Duration</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.ErrorMessage</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-
-                                                @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
-                                                {
-                                                    var bugAlignment = "top";
-                                                    if (failuredetail.BugandLink.Count == 1)
+                                            for (int i = 0; i < failuredetail.FailuresinTestArea.Count(); i++)
+                                            {
+                                                <tr id="@rowid">
+                                                    @if (i == 0)
                                                     {
-                                                        bugAlignment = "middle";
-                                                    }
-                                                    foreach (var bugandlink in failuredetail.BugandLink)
-                                                    {
-                                                        <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
-                                                            <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="#@bugandlink.Key">@bugandlink.Key</a></span>
+                                                        <td rowspan="@failuredetail.FailuresinTestArea.Count()" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
+                                                            <p class=MsoNormal align="center" style='text-align:center;'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                                    <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
+                                                                </span>
                                                                 <o:p></o:p>
                                                             </p>
                                                         </td>
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;'>
-                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'></span>
+
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                            <a href="@failuredetail.LinktoRunWeb">@failuredetail.FailuresinTestArea[i].TestName</a></span>
                                                             <o:p></o:p>
                                                         </p>
                                                     </td>
-                                                }
-                                            </tr>
-                                        }
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailuresinTestArea[i].Duration</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailuresinTestArea[i].ErrorMessage</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
 
+                                                    @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
+                                                    {
+                                                        var bugAlignment = "top";
+                                                        if (failuredetail.BugandLink.Count == 1)
+                                                        {
+                                                            bugAlignment = "middle";
+                                                        }
+                                                        foreach (var bugandlink in failuredetail.BugandLink)
+                                                        {
+                                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
+                                                                <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                                    <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="#@bugandlink.Key">@bugandlink.Key</a></span>
+                                                                    <o:p></o:p>
+                                                                </p>
+                                                            </td>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;'>
+                                                            <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'></span>
+                                                                <o:p></o:p>
+                                                            </p>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
                                     }
                                 </tbody>
                             </table>
