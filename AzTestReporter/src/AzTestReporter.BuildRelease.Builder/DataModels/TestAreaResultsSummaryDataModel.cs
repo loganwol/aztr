@@ -21,7 +21,7 @@
 
             foreach (var testresult in testResults)
             {
-                if (testresult.TestSubResults.Any())
+                if (testresult.TestSubResults != null && testresult.TestSubResults.Any())
                 {
                     this.Total += testresult.TestSubResults.Count();
                     this.Passed += testresult.TestSubResults

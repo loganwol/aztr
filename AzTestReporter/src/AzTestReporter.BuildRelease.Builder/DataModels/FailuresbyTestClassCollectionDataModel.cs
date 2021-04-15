@@ -39,7 +39,15 @@
                         rowcount += testswithoutsubresults.Count();
                     }
 
-                    //    .SelectMany(r => r.TestSubResults).ToList();
+                    var failuredm = new FailuresbyTestAreaDataModel()
+                    {
+                        TestClassName = feature,
+                        TestNamespace = testRunCasesFailures.First().TestNamespace,
+                        FailingSince = testRunCasesFailures.First().FailingSince != null ?
+                                    this.ConvertToDays(testRunCasesFailures.First().FailingSince.Date) : string.Empty,
+                    };
+
+                    failuredm.FailuresinTestArea = new List<FailuresinTestAreaDataModel>();
 
                     for (int i = 0; i < testRunCasesFailures.Count; i++)
                     {
@@ -60,20 +68,10 @@
                             rowcount = -1;
                         }
 
-                        if (!testRunCasesFailures[i].TestSubResults.Any())
-                        {
-                            var failuredm = new FailuresbyTestAreaDataModel()
-                            {
-                                RowCount = i == 0? rowcount: -1,
-                                TestClassName = feature,
-                                BugandLink = bugsandlinks,
-                                TestNamespace = testRunCasesFailures[i].TestNamespace,
-                                FailingSince = testRunCasesFailures[i].FailingSince != null ?
-                                    this.ConvertToDays(testRunCasesFailures[i].FailingSince.Date) : string.Empty,
-                                //LinktoRunWeb = $"{resultsrooturl}&runId={testRunCasesFailures[i].TestRun.Id}&resultId={testRunCasesFailures[i].Id}"
-                            };
+                        failuredm.BugandLink = bugsandlinks;
 
-                            failuredm.FailuresinTestArea = new List<FailuresinTestAreaDataModel>();
+                        if (testRunCasesFailures[i].TestSubResults == null || !testRunCasesFailures[i].TestSubResults.Any())
+                        { 
                             var failure = new FailuresinTestAreaDataModel(){
                                 Duration = this.ConvertToSecondsMilliseconds(
                                     Convert.ToDateTime(testRunCasesFailures[i].CompletedDate, CultureInfo.InvariantCulture) -
@@ -83,19 +81,9 @@
                             };
 
                             failuredm.FailuresinTestArea.Add(failure);
-                            this.Add(failuredm);
                         }
                         else
                         {
-                            var failuredm = new FailuresbyTestAreaDataModel()
-                            {
-                                RowCount = i == 0 ? rowcount : -1,
-                                TestClassName = feature,
-                                BugandLink = bugsandlinks,
-                                TestNamespace = testRunCasesFailures[i].TestNamespace,
-                                //LinktoRunWeb = $"{resultsrooturl}&runId={testRunCasesFailures[i].TestRun.Id}&resultId={testRunCasesFailures[i].Id}"
-                            };
-
                             var subfailures = new List<FailuresinTestAreaDataModel>();
                             testRunCasesFailures[i].TestSubResults
                                 .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed)
@@ -115,9 +103,10 @@
                             });
 
                             failuredm.FailuresinTestArea = subfailures;
-                            this.Add(failuredm);
                         }
                     }
+
+                    this.Add(failuredm);
                 }
             }
         }

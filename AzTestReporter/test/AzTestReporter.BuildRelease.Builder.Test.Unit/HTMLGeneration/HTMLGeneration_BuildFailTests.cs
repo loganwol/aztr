@@ -9,6 +9,7 @@
     using Newtonsoft.Json;
     using AzTestReporter.BuildRelease.Apis;
     using Xunit;
+    using System;
 
     [ExcludeFromCodeCoverage]
     
@@ -200,7 +201,9 @@
 
             var testresults = AzureSuccessReponse.ConvertTo<TestResultData>(testRunResultSuccessReponse);
             testresults[0].Outcome = Apis.Common.OutcomeEnum.Failed;
+            testresults[0].FailingSince = new FailingSince() { Date = DateTime.Now.AddDays(-2) };
             testresults[5].Outcome = Apis.Common.OutcomeEnum.Failed;
+            testresults[5].FailingSince = new FailingSince() { Date = DateTime.Now.AddDays(-1) };
 
             responseBody = JsonConvert.SerializeObject(testresults);
             testRunResultSuccessReponse = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(responseBody);
@@ -227,20 +230,19 @@
             element = htmlFailDocument.GetElementbyId("failuresbytestclassrow");
             element.Should().NotBeNull();
 
-            element = htmlFailDocument.GetElementbyId("failuresrow1");
-            element.Should().NotBeNull();
+            element = htmlFailDocument.GetElementbyId("failuresrow0");
 
             // Get the first cell. This is the important cell that sets the rowspan
             // grouped by the Rowcount property. 
-            htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes.Count.Should().BeGreaterOrEqualTo(11);
+            element.ChildNodes.Count.Should().BeGreaterOrEqualTo(9);
 
-            element = htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes[1];
+            element = htmlFailDocument.GetElementbyId("featurecell1");
             element.Name.Should().Be("td");
             element.Attributes["rowspan"].Value.Should().Be("2");
 
             // For all subsequent rows for a test area collection, the first cell
             // is removed. Hence rows 2 & 8 should not have the rowspan set on them.
-            element = htmlFailDocument.GetElementbyId("failuresrow2").ChildNodes[1];
+            element = htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes[1];
             element.Name.Should().Be("td");
             element.Attributes["rowspan"].Should().BeNull();
 

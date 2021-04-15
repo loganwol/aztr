@@ -241,7 +241,7 @@
                             {
                                 var testresultswithsubtestdata = buildandReleaseReader.GetTestResultWithLinksAsync(run.Id, test.Id).GetAwaiter().GetResult();
 
-                                if (testresultswithsubtestdata.TestSubResults.Any())
+                                if (testresultswithsubtestdata != null && testresultswithsubtestdata.TestSubResults != null && testresultswithsubtestdata.TestSubResults.Any())
                                 {
                                     originalrunstatistic.count--;
 

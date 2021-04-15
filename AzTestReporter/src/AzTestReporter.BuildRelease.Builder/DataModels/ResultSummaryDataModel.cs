@@ -39,11 +39,12 @@
                     .Where(r => r.outcome == Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
                 this.Failed += testRunResult.RunStatistics
                     .Where(r => r.outcome == Apis.Common.OutcomeEnum.Failed).Sum(r => r.count);
-                
-                totalNum += this.Passed + this.Failed;
+                this.NotExecuted += testRunResult.RunStatistics
+                    .Where(r => r.outcome != Apis.Common.OutcomeEnum.Passed && r.outcome != Apis.Common.OutcomeEnum.Failed)
+                    .Sum(r => r.count);
             }
 
-            this.Total = totalNum;
+            this.Total = this.Passed + this.Failed + this.NotExecuted;
         }
 
         /// <summary>
@@ -64,7 +65,7 @@
         /// <summary>
         /// Gets the total number of tests that have not have been executed.
         /// </summary>
-        public int NotExecuted => this.Total - (this.Passed + this.Failed);
+        public int NotExecuted { get; set; }
 
         /// <summary>
         /// Gets the percentage of tests passing.

@@ -442,7 +442,7 @@
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
-            var failuresrow = htmlDocument.GetElementbyId("failuresrow1");
+            var failuresrow = htmlDocument.GetElementbyId("failuresrow0");
             failuresrow.Should().NotBeNull();
 
             var bugstablerow = htmlDocument.GetElementbyId("bugstableheaderrow");
