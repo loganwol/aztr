@@ -291,13 +291,14 @@
                         <tbody>
                             <tr style='height:90pt'>
                                 @{
-                                    if (@Model.ResultSummary != null)
+                                    
+                                    if (@Model.ResultSummary != null && @Model.ResultSummary.Summary != null)
                                     {
                                         <td width=154 style='border:inset gray 1.0pt;border-top:none;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="passrate">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.PassRate</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.Summary.PassRate</span>
                                                     </span>
                                                 </b>
                                                 <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>%</span>
@@ -308,7 +309,7 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="passedtests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:lightgreen'>@Model.ResultSummary.Passed</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:lightgreen'>@Model.ResultSummary.Summary.Passed</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
@@ -318,15 +319,15 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="failedtests">
-                                                        @if (@Model.ResultSummary.Failed > 0)
+                                                        @if (@Model.ResultSummary.Summary.Failed > 0)
                                                         {
                                                             <a id="failedtestslink" href="#FailuresbyTestClass">
-                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Summary.Failed</span>
                                                             </a>
                                                         }
                                                         else
                                                         {
-                                                            <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                            <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Summary.Failed</span>
                                                         }
                                                     </span>
                                                 </b>
@@ -337,7 +338,7 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="notexecutedtests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.NotExecuted</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.Summary.NotExecuted</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
@@ -347,20 +348,20 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="totaltests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%'>@Model.ResultSummary.Total</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%'>@Model.ResultSummary.Summary.Total</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
                                             </p>
                                         </td>
-                                        if (@Model.ResultSummary.CodeCoverage >= 0)
+                                        if (@Model.ResultSummary.Summary.CodeCoverage >= 0)
                                         {
                                             <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
                                                 <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                     <b>
                                                         <span id="codecoverage">
                                                             <a id="codecoveragetestslink" href="#codecoverageresults">
-                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black'>@Model.ResultSummary.CodeCoverage%</span>
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black'>@Model.ResultSummary.Summary.CodeCoverage%</span>
                                                             </a>
                                                         </span>
                                                     </b>

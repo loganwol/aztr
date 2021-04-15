@@ -12,7 +12,8 @@
     {
         public FailuresbyTestClassCollectionDataModel(
             string resultsrooturl,
-            IReadOnlyList<TestResultData> testResultDataList)
+            IReadOnlyList<TestResultData> testResultDataList,
+            bool summarizewithsubresults = false)
         {
             //Requires.NotNullOrEmpty(azureprojectname, nameof(azureprojectname));
             Requires.NotNull(testResultDataList, nameof(testResultDataList));
@@ -26,19 +27,6 @@
 
                 if (testRunCasesFailures.Any())
                 {
-                    int rowcount = 0;
-                    var testswithsubresults = testRunCasesFailures.Where(r => r.TestSubResults != null);
-                    if (testswithsubresults.Any())
-                    {
-                        rowcount += testswithsubresults.SelectMany(r => r.TestSubResults).Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed).Count();
-                    }
-
-                    var testswithoutsubresults = testRunCasesFailures.Where(r => r.TestSubResults != null);
-                    if (testswithoutsubresults.Any())
-                    {
-                        rowcount += testswithoutsubresults.Count();
-                    }
-
                     var failuredm = new FailuresbyTestAreaDataModel()
                     {
                         TestClassName = feature,
@@ -63,14 +51,9 @@
                             }
                         }
 
-                        if (i != 0)
-                        {
-                            rowcount = -1;
-                        }
-
                         failuredm.BugandLink = bugsandlinks;
 
-                        if (testRunCasesFailures[i].TestSubResults == null || !testRunCasesFailures[i].TestSubResults.Any())
+                        if (!summarizewithsubresults)
                         { 
                             var failure = new FailuresinTestAreaDataModel(){
                                 Duration = this.ConvertToSecondsMilliseconds(
@@ -82,7 +65,7 @@
 
                             failuredm.FailuresinTestArea.Add(failure);
                         }
-                        else
+                        else if(testRunCasesFailures[i].TestSubResults != null && testRunCasesFailures[i].TestSubResults.Any())
                         {
                             var subfailures = new List<FailuresinTestAreaDataModel>();
                             testRunCasesFailures[i].TestSubResults

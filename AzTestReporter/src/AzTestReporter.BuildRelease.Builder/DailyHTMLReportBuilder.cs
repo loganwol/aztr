@@ -67,7 +67,9 @@
             {
                 if (this.dailyResultSummaryDataModel.ResultSummary != null)
                 {
-                    return this.dailyResultSummaryDataModel.ResultSummary.PassRate;
+                    return this.dailyResultSummaryDataModel.ShowSummarizedSubResults?
+                        this.dailyResultSummaryDataModel.ResultSummary.SubResultsSummaryDataModel.PassRate:
+                        this.dailyResultSummaryDataModel.ResultSummary.OverallResultSummaryDataModel.PassRate;
                 }
 
                 return 0;
@@ -107,7 +109,7 @@
                 throw new TestResultReportingException("There are no summary results.");
             }
 
-            if (!(this.dailyResultSummaryDataModel.ResultSummary.PassRate >= 0))
+            if (!(this.PassRate >= 0))
             {
                 throw new TestResultReportingException("Result Summary has a negative pass rate.");
             }

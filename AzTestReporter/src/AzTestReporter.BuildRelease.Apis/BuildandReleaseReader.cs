@@ -182,7 +182,7 @@ namespace AzTestReporter.BuildRelease.Apis
 
             string responseBody = await this.QueryAzureDevOpsAsyncGetResponseBody(query);
             Log?.Trace("Getting Test result with links.");
-            debugoutputfilename = "aztr-TestResultLinks";
+            debugoutputfilename = $"aztr-TestResultLinks-{runId}-{resultId}";
             return JsonConvert.DeserializeObject<TestResultData>(responseBody);
         }
 

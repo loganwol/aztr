@@ -88,9 +88,9 @@
                 .And.NotContain("(Private)");
 
             dailyreport.dailyResultSummaryDataModel.ResultSummary.Should().NotBeNull();
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Total.Should().Be(16);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Failed.Should().Be(0);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.NotExecuted.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Total.Should().Be(16);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Failed.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.NotExecuted.Should().Be(0);
             dailyreport.dailyResultSummaryDataModel.TestClassResultsSummary.Should().NotBeNull()
                 .And.HaveCount(1);
 
@@ -212,9 +212,9 @@
             dailyreport.ToHTML().Should().NotBeNullOrEmpty();
 
             dailyreport.dailyResultSummaryDataModel.ResultSummary.Should().NotBeNull();
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Total.Should().Be(16);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Failed.Should().Be(0);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.NotExecuted.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Total.Should().Be(16);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Failed.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.NotExecuted.Should().Be(0);
             dailyreport.dailyResultSummaryDataModel.TestClassResultsSummary.Should().NotBeNull()
                 .And.HaveCount(1);
 
@@ -521,9 +521,9 @@
 
             // Verify
             dailyreport.dailyResultSummaryDataModel.ResultSummary.Should().NotBeNull();
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Total.Should().Be(20);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.Failed.Should().Be(0);
-            dailyreport.dailyResultSummaryDataModel.ResultSummary.NotExecuted.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Total.Should().Be(20);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.Failed.Should().Be(0);
+            dailyreport.dailyResultSummaryDataModel.ResultSummary.Summary.NotExecuted.Should().Be(0);
             dailyreport.dailyResultSummaryDataModel.TestClassResultsSummary.Should().NotBeNull()
                 .And.HaveCount(1);
 

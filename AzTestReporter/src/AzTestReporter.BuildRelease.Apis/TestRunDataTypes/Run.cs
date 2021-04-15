@@ -32,6 +32,8 @@
 
         public List<RunStatistic> RunStatistics { get; set; }
 
+        public List<RunStatistic> SubTestResultStatistics { get; set; } = new List<RunStatistic>();
+
         public Run(List<RunStatistic> runStatistics)
         {
             RunStatistics = runStatistics;

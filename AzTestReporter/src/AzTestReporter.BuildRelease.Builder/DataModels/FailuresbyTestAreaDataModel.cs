@@ -13,8 +13,6 @@
         public Dictionary<string, string> BugandLink { get; set; }
 
         public string LinktoRunWeb { get; set; }
-        
-        public int RowCount { get; internal set; }
 
         public List<FailuresinTestAreaDataModel> FailuresinTestArea;
     }

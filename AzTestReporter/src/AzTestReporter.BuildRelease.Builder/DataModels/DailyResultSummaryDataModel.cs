@@ -54,10 +54,17 @@
 
             if (testResultBuilderParameters.TestRunsList != null)
             {
-                this.ResultSummary = new ResultSummaryDataModel(testResultBuilderParameters.TestRunsList);
+                this.ResultSummary = new ResultSummaryDataModel(testResultBuilderParameters.TestRunsList, this.ShowSummarizedSubResults);
                 if (testResultBuilderParameters.CodeCoverageData == null)
                 {
-                    this.ResultSummary.CodeCoverage = -1;
+                    if (this.ShowSummarizedSubResults)
+                    {
+                        this.ResultSummary.SubResultsSummaryDataModel.CodeCoverage = -1;
+                    }
+                    else
+                    {
+                        this.ResultSummary.OverallResultSummaryDataModel.CodeCoverage = -1;
+                    }
                 }
 
                 this.TestRunLinks = new TestRunNameLinksCollectionDataModel(testResultBuilderParameters.TestRunsList);
@@ -85,14 +92,15 @@
 
                     this.FailuresbyTestClass = new FailuresbyTestClassCollectionDataModel(
                             resultsrooturl.ToString(),
-                            testResultBuilderParameters.TestResultsData);
+                            testResultBuilderParameters.TestResultsData,
+                            testResultBuilderParameters.ShowSummarizedSubResults);
                 }
 
                 this.BuildVersion = testResultBuilderParameters.TestResultsData?.Select(x => x.Build.Name).FirstOrDefault();
 
                 // Use the same object in the HTML to generate the summary table.
                 this.TestClassResultsSummary = new TestAreaResultsSummaryCollectionDataModel(
-                    testResultBuilderParameters.TestResultsData);
+                    testResultBuilderParameters.TestResultsData, testResultBuilderParameters.ShowSummarizedSubResults);
             }
 
             if (testResultBuilderParameters.CodeCoverageData != null)
@@ -107,7 +115,14 @@
                     this.TotalCodeCoverageBlocks = (int)totalblocks;
                     this.TotalCoveredCodeCoverageBlocks = (int)coveredblocks;
 
-                    this.ResultSummary.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    if (testResultBuilderParameters.ShowSummarizedSubResults)
+                    {
+                        this.ResultSummary.SubResultsSummaryDataModel.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    }
+                    else
+                    {
+                        this.ResultSummary.OverallResultSummaryDataModel.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    }
                 }
             }
 
@@ -222,5 +237,7 @@
         /// Gets or sets the date the build or release was executed.
         /// </summary>
         public string ExecutionDate { get; set; }
+
+        public bool ShowSummarizedSubResults { get; set; }
     }
 }

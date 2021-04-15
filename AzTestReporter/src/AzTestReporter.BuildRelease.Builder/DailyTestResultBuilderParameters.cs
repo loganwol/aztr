@@ -129,6 +129,9 @@
         public DateTime ExecutionTime { get; set; } = DateTime.MinValue;
 
         public string ReleaseName { get; set; }
+
         public string ResultsLink { get; internal set; }
+
+        public bool ShowSummarizedSubResults { get; set; }
     }
 }

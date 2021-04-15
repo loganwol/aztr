@@ -5,13 +5,13 @@
     using System.Linq;
     using Validation;
 
-    public class TestAreaResultsSummaryDataModel : ResultSummaryDataModel
+    public class TestAreaResultsSummaryDataModel : RunResultSummaryDataModel
     {
         public string TestClassName { get; internal set; }
 
         public string TestNamespace { get; internal set; }
 
-        public TestAreaResultsSummaryDataModel(string testclassname, List<TestResultData> testResults)
+        public TestAreaResultsSummaryDataModel(string testclassname, List<TestResultData> testResults, bool summarizewithsubresults = false)
         {
             Requires.NotNull(testResults, nameof(testResults));
 
@@ -21,9 +21,8 @@
 
             foreach (var testresult in testResults)
             {
-                if (testresult.TestSubResults != null && testresult.TestSubResults.Any())
+                if (summarizewithsubresults && testresult.TestSubResults.Any())
                 {
-                    this.Total += testresult.TestSubResults.Count();
                     this.Passed += testresult.TestSubResults
                         .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();
                     this.Failed += testresult.TestSubResults
@@ -31,7 +30,6 @@
                 }
                 else
                 {
-                    this.Total++;
                     this.Passed += testresult.Outcome == Apis.Common.OutcomeEnum.Passed ? 1 : 0;
                     this.Failed += testresult.Outcome == Apis.Common.OutcomeEnum.Failed ? 1 : 0;
                 }

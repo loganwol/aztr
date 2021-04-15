@@ -236,26 +236,38 @@
                         var datadriventests = testDataCollection.FindAll(r => r.ResultGroupType == ResultGroupTypeEnum.dataDriven);
                         if (datadriventests.Any())
                         {
-                            var originalrunstatistic = run.RunStatistics[0];
                             datadriventests.ForEach(test =>
                             {
                                 var testresultswithsubtestdata = buildandReleaseReader.GetTestResultWithLinksAsync(run.Id, test.Id).GetAwaiter().GetResult();
 
                                 if (testresultswithsubtestdata != null && testresultswithsubtestdata.TestSubResults != null && testresultswithsubtestdata.TestSubResults.Any())
                                 {
-                                    originalrunstatistic.count--;
-
                                     var subtestresultstatistic = new RunStatistic();
-                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList().Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();
-                                    subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Passed;
-
-                                    run.RunStatistics.Add(subtestresultstatistic);
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Passed;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
 
                                     subtestresultstatistic = new RunStatistic();
-                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList().Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed).Count();
-                                    subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Failed;
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Failed;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
 
-                                    run.RunStatistics.Add(subtestresultstatistic);
+                                    subtestresultstatistic = new RunStatistic();
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome != Apis.Common.OutcomeEnum.Failed && r.Outcome != Apis.Common.OutcomeEnum.Passed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Unspecified;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
                                 }
                             });
                         }
@@ -322,6 +334,7 @@
             testResultBuilderParameters.PipelineVariables = pipelineVariables;
             testResultBuilderParameters.ExecutionTime = executiontime;
             testResultBuilderParameters.ReleaseName = releasename;
+            testResultBuilderParameters.ShowSummarizedSubResults = builderParameters.ShowSummarizedSubResults;
 
             if (coverageAggregateColl != null && coverageAggregateColl.All.Count > 0)
             {
