@@ -36,7 +36,7 @@
             
             // Simulate failure.
             var testresults = AzureSuccessReponse.ConvertTo<TestResultData>(testRunResultSuccessReponse);
-            testresults[1].Outcome = "Failed";
+            testresults[1].Outcome = Apis.Common.OutcomeEnum.Failed;
 
             responseBody = JsonConvert.SerializeObject(testresults);
             testRunResultSuccessReponse = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(responseBody);
@@ -65,14 +65,14 @@
             element = this.htmlDocument.GetElementbyId("failuresbytestclassrow");
             element.Should().NotBeNull();
 
-            element = this.htmlDocument.GetElementbyId("failuresrow1");
+            element = this.htmlDocument.GetElementbyId("failuresrow0");
             element.Should().NotBeNull();
 
             // Get the first cell. This is the important cell that sets the rowspan
             // grouped by the Rowcount property.
-            this.htmlDocument.GetElementbyId("failuresrow1").ChildNodes.Count.Should().BeGreaterOrEqualTo(11);
+            element.ChildNodes.Count.Should().BeGreaterOrEqualTo(9);
 
-            element = this.htmlDocument.GetElementbyId("failuresrow1").ChildNodes[1];
+            element = this.htmlDocument.GetElementbyId("featurecell1");
             element.Name.Should().Be("td");
             element.Attributes["rowspan"].Value.Should().Be("1");
         }
@@ -80,7 +80,7 @@
         [Fact]
         public void Generated_html_contains_duration_formatted_to_second_dot_milliseconds()
         {
-            var element = this.htmlDocument.GetElementbyId("failuresrow1");
+            var element = this.htmlDocument.GetElementbyId("failuresrow0");
 
             element.ChildNodes[5].InnerText.RemoveHTMLExtras().Should().Be("0.0000");
         }

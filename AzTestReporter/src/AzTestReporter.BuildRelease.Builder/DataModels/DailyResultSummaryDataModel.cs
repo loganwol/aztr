@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using AutoMapper;
     using AzTestReporter.BuildRelease.Apis;
     using Validation;
@@ -24,8 +25,8 @@
                 cnf.CreateMap<DailyTestResultBuilderParameters, DailyResultSummaryDataModel>()
                             .ForMember(dest => dest.AzureProjectName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.SystemTeamProject))
                             .ForMember(dest => dest.RepoName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.BuildRepositoryName))
-                            .ForMember(dest => dest.ReleaseName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseName))
                             .ForMember(dest => dest.BranchName, act => act.MapFrom(src => src.PipelineEnvironmentOptions.ReleaseSourceBranchName))
+                            .ForMember(dest => dest.ReleaseName, act => act.MapFrom(src => src.ReleaseName))
                             .ForMember(dest => dest.ToolVersion, act => act.MapFrom(src => src.ToolVersion))
                             .ForMember(dest => dest.IsPrivateRun, act => act.MapFrom(src => src.IsPrivateRelease))
                             .ForMember(dest => dest.FailedTaskName, act => act.MapFrom(src => src.FailedTaskName))
@@ -53,10 +54,17 @@
 
             if (testResultBuilderParameters.TestRunsList != null)
             {
-                this.ResultSummary = new ResultSummaryDataModel(testResultBuilderParameters.TestRunsList);
+                this.ResultSummary = new ResultSummaryDataModel(testResultBuilderParameters.TestRunsList, this.ShowSummarizedSubResults);
                 if (testResultBuilderParameters.CodeCoverageData == null)
                 {
-                    this.ResultSummary.CodeCoverage = -1;
+                    if (this.ShowSummarizedSubResults)
+                    {
+                        this.ResultSummary.SubResultsSummaryDataModel.CodeCoverage = -1;
+                    }
+                    else
+                    {
+                        this.ResultSummary.OverallResultSummaryDataModel.CodeCoverage = -1;
+                    }
                 }
 
                 this.TestRunLinks = new TestRunNameLinksCollectionDataModel(testResultBuilderParameters.TestRunsList);
@@ -66,16 +74,33 @@
             {
                 if (testResultBuilderParameters.ContainsFailures)
                 {
+                    StringBuilder resultsrooturl = new StringBuilder(testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamFoundationCollectionURI);
+                    resultsrooturl.Append($"{testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamProject}/");
+                    if (testResultBuilderParameters.IsUnitTest)
+                    {
+                        resultsrooturl.Append($"_build/results?buildId={testResultBuilderParameters.PipelineEnvironmentOptions.BuildID}&view=ms.vss-test-web.build-test-results-tab");
+                    }
+                    else
+                    {
+                        resultsrooturl.Append($"_releaseProgress?_a=release-environment-extension");
+                        resultsrooturl.Append("&releaseId=");
+                        resultsrooturl.Append(testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseID);
+                        resultsrooturl.Append("&environmentId=");
+                        resultsrooturl.Append(testResultBuilderParameters.PipelineEnvironmentOptions.ReleaseStageID);
+                        resultsrooturl.Append($"&extensionId=ms.vss-test-web.test-result-in-release-environment-editor-tab");
+                    }
+
                     this.FailuresbyTestClass = new FailuresbyTestClassCollectionDataModel(
-                            testResultBuilderParameters.PipelineEnvironmentOptions.SystemTeamProject,
-                            testResultBuilderParameters.TestResultsData);
+                            resultsrooturl.ToString(),
+                            testResultBuilderParameters.TestResultsData,
+                            testResultBuilderParameters.ShowSummarizedSubResults);
                 }
 
                 this.BuildVersion = testResultBuilderParameters.TestResultsData?.Select(x => x.Build.Name).FirstOrDefault();
 
                 // Use the same object in the HTML to generate the summary table.
                 this.TestClassResultsSummary = new TestAreaResultsSummaryCollectionDataModel(
-                    testResultBuilderParameters.TestResultsData);
+                    testResultBuilderParameters.TestResultsData, testResultBuilderParameters.ShowSummarizedSubResults);
             }
 
             if (testResultBuilderParameters.CodeCoverageData != null)
@@ -90,7 +115,14 @@
                     this.TotalCodeCoverageBlocks = (int)totalblocks;
                     this.TotalCoveredCodeCoverageBlocks = (int)coveredblocks;
 
-                    this.ResultSummary.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    if (testResultBuilderParameters.ShowSummarizedSubResults)
+                    {
+                        this.ResultSummary.SubResultsSummaryDataModel.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    }
+                    else
+                    {
+                        this.ResultSummary.OverallResultSummaryDataModel.CodeCoverage = (int)((coveredblocks / totalblocks) * 100);
+                    }
                 }
             }
 
@@ -205,5 +237,7 @@
         /// Gets or sets the date the build or release was executed.
         /// </summary>
         public string ExecutionDate { get; set; }
+
+        public bool ShowSummarizedSubResults { get; set; }
     }
 }

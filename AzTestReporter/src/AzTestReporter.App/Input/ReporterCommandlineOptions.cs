@@ -40,6 +40,9 @@
         [Option('f', HelpText = "Specify the output format of the report (options are HTML|JSON|All)", Default = OutputFormat.HTML )]
         public OutputFormat OutputFormat { get; set; }
 
+        [Option('s', HelpText = "Show summarized sub results")]
+        public bool ShowSummarizedSubResults { get; set; }
+
         public AzurePipelineEnvironmentOptions PipelineEnvironmentOptions { get; set; }
 
         public void ProcessPipelineEnvVars()

@@ -291,13 +291,14 @@
                         <tbody>
                             <tr style='height:90pt'>
                                 @{
-                                    if (@Model.ResultSummary != null)
+                                    
+                                    if (@Model.ResultSummary != null && @Model.ResultSummary.Summary != null)
                                     {
                                         <td width=154 style='border:inset gray 1.0pt;border-top:none;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="passrate">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.PassRate</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.Summary.PassRate</span>
                                                     </span>
                                                 </b>
                                                 <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>%</span>
@@ -308,7 +309,7 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="passedtests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:lightgreen'>@Model.ResultSummary.Passed</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:lightgreen'>@Model.ResultSummary.Summary.Passed</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
@@ -318,15 +319,15 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="failedtests">
-                                                        @if (@Model.ResultSummary.Failed > 0)
+                                                        @if (@Model.ResultSummary.Summary.Failed > 0)
                                                         {
                                                             <a id="failedtestslink" href="#FailuresbyTestClass">
-                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Summary.Failed</span>
                                                             </a>
                                                         }
                                                         else
                                                         {
-                                                            <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Failed</span>
+                                                            <span style='font-size:35.0pt;font-family:"Calibri";color:#fc4e2a'>@Model.ResultSummary.Summary.Failed</span>
                                                         }
                                                     </span>
                                                 </b>
@@ -337,7 +338,7 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="notexecutedtests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.NotExecuted</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;'>@Model.ResultSummary.Summary.NotExecuted</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
@@ -347,20 +348,20 @@
                                             <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                 <b>
                                                     <span id="totaltests">
-                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%'>@Model.ResultSummary.Total</span>
+                                                        <span style='font-size:35.0pt;font-family:"Calibri";color:black;mso-style-textfill-fill-color:black;mso-style-textfill-fill-alpha:100.0%'>@Model.ResultSummary.Summary.Total</span>
                                                     </span>
                                                 </b>
                                                 <o:p></o:p>
                                             </p>
                                         </td>
-                                        if (@Model.ResultSummary.CodeCoverage >= 0)
+                                        if (@Model.ResultSummary.Summary.CodeCoverage >= 0)
                                         {
                                             <td width=154 style='border-top:none;border-left:none;border-bottom:inset gray 1.0pt;border-right:inset gray 1.0pt;background:white;padding:0in 0in 0in 0in;height:65.0pt'>
                                                 <p class=MsoNormal align=center style='margin:1.5pt;text-align:center;vertical-align:top'>
                                                     <b>
                                                         <span id="codecoverage">
                                                             <a id="codecoveragetestslink" href="#codecoverageresults">
-                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black'>@Model.ResultSummary.CodeCoverage%</span>
+                                                                <span style='font-size:35.0pt;font-family:"Calibri";color:black'>@Model.ResultSummary.Summary.CodeCoverage%</span>
                                                             </a>
                                                         </span>
                                                     </b>
@@ -844,87 +845,92 @@ height: 5.4pt
                                 <tbody>
                                     @{
 
-                                        var rownumber = 1;
                                         var rowid = string.Empty;
+                                        var featurecell = string.Empty;
+                                        var featurecount = 1;
 
                                         foreach (var failuredetail in @Model.FailuresbyTestClass)
                                         {
-                                            rowid = "failuresrow" + rownumber.ToString();
-                                            rownumber++;
+                                            featurecell = "featurecell" + featurecount.ToString();
+                                            featurecount++;
 
                                             var alignment = "top";
-                                            if (failuredetail.RowCount == 1)
+                                            if (failuredetail.FailuresinTestArea.Count() == 1)
                                             {
                                                 alignment = "middle";
                                             }
 
-                                            <tr id="@rowid">
-                                                @if (@failuredetail.RowCount > 0)
-                                                {
-                                                    <td rowspan="@failuredetail.RowCount" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
-                                                        <p class=MsoNormal align="center" style='text-align:center;'>
-                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
-                                                                <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
-                                                            </span>
-                                                            <o:p></o:p>
-                                                        </p>
-                                                    </td>
-                                                }
-
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="@failuredetail.LinktoRunWeb">@failuredetail.TestName</a></span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.Duration</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.ErrorMessage</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-                                                <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
-                                                    <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                        <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
-                                                        <o:p></o:p>
-                                                    </p>
-                                                </td>
-
-                                                @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
-                                                {
-                                                    var bugAlignment = "top";
-                                                    if (failuredetail.BugandLink.Count == 1)
+                                            for (int i = 0; i < failuredetail.FailuresinTestArea.Count(); i++)
+                                            {
+                                                rowid = "failuresrow" + i.ToString();
+                                                <tr id="@rowid">
+                                                    @if (i == 0)
                                                     {
-                                                        bugAlignment = "middle";
-                                                    }
-                                                    foreach (var bugandlink in failuredetail.BugandLink)
-                                                    {
-                                                        <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
-                                                            <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="#@bugandlink.Key">@bugandlink.Key</a></span>
+                                                        <td id="@featurecell" rowspan="@failuredetail.FailuresinTestArea.Count()" style='border:solid #A5A5A5 1.0pt;border-top:none;padding:4pt;vertical-align:@alignment'>
+                                                            <p class=MsoNormal align="center" style='text-align:center;'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                                    <a name="@failuredetail.TestClassName">@failuredetail.TestClassName</a>
+                                                                </span>
                                                                 <o:p></o:p>
                                                             </p>
                                                         </td>
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;'>
-                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
-                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'></span>
+
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal style='mso-margin-top-alt:0in;margin-right:1.5pt;margin-bottom:1.5pt;margin-left:7.5pt;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>
+                                                            <a href="@failuredetail.LinktoRunWeb">@failuredetail.FailuresinTestArea[i].TestName</a></span>
                                                             <o:p></o:p>
                                                         </p>
                                                     </td>
-                                                }
-                                            </tr>
-                                        }
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailuresinTestArea[i].Duration</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align="left" style='text-align:left;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailuresinTestArea[i].ErrorMessage</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
+                                                    <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt'>
+                                                        <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                            <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'>@failuredetail.FailingSince</span>
+                                                            <o:p></o:p>
+                                                        </p>
+                                                    </td>
 
+                                                    @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
+                                                    {
+                                                        var bugAlignment = "top";
+                                                        if (failuredetail.BugandLink.Count == 1)
+                                                        {
+                                                            bugAlignment = "middle";
+                                                        }
+                                                        foreach (var bugandlink in failuredetail.BugandLink)
+                                                        {
+                                                            <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
+                                                                <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                                    <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'><a href="#@bugandlink.Key">@bugandlink.Key</a></span>
+                                                                    <o:p></o:p>
+                                                                </p>
+                                                            </td>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;'>
+                                                            <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>
+                                                                <span style='font-size:9.0pt;font-family:"Calibri";color:#606060'></span>
+                                                                <o:p></o:p>
+                                                            </p>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
                                     }
                                 </tbody>
                             </table>

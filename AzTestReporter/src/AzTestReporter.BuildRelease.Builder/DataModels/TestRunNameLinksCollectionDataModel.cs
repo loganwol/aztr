@@ -23,7 +23,7 @@
                 {
                     Name = r.Key,
                     Url = r.Value,
-                    TestsUrl = r.Value.Replace("runCharts", "resultQuery"),
+                    TestsUrl = r.Value.Replace("runCharts", "resultQuery")
                 }).ToList());
             }
         }

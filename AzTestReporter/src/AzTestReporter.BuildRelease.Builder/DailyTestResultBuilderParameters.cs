@@ -127,5 +127,11 @@
         /// Gets or Sets a value indicating what time the build used to run tests was completed.
         /// </summary>
         public DateTime ExecutionTime { get; set; } = DateTime.MinValue;
+
+        public string ReleaseName { get; set; }
+
+        public string ResultsLink { get; internal set; }
+
+        public bool ShowSummarizedSubResults { get; set; }
     }
 }

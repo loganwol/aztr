@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AzTestReporter.BuildRelease.Apis;
+    using Newtonsoft.Json;
     using Validation;
 
     /// <summary>
@@ -10,6 +12,8 @@
     /// </summary>
     public class ResultSummaryDataModel
     {
+        private bool summarizewithsubresults;
+		
         /// <summary>
         /// Initializes a new instance of the <see cref="ResultSummaryDataModel"/> class.
         /// </summary>
@@ -21,11 +25,13 @@
         /// Initializes a new instance of the <see cref="ResultSummaryDataModel"/> class.
         /// </summary>
         /// <param name="runsList">The runs lists result information to summarize.</param>
-        public ResultSummaryDataModel(IReadOnlyList<Run> runsList)
+        public ResultSummaryDataModel(IReadOnlyList<Run> runsList, bool summarizewithsubresults = false)
         {
             Requires.NotNull(runsList, nameof(runsList));
 
-            int totalNum = 0;
+            this.summarizewithsubresults = summarizewithsubresults;
+
+            var currentresultsummarydatamodel = new RunResultSummaryDataModel();
 
             foreach (var testRunResult in runsList)
             {
@@ -34,71 +40,44 @@
                     continue;
                 }
 
-                int subFailed = 0;
-                int subPassed = 0;
-
-                foreach (RunStatistic stat in testRunResult.RunStatistics)
+                if (summarizewithsubresults && testRunResult.SubTestResultStatistics.Any())
                 {
-                    if (stat.outcome.Equals("Passed", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        _ = int.TryParse(stat.count.ToString(), out subPassed);
-                        continue;
-                    }
-
-                    if (stat.outcome.Equals("Failed", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        _ = int.TryParse(stat.count.ToString(), out subFailed);
-                        continue;
-                    }
+                    currentresultsummarydatamodel.Passed += testRunResult.SubTestResultStatistics
+                        .Where(r => r.outcome == Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
+                    currentresultsummarydatamodel.Failed += testRunResult.SubTestResultStatistics
+                        .Where(r => r.outcome == Apis.Common.OutcomeEnum.Failed).Sum(r => r.count);
+                    currentresultsummarydatamodel.NotExecuted += testRunResult.SubTestResultStatistics
+                        .Where(r => r.outcome != Apis.Common.OutcomeEnum.Failed &&
+                                    r.outcome != Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
                 }
-
-                totalNum += Convert.ToInt32(testRunResult.totalTests);
-                this.Passed += subPassed;
-                this.Failed += subFailed;
+                else
+                {
+                    currentresultsummarydatamodel.Passed += testRunResult.RunStatistics
+                        .Where(r => r.outcome == Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
+                    currentresultsummarydatamodel.Failed += testRunResult.RunStatistics
+                        .Where(r => r.outcome == Apis.Common.OutcomeEnum.Failed).Sum(r => r.count);
+                    currentresultsummarydatamodel.NotExecuted += testRunResult.RunStatistics
+                        .Where(r => r.outcome != Apis.Common.OutcomeEnum.Failed &&
+                                    r.outcome != Apis.Common.OutcomeEnum.Passed).Sum(r => r.count);
+                }
             }
 
-            this.Total = totalNum;
-        }
-
-        /// <summary>
-        /// Gets or sets the Total number of tests executed.
-        /// </summary>
-        public int Total { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total number of tests that have passed.
-        /// </summary>
-        public int Passed { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total number of tests that have failed.
-        /// </summary>
-        public int Failed { get; set; }
-
-        /// <summary>
-        /// Gets the total number of tests that have not have been executed.
-        /// </summary>
-        public int NotExecuted => this.Total - (this.Passed + this.Failed);
-
-        /// <summary>
-        /// Gets the percentage of tests passing.
-        /// </summary>
-        public int PassRate
-        {
-            get
+            if (summarizewithsubresults)
             {
-                if (this.Passed + this.Failed == 0)
-                {
-                    return 0;
-                }
-
-                return (int)((this.Passed / (double)this.Total) * 100);
+                this.SubResultsSummaryDataModel = currentresultsummarydatamodel;
             }
+            else
+            {
+                this.OverallResultSummaryDataModel = currentresultsummarydatamodel;
+            }
+
         }
 
-        /// <summary>
-        /// Gets or sets the current code coverage precentage for the tests.
-        /// </summary>
-        public int CodeCoverage { get; set; }
+        public RunResultSummaryDataModel OverallResultSummaryDataModel { get; set; }
+
+        public RunResultSummaryDataModel SubResultsSummaryDataModel { get; set; }
+
+        [JsonIgnore]
+        public RunResultSummaryDataModel Summary => this.summarizewithsubresults ? this.SubResultsSummaryDataModel : this.OverallResultSummaryDataModel;
     }
 }

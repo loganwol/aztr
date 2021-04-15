@@ -222,7 +222,6 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit
 
             // Verify
             pipeline.ReleaseDefinitionName.Should().NotBeNullOrEmpty();
-            pipeline.ReleaseName.Should().NotBeNullOrEmpty();
             pipeline.ReleaseExecutionStage.Should().NotBeNullOrEmpty();
             pipeline.ReleaseSourceBranchName.Should().NotBeNullOrEmpty();
             pipeline.ReleasePipelineDefaultWorkingDirectory.Should().NotBeNullOrEmpty();

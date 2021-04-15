@@ -38,6 +38,13 @@
         /// </summary>
         public List<string> AgentPools { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the generated results should show
+        /// the overall summary results similar to ADO or should include subtestresults
+        /// into the summary.
+        /// </summary>
+        public bool ShowSummarizedSubResults { get; set; }
+
         public override string ToString()
         {
             this.currentValues = new Dictionary<string, string>() 

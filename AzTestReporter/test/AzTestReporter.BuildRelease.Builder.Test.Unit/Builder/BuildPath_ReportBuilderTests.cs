@@ -14,6 +14,7 @@
     using AzTestReporter.BuildRelease.Apis;
     using AzTestReporter.BuildRelease.Apis.Exceptions;
     using Xunit;
+    using AzTestReporter.BuildRelease.Apis.Common;
 
     [ExcludeFromCodeCoverage]
 
@@ -76,6 +77,7 @@
                     BuildRepositoryName = "repository",
                     BuildID = "1",
                     SystemTeamProject = "fake",
+                    SystemHostType = "build",
                 },
             };
 
@@ -147,6 +149,7 @@
                     BuildRepositoryName = "repository",
                     BuildID = "1",
                     SystemTeamProject = "fake",
+                    SystemHostType = "build",
                 },
 
                 ResultSourceIsBuild = true,
@@ -311,6 +314,9 @@
                     BuildRepositoryName = "repository",
                     BuildID = "1",
                     SystemTeamProject = "fake",
+                    SystemHostType = "build",
+//                    ReleaseStageID = 32,
+//                    ReleaseID = "32",
                 },
 
                 ResultSourceIsBuild = true,
@@ -337,7 +343,7 @@
             Action act = () => _ = new ReportBuilder(azureReader).GetReleasesRunsandResults(ref reportBuilderParameters);
 
             // Verify
-            act.Should().ThrowExactly<TestResultReportingSendToNullException>();
+            act.Should().ThrowExactly<TestResultReportingException>();
         }
 
         [Fact]
@@ -355,6 +361,9 @@
                     BuildRepositoryName = "repository",
                     BuildID = "94",
                     SystemTeamProject = "fake",
+                    SystemHostType = "build",
+                    ReleaseStageID = 32,
+                    ReleaseID = "32",
                 },
 
                 ResultSourceIsBuild = true,
@@ -392,7 +401,7 @@
                 {
                     var asr = AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\TestResult.json"));
                     var testresults = new TestResultDataCollection(asr);
-                    testresults[0].Outcome = "failed";
+                    testresults[0].Outcome = OutcomeEnum.Failed;
 
                     asr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(testresults));
 
@@ -422,8 +431,10 @@
             // Verify
             dailyreport.dailyResultSummaryDataModel.Bugs.Should().HaveCount(1);
             dailyreport.dailyResultSummaryDataModel.Bugs[0].Id.Should().Be(511492);
-            dailyreport.dailyResultSummaryDataModel.PipelineVariables.Should().HaveCount(1);
+            dailyreport.dailyResultSummaryDataModel.PipelineVariables.Should().HaveCount(3);
             dailyreport.dailyResultSummaryDataModel.PipelineVariables["sample"].Should().Be("test");
+            dailyreport.dailyResultSummaryDataModel.PipelineVariables["Requested By"].Should().NotBeNullOrEmpty();
+            dailyreport.dailyResultSummaryDataModel.PipelineVariables["Build ID"].Should().Be("94");
 
             var html = dailyreport.ToHTML();
             html.Should().NotBeNullOrEmpty();
@@ -431,7 +442,7 @@
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
-            var failuresrow = htmlDocument.GetElementbyId("failuresrow1");
+            var failuresrow = htmlDocument.GetElementbyId("failuresrow0");
             failuresrow.Should().NotBeNull();
 
             var bugstablerow = htmlDocument.GetElementbyId("bugstableheaderrow");

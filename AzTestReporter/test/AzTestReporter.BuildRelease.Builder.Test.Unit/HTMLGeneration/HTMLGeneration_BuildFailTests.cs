@@ -9,6 +9,7 @@
     using Newtonsoft.Json;
     using AzTestReporter.BuildRelease.Apis;
     using Xunit;
+    using System;
 
     [ExcludeFromCodeCoverage]
     
@@ -33,7 +34,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder failHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -54,7 +55,7 @@
             this.resultBuilderParameters.IsUnitTest = true;
 
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             var testresultdata = new System.Collections.Generic.List<TestResultData>();
             testresultdata.Add(new TestResultData()
@@ -62,7 +63,7 @@
                 AutomatedTestName = "Company.Feature2.subfeature.foo.test1",
                 TestCaseName = "foo",
                 Build = new Build() { Name = "1.2.3.4" },
-                Outcome = "ignore",
+                Outcome = Apis.Common.OutcomeEnum.Ignore,
             });
 
             this.resultBuilderParameters.TestResultsData = testresultdata;
@@ -84,9 +85,9 @@
         {
             // Arrange
             this.resultBuilderParameters.IsUnitTest = false;
-            this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
+            this.resultBuilderParameters.ReleaseName = "myrelease";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -96,8 +97,7 @@
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(emailhtml);
 
-            htmlDocument.GetElementbyId("releasedetail").Should().NotBeNull();
-            htmlDocument.GetElementbyId("releasedetail")?.InnerText.RemoveHTMLExtras().Should().Be("Myrelease");
+            htmlDocument.GetElementbyId("releasedetail").InnerText.RemoveHTMLExtras().Should().Contain("myrelease");
         }
 
         [Fact]
@@ -105,9 +105,9 @@
         {
             // Arrange
             this.resultBuilderParameters.IsUnitTest = false;
-            this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
+            //this.resultBuilderParameters.PipelineEnvironmentOptions.ReleaseName = "My release";
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+			this.resultBuilderParameters.FailedTaskName = "abc";
             this.resultBuilderParameters.FailedTaskName = "myFailedTask";
 
             // Act
@@ -128,7 +128,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abd";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -151,7 +151,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -171,7 +171,7 @@
             // Arrange
             this.resultBuilderParameters.IsUnitTest = true;
             this.resultBuilderParameters.ToolVersion = "1.2.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder dailyHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);
@@ -190,7 +190,7 @@
         {
             // Arrange
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             string responseBody = File.ReadAllText(@"TestData\\TestRun.json");
             AzureSuccessReponse runsResponse = JsonConvert.DeserializeObject<AzureSuccessReponse>(responseBody);
@@ -200,8 +200,10 @@
             AzureSuccessReponse testRunResultSuccessReponse = JsonConvert.DeserializeObject<AzureSuccessReponse>(responseBody);
 
             var testresults = AzureSuccessReponse.ConvertTo<TestResultData>(testRunResultSuccessReponse);
-            testresults[0].Outcome = "Failed";
-            testresults[5].Outcome = "Failed";
+            testresults[0].Outcome = Apis.Common.OutcomeEnum.Failed;
+            testresults[0].FailingSince = new FailingSince() { Date = DateTime.Now.AddDays(-2) };
+            testresults[5].Outcome = Apis.Common.OutcomeEnum.Failed;
+            testresults[5].FailingSince = new FailingSince() { Date = DateTime.Now.AddDays(-1) };
 
             responseBody = JsonConvert.SerializeObject(testresults);
             testRunResultSuccessReponse = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(responseBody);
@@ -228,20 +230,19 @@
             element = htmlFailDocument.GetElementbyId("failuresbytestclassrow");
             element.Should().NotBeNull();
 
-            element = htmlFailDocument.GetElementbyId("failuresrow1");
-            element.Should().NotBeNull();
+            element = htmlFailDocument.GetElementbyId("failuresrow0");
 
             // Get the first cell. This is the important cell that sets the rowspan
             // grouped by the Rowcount property. 
-            htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes.Count.Should().BeGreaterOrEqualTo(11);
+            element.ChildNodes.Count.Should().BeGreaterOrEqualTo(9);
 
-            element = htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes[1];
+            element = htmlFailDocument.GetElementbyId("featurecell1");
             element.Name.Should().Be("td");
             element.Attributes["rowspan"].Value.Should().Be("2");
 
             // For all subsequent rows for a test area collection, the first cell
             // is removed. Hence rows 2 & 8 should not have the rowspan set on them.
-            element = htmlFailDocument.GetElementbyId("failuresrow2").ChildNodes[1];
+            element = htmlFailDocument.GetElementbyId("failuresrow1").ChildNodes[1];
             element.Name.Should().Be("td");
             element.Attributes["rowspan"].Should().BeNull();
 
@@ -254,7 +255,7 @@
         {
             // Arrange
             this.resultBuilderParameters.ToolVersion = "1.0.3.4";
-            this.resultBuilderParameters.IsPipelineFail = true;
+            this.resultBuilderParameters.FailedTaskName = "abc";
 
             // Act
             DailyHTMLReportBuilder failHTMLReportBuilder = new DailyHTMLReportBuilder(this.resultBuilderParameters);

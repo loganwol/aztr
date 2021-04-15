@@ -29,14 +29,14 @@
             runs[0].RunStatistics.Add(new RunStatistic()
             {
                 count = 1,
-                outcome = "notexecuted",
+                outcome = Apis.Common.OutcomeEnum.NotExecuted,
                 state = "unexpected",
             });
 
             runs[0].RunStatistics.Add(new RunStatistic()
             {
                 count = 3,
-                outcome = "failed",
+                outcome = Apis.Common.OutcomeEnum.Failed,
                 state = "unexpected",
             });
 

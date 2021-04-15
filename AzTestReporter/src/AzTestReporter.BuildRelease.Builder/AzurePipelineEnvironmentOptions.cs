@@ -103,12 +103,7 @@
         /// <summary>
         /// Gets the Release stage ID from the pipeline.
         /// </summary>
-        public int ReleaseStageID { get; internal set; }
-
-        /// <summary>
-        /// Gets or sets the Release name for which you would like to generate a report.
-        /// </summary>
-        public string ReleaseName { get; set; }
+        public int ReleaseStageID { get; set; }
 
         /// <summary>
         /// Gets the release pipelines default working directory.
@@ -194,7 +189,6 @@
 
                 this.ReleaseID = this.environmentvars["RELEASE_RELEASEID"];
                 this.ReleaseDefinitionName = this.environmentvars["RELEASE_DEFINITIONNAME"];
-                this.ReleaseName = this.environmentvars["RELEASE_RELEASENAME"];
                 this.ReleaseExecutionStage = this.environmentvars["RELEASE_ENVIRONMENTNAME"];
                 var id = this.environmentvars["RELEASE_ENVIRONMENTID"];
                 if (!string.IsNullOrEmpty(id))
@@ -263,7 +257,8 @@
             {
                 this.displayvalues.Add("\tRelease related variables =====", string.Empty);
                 this.displayvalues.Add("\tRelease Definition name        ", this.ReleaseDefinitionName);
-                this.displayvalues.Add("\tRelease name                   ", this.ReleaseName);
+                this.displayvalues.Add("\tRelease ID                     ", this.ReleaseID);
+                this.displayvalues.Add("\tRelease Environment ID         ", this.ReleaseStageID.ToString());
                 this.displayvalues.Add("\tRelease Stage name             ", this.ReleaseExecutionStage);
                 this.displayvalues.Add("\tRelease Attempt Number         ", this.ReleaseAttempt.ToString());
                 this.displayvalues.Add("\tAgent ID                       ", this.AgentID);

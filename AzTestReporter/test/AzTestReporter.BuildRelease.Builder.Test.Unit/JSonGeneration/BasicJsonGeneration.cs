@@ -35,6 +35,8 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit.JSonGeneration
                     BuildRepositoryName = "repository",
                     BuildID = "94",
                     SystemTeamProject = "fake",
+                    SystemHostType = "build",
+                    ReleaseStageID = 32,
                 },
 
                 ResultSourceIsBuild = true,
@@ -72,7 +74,7 @@ namespace AzTestReporter.BuildRelease.Builder.Test.Unit.JSonGeneration
             {
                 var asr = AzureSuccessReponse.ConverttoAzureSuccessResponse(File.ReadAllText(@"TestData\\TestResult.json"));
                 var testresults = new TestResultDataCollection(asr);
-                testresults[0].Outcome = "failed";
+                testresults[0].Outcome = Apis.Common.OutcomeEnum.Failed;
 
                 asr = AzureSuccessReponse.BuildAzureSuccessResponseFromValueArray(JsonConvert.SerializeObject(testresults));
 

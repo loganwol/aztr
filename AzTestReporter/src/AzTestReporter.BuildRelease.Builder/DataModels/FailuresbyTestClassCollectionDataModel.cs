@@ -11,8 +11,9 @@
     public class FailuresbyTestClassCollectionDataModel : List<FailuresbyTestAreaDataModel>
     {
         public FailuresbyTestClassCollectionDataModel(
-            string azureprojectname,
-            IReadOnlyList<TestResultData> testResultDataList)
+            string resultsrooturl,
+            IReadOnlyList<TestResultData> testResultDataList,
+            bool summarizewithsubresults = false)
         {
             //Requires.NotNullOrEmpty(azureprojectname, nameof(azureprojectname));
             Requires.NotNull(testResultDataList, nameof(testResultDataList));
@@ -22,11 +23,20 @@
             foreach (string feature in features)
             {
                 List<TestResultData> testcaseResultsFromOneFeature = testResultDataList.ToList().FindAll(tc => tc.AutomatedTestName.Contains(feature));
-                List<TestResultData> testRunCasesFailures = testcaseResultsFromOneFeature.FindAll(tcf => tcf.Outcome.ToUpperInvariant() == "FAILED");
+                List<TestResultData> testRunCasesFailures = testcaseResultsFromOneFeature.FindAll(tcf => tcf.Outcome == Apis.Common.OutcomeEnum.Failed);
 
-                if (testRunCasesFailures.Count > 0)
+                if (testRunCasesFailures.Any())
                 {
-                    int rowcount = 0;
+                    var failuredm = new FailuresbyTestAreaDataModel()
+                    {
+                        TestClassName = feature,
+                        TestNamespace = testRunCasesFailures.First().TestNamespace,
+                        FailingSince = testRunCasesFailures.First().FailingSince != null ?
+                                    this.ConvertToDays(testRunCasesFailures.First().FailingSince.Date) : string.Empty,
+                    };
+
+                    failuredm.FailuresinTestArea = new List<FailuresinTestAreaDataModel>();
+
                     for (int i = 0; i < testRunCasesFailures.Count; i++)
                     {
                         var bugsandlinks = new Dictionary<string, string>();
@@ -41,33 +51,45 @@
                             }
                         }
 
-                        if (i == 0)
-                        {
-                            rowcount = testRunCasesFailures.Count;
+                        failuredm.BugandLink = bugsandlinks;
+
+                        if (!summarizewithsubresults)
+                        { 
+                            var failure = new FailuresinTestAreaDataModel(){
+                                Duration = this.ConvertToSecondsMilliseconds(
+                                    Convert.ToDateTime(testRunCasesFailures[i].CompletedDate, CultureInfo.InvariantCulture) -
+                                    Convert.ToDateTime(testRunCasesFailures[i].StartedDate, CultureInfo.InvariantCulture)),
+                                TestName = this.ShortTestName(testRunCasesFailures[i].TestCaseName),
+                                ErrorMessage = testRunCasesFailures[i].ErrorMessage?.ToString(),
+                            };
+
+                            failuredm.FailuresinTestArea.Add(failure);
                         }
-                        else
+                        else if(testRunCasesFailures[i].TestSubResults != null && testRunCasesFailures[i].TestSubResults.Any())
                         {
-                            rowcount = -1;
+                            var subfailures = new List<FailuresinTestAreaDataModel>();
+                            testRunCasesFailures[i].TestSubResults
+                                .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed)
+                                .ToList()
+                                .ForEach(testsubresult =>
+                            {
+                                var failure = new FailuresinTestAreaDataModel()
+                                {
+                                    Duration = TimeSpan.FromMilliseconds(testsubresult.durationInMs).TotalSeconds.ToString(),
+                                    TestName = testsubresult.DisplayName,
+
+                                    // TODO: failuredm.LinktoRunWeb = $"https://dev.azure.com/{azureorganizationame}/{azureprojectname}/_testManagement/runs?_a=resultSummary&runId={testRunCasesFailures[i].TestRun.Id}&resultId={testRunCasesFailures[i].Id}";
+                                    ErrorMessage = testsubresult.ErrorMessage?.ToString()
+                                };
+
+                                subfailures.Add(failure);
+                            });
+
+                            failuredm.FailuresinTestArea = subfailures;
                         }
-
-                        var failuredm = new FailuresbyTestAreaDataModel()
-                        {
-                            RowCount = rowcount,
-                            TestClassName = feature,
-                            BugandLink = bugsandlinks,
-                        };
-
-                        failuredm.Duration = this.ConvertToSecondsMilliseconds(
-                            Convert.ToDateTime(testRunCasesFailures[i].CompletedDate, CultureInfo.InvariantCulture) -
-                            Convert.ToDateTime(testRunCasesFailures[i].StartedDate, CultureInfo.InvariantCulture));
-                        failuredm.TestName = this.ShortTestName(testRunCasesFailures[i].TestCaseName);
-                        // TODO: failuredm.LinktoRunWeb = $"https://dev.azure.com/{azureorganizationame}/{azureprojectname}/_testManagement/runs?_a=resultSummary&runId={testRunCasesFailures[i].TestRun.Id}&resultId={testRunCasesFailures[i].Id}";
-                        failuredm.ErrorMessage = testRunCasesFailures[i].ErrorMessage?.ToString();
-                        failuredm.FailingSince = testRunCasesFailures[i].FailingSince != null ?
-                            this.ConvertToDays(testRunCasesFailures[i].FailingSince.Date) : string.Empty;
-
-                        this.Add(failuredm);
                     }
+
+                    this.Add(failuredm);
                 }
             }
         }

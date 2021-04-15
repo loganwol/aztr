@@ -67,7 +67,9 @@
             {
                 if (this.dailyResultSummaryDataModel.ResultSummary != null)
                 {
-                    return this.dailyResultSummaryDataModel.ResultSummary.PassRate;
+                    return this.dailyResultSummaryDataModel.ShowSummarizedSubResults?
+                        this.dailyResultSummaryDataModel.ResultSummary.SubResultsSummaryDataModel.PassRate:
+                        this.dailyResultSummaryDataModel.ResultSummary.OverallResultSummaryDataModel.PassRate;
                 }
 
                 return 0;
@@ -78,7 +80,7 @@
         /// Gets a value indicating whether the summary results detected the build the
         /// report was targeted to, to be generated, has failed.
         /// </summary>
-        public bool IsPipelineFailed => this.testResultBuilderParameters == null ? false : this.testResultBuilderParameters.IsPipelineFail;
+        public bool IsPipelineFailed => this.testResultBuilderParameters != null && !string.IsNullOrEmpty(this.FailedTaskName) ? this.testResultBuilderParameters.IsPipelineFail: false;
 
         /// <summary>
         /// Gets a string containing the name of the task in the release that has failed.
@@ -107,7 +109,7 @@
                 throw new TestResultReportingException("There are no summary results.");
             }
 
-            if (!(this.dailyResultSummaryDataModel.ResultSummary.PassRate >= 0))
+            if (!(this.PassRate >= 0))
             {
                 throw new TestResultReportingException("Result Summary has a negative pass rate.");
             }
@@ -121,7 +123,7 @@
         {
             string templateKey = "templateEmailKey";
             string templatefilepath;
-            if (!string.IsNullOrEmpty(this.testResultBuilderParameters.FailedTaskName) || this.testResultBuilderParameters.IsPipelineFail)
+            if (!string.IsNullOrEmpty(this.testResultBuilderParameters.FailedTaskName))
             {
                 templatefilepath = this.testResultBuilderParameters.FailedBuildTemplate;
                 templateKey = "templateFailedkey";

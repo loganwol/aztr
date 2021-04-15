@@ -59,6 +59,8 @@
             List<AzureBugData> bugs = new List<AzureBugData>();
             Release releaseDetails = null;
             Dictionary<string, string> pipelineVariables = null;
+            string requestedBy = string.Empty;
+            string releasename = string.Empty;
 
             Log?.Trace("Setting up HTTPclient to call REST apis");
 
@@ -92,18 +94,10 @@
 
                     coverageAggregateColl = new CodeCoverageModuleDataCollection(this.buildandReleaseReader, builddata.BuildId);
 
-                    if (builderParameters.IsPrivateRelease)
-                    {
-                        if (string.IsNullOrEmpty(builddata.BuildRequestedBy))
-                        {
-                            throw new TestResultReportingSendToNullException("Build Requested by is blank.", JsonConvert.SerializeObject(builddata));
-                        }
+                    requestedBy = builddata.BuildRequestedBy;
 
-                        builderParameters.SendTo = builddata.BuildRequestedBy;
-                        Log?.Info($"This is a private release {builddata.BuildRequestedBy}");
-                    }
-
-                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildNumber))
+                    if (string.IsNullOrEmpty(builderParameters.PipelineEnvironmentOptions.BuildNumber) ||
+                        builddata.BuildNumber != builderParameters.PipelineEnvironmentOptions.BuildNumber)
                     {
                         Log?.Info($"Build number was not found, setting to {builddata.BuildNumber}");
                         buildVersion = builddata.BuildNumber;
@@ -143,7 +137,13 @@
 
                     pipelineVariables = releaseDetails.ReleaseVariables;
 
+                    if (releaseDetails.Id != builderParameters.PipelineEnvironmentOptions.ReleaseID)
+                    {
+                        throw new TestResultReportingException("Mismatched Release ID found.");
+                    }
+
                     buildoreleaseid = releaseDetails.Id;
+                    releasename = releaseDetails.Name;
                     executionStageId = builderParameters.PipelineEnvironmentOptions.ReleaseStageID;
                     releaseDetails.CurrentAttempt = builderParameters.PipelineEnvironmentOptions.ReleaseAttempt;
                     testrundashboardlink = releaseDetails.GetTestRunLink(
@@ -184,18 +184,19 @@
 
                     branchName = releaseDetails.BranchName;
                     executiontime = releaseDetails.CreatedOn;
-
-                    if (builderParameters.IsPrivateRelease)
-                    {
-                        if (string.IsNullOrEmpty(releaseDetails.CreatedBy.EmailAddress))
-                        {
-                            throw new TestResultReportingSendToNullException("Created by Email address is blank.", JsonConvert.SerializeObject(releaseDetails));
-                        }
-
-                        builderParameters.SendTo = releaseDetails.CreatedBy.EmailAddress;
-                    }
+                    requestedBy = releaseDetails.CreatedBy.EmailAddress;
                 }
 
+                if (builderParameters.IsPrivateRelease)
+                {
+                    if (string.IsNullOrEmpty(requestedBy))
+                    {
+                        throw new TestResultReportingException("Build Requested by is blank.");
+                    }
+
+                    builderParameters.SendTo = requestedBy;
+                    Log?.Info($"This is a private release {requestedBy}");
+                }
 
                 if (!tasksFailed)
                 { 
@@ -232,10 +233,49 @@
 
                         var testDataCollection = new TestResultDataCollection(testRunResult);
 
+                        var datadriventests = testDataCollection.FindAll(r => r.ResultGroupType == ResultGroupTypeEnum.dataDriven);
+                        if (datadriventests.Any())
+                        {
+                            datadriventests.ForEach(test =>
+                            {
+                                var testresultswithsubtestdata = buildandReleaseReader.GetTestResultWithLinksAsync(run.Id, test.Id).GetAwaiter().GetResult();
+
+                                if (testresultswithsubtestdata != null && testresultswithsubtestdata.TestSubResults != null && testresultswithsubtestdata.TestSubResults.Any())
+                                {
+                                    var subtestresultstatistic = new RunStatistic();
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Passed;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
+
+                                    subtestresultstatistic = new RunStatistic();
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Failed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Failed;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
+
+                                    subtestresultstatistic = new RunStatistic();
+                                    subtestresultstatistic.count = testresultswithsubtestdata.TestSubResults.ToList()
+                                        .Where(r => r.Outcome != Apis.Common.OutcomeEnum.Failed && r.Outcome != Apis.Common.OutcomeEnum.Passed).Count();
+                                    if (subtestresultstatistic.count > 0)
+                                    {
+                                        subtestresultstatistic.outcome = Apis.Common.OutcomeEnum.Unspecified;
+                                        run.SubTestResultStatistics.Add(subtestresultstatistic);
+                                    }
+                                }
+                            });
+                        }
+                        
                         List<TestResultData> failuresWithLinks = new List<TestResultData>();
                         List<TestResultData> testcaseResultsInterim = testDataCollection;
 
-                        List<TestResultData> testRunCasesFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome.ToLower() == "failed");
+                        List<TestResultData> testRunCasesFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome == Apis.Common.OutcomeEnum.Failed);
                         if (testRunCasesFailures.Any())
                         {
                             testRunContainsFailures = true;
@@ -256,7 +296,7 @@
                             }
                         }
 
-                        List<TestResultData> testRunCasesNonFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome.ToLower() != "failed");
+                        List<TestResultData> testRunCasesNonFailures = testcaseResultsInterim.FindAll(tcf => tcf.Outcome != Apis.Common.OutcomeEnum.Failed);
 
                         testResultData.AddRange(testRunCasesNonFailures);
                         testResultData.AddRange(failuresWithLinks);
@@ -274,11 +314,13 @@
             var configMapper = new Mapper(mapperconfig);
             DailyTestResultBuilderParameters testResultBuilderParameters = configMapper.Map<DailyTestResultBuilderParameters>(builderParameters);
 
-            if(!string.IsNullOrEmpty(builderParameters.SendTo))
+            if (pipelineVariables == null)
             {
-                pipelineVariables.Add("Requested By", builderParameters.SendTo);
-                pipelineVariables.Add("Build ID", builderParameters.PipelineEnvironmentOptions.BuildID);
+                pipelineVariables = new Dictionary<string, string>();
             }
+
+            pipelineVariables.Add("Requested By", requestedBy);
+			pipelineVariables.Add("Build ID", builderParameters.PipelineEnvironmentOptions.BuildID);
 
             testResultBuilderParameters.ToolVersion = version;
             testResultBuilderParameters.TestResultsData = testResultData.OrderBy(r => r.TestClassName).ToList();
@@ -291,6 +333,8 @@
             testResultBuilderParameters.Bugs = bugs;
             testResultBuilderParameters.PipelineVariables = pipelineVariables;
             testResultBuilderParameters.ExecutionTime = executiontime;
+            testResultBuilderParameters.ReleaseName = releasename;
+            testResultBuilderParameters.ShowSummarizedSubResults = builderParameters.ShowSummarizedSubResults;
 
             if (coverageAggregateColl != null && coverageAggregateColl.All.Count > 0)
             {
