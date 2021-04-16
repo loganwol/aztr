@@ -902,14 +902,15 @@ height: 5.4pt
                                                         </p>
                                                     </td>
 
-                                                    @if (failuredetail.BugandLink != null && failuredetail.BugandLink.Count > 0)
+                                                    @if (failuredetail.FailuresinTestArea[i].BugandLink != null && failuredetail.FailuresinTestArea[i].BugandLink.Count > 0)
                                                     {
                                                         var bugAlignment = "top";
-                                                        if (failuredetail.BugandLink.Count == 1)
+                                                        if (failuredetail.FailuresinTestArea[i].BugandLink.Count == 1)
                                                         {
                                                             bugAlignment = "middle";
                                                         }
-                                                        foreach (var bugandlink in failuredetail.BugandLink)
+
+                                                        foreach (var bugandlink in failuredetail.FailuresinTestArea[i].BugandLink)
                                                         {
                                                             <td style='border-top:none;border-left:none;border-bottom:solid #A5A5A5 1.0pt;border-right:solid #A5A5A5 1.0pt;padding:4pt;vertical-align:@bugAlignment'>
                                                                 <p class=MsoNormal align=center style='text-align:center;vertical-align:top'>

@@ -13,5 +13,7 @@ namespace AzTestReporter.BuildRelease.Builder.DataModels
         public string Duration { get; set; }
 
         public string ErrorMessage { get; set; }
+
+        public Dictionary<string, string> BugandLink { get; set; }
     }
 }
