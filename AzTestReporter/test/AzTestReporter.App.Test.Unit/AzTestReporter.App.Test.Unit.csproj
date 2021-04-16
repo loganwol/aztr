@@ -5,6 +5,8 @@
 
     <IsPackable>false</IsPackable>
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+    <IsTestProject>true</IsTestProject>
+
   </PropertyGroup>
 
   <Import Project="$(SolutionDir)directory.build.test.props" />
