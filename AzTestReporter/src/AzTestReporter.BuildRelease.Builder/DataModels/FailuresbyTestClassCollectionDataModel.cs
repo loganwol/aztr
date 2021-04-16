@@ -39,28 +39,27 @@
 
                     for (int i = 0; i < testRunCasesFailures.Count; i++)
                     {
-                        var bugsandlinks = new Dictionary<string, string>();
+                        var testbuglinks = new Dictionary<string, string>();
                         if (testRunCasesFailures[i].AssociatedBugs?.Count > 0)
                         {
                             foreach (var bugandlink in testRunCasesFailures[i].AssociatedBugs)
                             {
-                                if (!bugsandlinks.ContainsKey(bugandlink.Id))
+                                if (!testbuglinks.ContainsKey(bugandlink.Id))
                                 {
-                                    bugsandlinks.Add(bugandlink.Id, bugandlink.Url);
+                                    testbuglinks.Add(bugandlink.Id, bugandlink.Url);
                                 }
                             }
                         }
 
-                        failuredm.BugandLink = bugsandlinks;
-
                         if (!summarizewithsubresults)
-                        { 
-                            var failure = new FailuresinTestAreaDataModel(){
+                        {
+                            var failure = new FailuresinTestAreaDataModel() {
                                 Duration = this.ConvertToSecondsMilliseconds(
                                     Convert.ToDateTime(testRunCasesFailures[i].CompletedDate, CultureInfo.InvariantCulture) -
                                     Convert.ToDateTime(testRunCasesFailures[i].StartedDate, CultureInfo.InvariantCulture)),
                                 TestName = this.ShortTestName(testRunCasesFailures[i].TestCaseName),
                                 ErrorMessage = testRunCasesFailures[i].ErrorMessage?.ToString(),
+                                BugandLink = testbuglinks,
                             };
 
                             failuredm.FailuresinTestArea.Add(failure);
@@ -79,7 +78,8 @@
                                     TestName = testsubresult.DisplayName,
 
                                     // TODO: failuredm.LinktoRunWeb = $"https://dev.azure.com/{azureorganizationame}/{azureprojectname}/_testManagement/runs?_a=resultSummary&runId={testRunCasesFailures[i].TestRun.Id}&resultId={testRunCasesFailures[i].Id}";
-                                    ErrorMessage = testsubresult.ErrorMessage?.ToString()
+                                    ErrorMessage = testsubresult.ErrorMessage?.ToString(),
+                                    BugandLink = testbuglinks,
                                 };
 
                                 subfailures.Add(failure);

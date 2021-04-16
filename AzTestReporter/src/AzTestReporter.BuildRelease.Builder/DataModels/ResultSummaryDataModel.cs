@@ -31,8 +31,20 @@
 
             this.summarizewithsubresults = summarizewithsubresults;
 
-            var currentresultsummarydatamodel = new RunResultSummaryDataModel();
+            this.OverallResultSummaryDataModel = this.GenerateSummary(runsList, false);
+            this.SubResultsSummaryDataModel = this.GenerateSummary(runsList, true);
+        }
 
+        public RunResultSummaryDataModel OverallResultSummaryDataModel { get; set; }
+
+        public RunResultSummaryDataModel SubResultsSummaryDataModel { get; set; }
+
+        [JsonIgnore]
+        public RunResultSummaryDataModel Summary => this.summarizewithsubresults ? this.SubResultsSummaryDataModel : this.OverallResultSummaryDataModel;
+
+        private RunResultSummaryDataModel GenerateSummary(IReadOnlyList<Run> runsList, bool summarizewithsubresults)
+        {
+            var currentresultsummarydatamodel = new RunResultSummaryDataModel();
             foreach (var testRunResult in runsList)
             {
                 if (testRunResult.RunStatistics == null)
@@ -62,22 +74,7 @@
                 }
             }
 
-            if (summarizewithsubresults)
-            {
-                this.SubResultsSummaryDataModel = currentresultsummarydatamodel;
-            }
-            else
-            {
-                this.OverallResultSummaryDataModel = currentresultsummarydatamodel;
-            }
-
+            return currentresultsummarydatamodel;
         }
-
-        public RunResultSummaryDataModel OverallResultSummaryDataModel { get; set; }
-
-        public RunResultSummaryDataModel SubResultsSummaryDataModel { get; set; }
-
-        [JsonIgnore]
-        public RunResultSummaryDataModel Summary => this.summarizewithsubresults ? this.SubResultsSummaryDataModel : this.OverallResultSummaryDataModel;
     }
 }
