@@ -102,10 +102,10 @@ stages:
           publishLocation: 'Container'
         condition: always()
 
--stage: "RunIntegrationTests"
+- stage: "RunIntegrationTests"
   displayName: "Run Integration Tests"
 
-  -jobs:
+  jobs:
     - job: "Rununittests"
       displayName: "Run Unit Tests"
       pool:
