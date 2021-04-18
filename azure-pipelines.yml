@@ -27,7 +27,7 @@ stages:
       displayName: "Build and run unit tests"
       pool:
         name: 'Azure Pipelines'
-        vmImage: $(vmImageName)
+        vmImage: $(vmImage)
         demands: VSTest
 
       steps:
@@ -110,7 +110,7 @@ stages:
       displayName: "Run Unit Tests"
       pool:
         name: 'Azure Pipelines'
-        vmImage: $(vmImageName)
+        vmImage: $(vmImage)
         demands: VSTest
 
       steps:
