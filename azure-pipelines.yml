@@ -18,73 +18,111 @@ variables:
 name: $(major).$(minor)$(Rev:.r)
 
 
-steps:
-- task: NuGetToolInstaller@1
+stages:
+- stage: "BuildandRunUnitTests"
+  displayName: "Build project and run unit tests"
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  jobs: 
+    - job: "BuildandRunUnittests"
+      displayName: "Build and run unit tests"
+      pool:
+        name: 'Azure Pipelines'
+        vmImage: $(vmImageName)
+        demands: VSTest
 
-- task: VSBuild@1
-  displayName: "Build Release"
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: 'Release'
+      steps:
+      - task: NuGetToolInstaller@1
 
-- task: VSBuild@1
-  displayName: "Build Debug"
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: 'Debug'
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: '$(solution)'
 
-- task: VSTest@2
-  displayName: "Run Unit tests on Release build"
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: 'Release'
-    testSelector: testAssemblies
-    testAssemblyVer2: |
-      **\*test.unit*.dll
-      !**\*TestAdapter.dll
-      !**\obj\** 
-    codeCoverageEnabled: true
-    runSettingsFile: AzTestReporter\CodeCoverage.runsettings
+      - task: VSBuild@1
+        displayName: "Build Release"
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: 'Release'
 
-- task: PowerShell@2
-  displayName: "Generate Test run report"
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "Generating report"      
-      .\AzTestReporter\publish\Bin\Debug\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f All -o $(System.DefaultWorkingDirectory)\Report
+      - task: VSBuild@1
+        displayName: "Build Debug"
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: 'Debug'
 
-      tree /a /f
-    errorActionPreference: 'continue'
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-  condition: always()
+      - task: VSTest@2
+        displayName: "Run Unit tests on Release build"
+        inputs:
+          platform: '$(buildPlatform)'
+          configuration: 'Release'
+          testSelector: testAssemblies
+          testAssemblyVer2: |
+            **\*test.unit*.dll
+            !**\AzTestReporter.App.Test.Unit.dll
+            !**\*TestAdapter.dll
+            !**\obj\** 
+          codeCoverageEnabled: true
+          runSettingsFile: AzTestReporter\CodeCoverage.runsettings
 
-- task: PublishBuildArtifacts@1
-  displayName: "Publish AzTestReporter"
-  inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  condition: always()
+      - task: PowerShell@2
+        displayName: "Generate Test run report"
+        inputs:
+          targetType: 'inline'
+          script: |
+            Write-Host "Generating report"      
+            .\AzTestReporter\publish\Bin\Debug\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f All -o $(System.DefaultWorkingDirectory)\Report
 
-- task: PublishBuildArtifacts@1
-  displayName: "Publish nuget package"
-  inputs:
-    PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
-    ArtifactName: 'nugetpkg'
-    publishLocation: 'Container'
+            tree /a /f
+          errorActionPreference: 'continue'
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        condition: always()
 
-- task: PublishBuildArtifacts@1
-  displayName: "Publish Test run report"
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)\Report'
-    ArtifactName: 'report'
-    publishLocation: 'Container'
-  condition: always()
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish AzTestReporter"
+        inputs:
+          PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
+        condition: always()
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish nuget package"
+        inputs:
+          PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
+          ArtifactName: 'nugetpkg'
+          publishLocation: 'Container'
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Test run report"
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)\Report'
+          ArtifactName: 'report'
+          publishLocation: 'Container'
+        condition: always()
+
+-stage: "RunIntegrationTests"
+  displayName: "Run Integration Tests"
+
+  -jobs:
+    - job: "Rununittests"
+      displayName: "Run Unit Tests"
+      pool:
+        name: 'Azure Pipelines'
+        vmImage: $(vmImageName)
+        demands: VSTest
+
+      steps:
+      - task: VSTest@2
+        displayName: "Run Unit tests on Release build"
+        inputs:
+          platform: '$(buildPlatform)'
+          configuration: 'Release'
+          testSelector: testAssemblies
+          testAssemblyVer2: |
+            **\AzTestReporter.App.Test.Unit.dll
+            !**\*TestAdapter.dll
+            !**\obj\** 
+          codeCoverageEnabled: true
+          runSettingsFile: AzTestReporter\CodeCoverage.runsettings

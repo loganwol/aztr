@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{625EDB4D-6307-4C1C-BE71-8F30A4CD15B8}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		unittest.runsettings = unittest.runsettings
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzTestReporter.App", "src\AzTestReporter.App\AzTestReporter.App.csproj", "{8AD7B658-4534-4373-992E-3CCBDEA0973E}"
