@@ -6,17 +6,14 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   major: 1
   minor: 1
+  vmImage: 'windows-latest'
 
 name: $(major).$(minor)$(Rev:.r)
-
 
 stages:
 - stage: "BuildandRunUnitTests"
