@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="NLog" Version="4.7.9" />
     <PackageReference Include="RazorEngine" Version="3.10.0" />
     <PackageReference Include="Validation" Version="2.4.22" />
   </ItemGroup>
