@@ -35,3 +35,6 @@ StyleCopReport.xml
 
 # Debug Options
 launchSettings.json
+
+# Run settings
+*.runsettings
