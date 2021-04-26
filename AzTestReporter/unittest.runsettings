@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <EnvironmentVariables>
+      <SYSTEM_ACCESSTOKEN>6ohxay75bsyrwhkppqr4hwiaptasueky4du6il23m4gmv3yg47qa</SYSTEM_ACCESSTOKEN>
+      <BUILD_SOURCEBRANCH>refs/heads/main</BUILD_SOURCEBRANCH>
+      <BUILD_DEFINITIONNAME>loganwol.aztr</BUILD_DEFINITIONNAME>
+      <SYSTEM_TEAMPROJECT>AzureTestReports</SYSTEM_TEAMPROJECT>
+      <SYSTEM_DEFINITIONID>2</SYSTEM_DEFINITIONID>
+      <BUILD_BUILDID>100</BUILD_BUILDID>
+      <SYSTEM_TEAMFOUNDATIONCOLLECTIONURI>https://dev.azure.com/HermesProjects</SYSTEM_TEAMFOUNDATIONCOLLECTIONURI>
+      <BUILD_REPOSITORY_NAME>loganwol/aztr</BUILD_REPOSITORY_NAME>
+      <SYSTEM_ENABLEACCESSTOKEN>true</SYSTEM_ENABLEACCESSTOKEN>
+      <SYSTEM_TEAMFOUNDATIONSERVERURI>https://vsrm.dev.azure.com/HermesProjects</SYSTEM_TEAMFOUNDATIONSERVERURI>
+      <BUILD_BUILDNUMBER>1.1.12</BUILD_BUILDNUMBER>
+      <SYSTEM_HOSTTYPE>build</SYSTEM_HOSTTYPE>      
+    </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

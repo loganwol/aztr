@@ -17,4 +17,19 @@
     <ProjectReference Include="..\..\src\AzTestReporter.App\AzTestReporter.App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="coverlet.collector" Version="3.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="FluentAssertions" Version="5.10.3" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Update="NSubstitute" Version="4.2.2" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="Xunit.SkippableFact" Version="1.4.13" />
+  </ItemGroup>
+
 </Project>
