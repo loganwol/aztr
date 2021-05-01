@@ -90,6 +90,21 @@ stages:
         demands: VSTest
 
       steps:
+      - task: DownloadPipelineArtifact@2
+        displayName: 'Download AzTestReporter Artifact'
+        inputs:
+          buildType: specific
+          project: 'AzureTestReports'
+          definition: 2
+          itemPattern: |
+           **
+           !AzTestReporter.BuildRelease.Apis/**
+           !AzTestReporter.BuildRelease.Apis.Test.Unit/**
+           !AzTestReporter.BuildRelease.Builder/**
+           !AzTestReporter.BuildRelease.Builder.Test.Unit/**
+           !AzTestReporter.TestContent/**
+          targetPath: '$(System.DefaultWorkingDirectory)'
+          
       - task: VSTest@2
         displayName: "Run Unit tests on Release build"
         inputs:
@@ -102,3 +117,5 @@ stages:
             !**\obj\** 
           codeCoverageEnabled: true
           runSettingsFile: AzTestReporter\CodeCoverage.runsettings
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
