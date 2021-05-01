@@ -69,7 +69,7 @@ stages:
           targetType: 'inline'
           script: |
             Write-Host "Generating report"      
-            .\AzTestReporter\publish\Bin\Debug\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f All -o $(System.DefaultWorkingDirectory)\Report
+            .\AzTestReporter\Bin\Debug\AnyCPU\AzTestReporter.App\net472\AzTestReporter.App.exe --trt Unit --sendmail false -f All -o $(System.DefaultWorkingDirectory)\Report
             tree /a /f
           errorActionPreference: 'continue'
         env:
