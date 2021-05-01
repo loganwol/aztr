@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-
+    <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
   </PropertyGroup>
 
+  <Import Project="$(SolutionDir)directory.build.test.props" />
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
