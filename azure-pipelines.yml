@@ -76,31 +76,10 @@ stages:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         condition: always()
 
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish AzTestReporter"
-        inputs:
-          PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\net472'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
-        condition: always()
-
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish nuget package"
-        inputs:
-          PathtoPublish: '.\AzTestReporter\publish\Bin\Release\AnyCPU\AzTestReporter.App\aztestreporter.$(Build.BuildNumber).nupkg'
-          ArtifactName: 'nugetpkg'
-          publishLocation: 'Container'
-
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish Test run report"
-        inputs:
-          PathtoPublish: '$(System.DefaultWorkingDirectory)\Report'
-          ArtifactName: 'report'
-          publishLocation: 'Container'
-        condition: always()
 
 - stage: "RunIntegrationTests"
   displayName: "Run Integration Tests"
+  condition: always()
 
   jobs:
     - job: "Rununittests"
