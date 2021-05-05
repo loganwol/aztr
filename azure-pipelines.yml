@@ -110,6 +110,7 @@ stages:
         inputs:
           buildType: specific
           project: 'AzureTestReports'
+          artifactName: drop
           definition: 2
           itemPattern: |
            **
