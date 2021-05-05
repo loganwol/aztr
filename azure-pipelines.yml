@@ -76,6 +76,21 @@ stages:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         condition: always()
 
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish AzTestReporter"
+        inputs:
+          PathtoPublish: '.\AzTestReporter\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+          ArtifactName: 'app'
+          publishLocation: 'Container'
+        condition: always()
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish all binaries"
+        inputs:
+          PathtoPublish: '.\AzTestReporter\Bin\Release\AnyCPU\AzTestReporter.App\net472'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
+        condition: always()
 
 - stage: "RunIntegrationTests"
   displayName: "Run Integration Tests"
