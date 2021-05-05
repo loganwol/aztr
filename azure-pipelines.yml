@@ -108,7 +108,7 @@ stages:
       - task: DownloadPipelineArtifact@2
         displayName: 'Download AzTestReporter Artifact'
         inputs:
-          buildType: specific
+          buildType: current
           project: 'AzureTestReports'
           artifactName: drop
           definition: 2
