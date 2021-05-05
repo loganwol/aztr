@@ -21,7 +21,7 @@
 
             foreach (var testresult in testResults)
             {
-                if (summarizewithsubresults && testresult.TestSubResults.Any())
+                if (summarizewithsubresults && testresult.TestSubResults!= null && testresult.TestSubResults.Any())
                 {
                     this.Passed += testresult.TestSubResults
                         .Where(r => r.Outcome == Apis.Common.OutcomeEnum.Passed).Count();

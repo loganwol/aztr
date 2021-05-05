@@ -224,7 +224,13 @@
                     foreach (var file in aztrfiles)
                     {
                         Log?.Trace($"Moving file {file} to destination.");
-                        File.Move(file, Path.Combine(debugdirectory, Path.GetFileName(file)));
+                        var desitnation = Path.Combine(debugdirectory, Path.GetFileName(file));
+                        if (File.Exists(desitnation))
+                        {
+                            File.Delete(desitnation);
+                        }
+
+                        File.Move(file, desitnation);
                     }
                 }
 
