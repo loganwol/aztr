@@ -212,7 +212,7 @@
 
                 if (!string.IsNullOrWhiteSpace(clOptions.OutputDirectory))
                 {
-                    var debugdirectory = Path.Combine(appfullpath, "Debug");
+                    var debugdirectory = Path.Combine(outputdirectory, "Debug");
                     if (!Directory.Exists(debugdirectory))
                     {
                         Directory.CreateDirectory(debugdirectory);

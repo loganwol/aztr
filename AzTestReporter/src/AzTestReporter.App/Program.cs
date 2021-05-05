@@ -16,18 +16,28 @@
     {
         private static Logger log;
 
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             log = LogManager.GetCurrentClassLogger();
             log.Info("Starting TRR...");
             log.Info($"Executing version {Assembly.GetExecutingAssembly().GetName().Version.ToString()}.");
 
-            Parser.Default.ParseArguments<ReporterCommandlineOptions>(args)
-                .WithParsed<ReporterCommandlineOptions>(opts => RunOptionsandReturnExitCode(opts))
-                .WithNotParsed<ReporterCommandlineOptions>(errors => HandleParseErrors(errors));
+            var parserresult = Parser.Default.ParseArguments<ReporterCommandlineOptions>(args);
+            int returncode = 0;
+            parserresult.WithNotParsed<ReporterCommandlineOptions>(errors =>
+            {
+                returncode = HandleParseErrors(errors);
+            });
+
+            parserresult.WithParsed<ReporterCommandlineOptions>(opts =>
+            {
+                returncode = RunOptionsandReturnExitCode(opts);
+            });
+                
+            return returncode;
         }
 
-        public static void RunOptionsandReturnExitCode(ReporterCommandlineOptions clOptions)
+        public static int RunOptionsandReturnExitCode(ReporterCommandlineOptions clOptions)
         {
             string appSettingsFile = string.Empty;
 
@@ -100,16 +110,18 @@
                         });
 
                 log.Error(ex);
+                return -1;
             }
+
+            return 0;
         }
 
-        private static void HandleParseErrors(IEnumerable<Error> errors)
+        private static int HandleParseErrors(IEnumerable<Error> errors)
         {
             log.Error("Invalid arugments specified");
 
             Debug.Assert(false, "Errors have been reported when parsing the command line arguments.");
-            Environment.ExitCode = -1;
-            Environment.Exit(-1);
+            return -1;
         }
     }
 }
